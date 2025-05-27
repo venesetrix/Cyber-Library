@@ -92,6 +92,8 @@ Governance = The process of creating and enforcing decisions within an organizat
 
 ![Security Groups versus Network Access Control lists](/Resources/Images/AWS-CLF-02-2-SecGroups-vs-NSG.png)
 
+![New reference](./Resources/Images/AWS-CLF-02-2-SecGroups-vs-NSG.png)
+
 
 
 ### Security Services
