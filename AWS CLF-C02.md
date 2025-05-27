@@ -107,3 +107,9 @@ Amazon CloudWatch | Monitors application performance. Set alarms and automated a
 | AWS CloudTrail | Generates audit trails. |
 | AWS Audit Manager | Automates evidence collection to generate audit-ready reports to prove system compliance for audits. |
 | AWS Config | Detailed views of AWS resource configurations. Tracks how configurations and relationships between resources change over time. Can monitor changes and automatically alert. |
+
+## Cloud Technology and Services
+TBD
+
+## Billing, Pricing, and Support
+TBD
