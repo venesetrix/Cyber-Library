@@ -109,7 +109,65 @@ Amazon CloudWatch | Monitors application performance. Set alarms and automated a
 | AWS Config | Detailed views of AWS resource configurations. Tracks how configurations and relationships between resources change over time. Can monitor changes and automatically alert. |
 
 ## Cloud Technology and Services
-TBD
+
+### Interacting with the AWS Cloud
+
+1. AWS Management Console
+2. AWS Command Line Interface (CLI)
+3. AWS SDK's
+
+Using Infrastructure as Code with services like AWS Elastic Beanstalk, Lambda and cloudFormation
+
+### Connecting with the AWS Cloud
+These options are available to connect On-Prem-Servers with the AWS Cloud:
+1. AWS VPN
+2. AWS Direct Connect - Bypasses Internet
+3. Public Internet
+
+### Cloud deployment models
+* Cloud/Cloud-Native Deployment - All services hosted in the Cloud
+* Hybrid Deployment - Infrastructure and data both in cloud an on-premises. Or backup.
+* On-Premises
+
+### AWS global infrastructure
+* Availability Zones (AZs) - Separate Datacenters.
+* Regions - A set of different datacenters (AZ's)
+* Local Zones - When there is no Region close to the customers they have local Zones.
+* AWS Wavelength Zones - Ultra-low-latency experience by embedding AWS compute and storage services withing 5G networks.
+* AWS Edge Locations - Caching-Locations for the CloudFront-Service
+
+[Quelle: Explanation of AWS global infrastructure](https://clarusway.com/aws-global-infrastructure/)
+
+High availability is reached by hosting resources in multiple AZ's. The AZ's in a region are connected with a high performance internal network connection.
+Different Regions have different AWS Cloud offerings.
+
+### Compute Services
+Amazon EC2 (Elastic Compute Cloud) are customziable virtual computers, called "instances". The different instance types are:
+| Purpose | Description |
+| :--- | :---------- |
+| General purpose | General-purpose workloads |
+| Compute optimized | Compute-intensive applications |
+| Memory optimized | Processing large datasets in memory |
+| Storage optimized | High access to large datasets |
+| Accelerated optimized | Requiring high processing capabilities |
+
+Other compute services:
+| Purpose | Description |
+| :--- | :---------- |
+| Amazon Elastic Container Service (ECS) | Fully managed container orchestration |
+| Amazon Elastic Kubernetes Service (EKS) | Fully managed Kubernetes management service |
+| AWS Elastic Beanstalk | Web Application PaaS which automatically launches an environment and creates and configures the AWS resources needed to run your code. |
+| Elastic Load Balancing | Automatic distributing traffic between multiple servers. |
+| AWS Lambda | Run code snippets, without provisioning servers. Event-driven. |
+| AWS Fargate | Serverless compute engine for containers. Compatible with ECS and EKS. |
+| Amazon Lightsail |  |
+
+
+
+
+
+
+
 
 ## Billing, Pricing, and Support
 TBD
