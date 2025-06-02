@@ -139,7 +139,7 @@ These options are available to connect On-Prem-Servers with the AWS Cloud:
 * AWS Edge Locations - Caching-Locations for the CloudFront-Service
 * AWS Endpoints - Single instances of AWS services. Identified by __<Service + AWS-Region>+ amazonaws.com>__ for example __ec2.eu-west-2.amazonaws.com__.
 
-[Quelle: Explanation of AWS global infrastructure](https://clarusway.com/aws-global-infrastructure/)
+[Source: Explanation of AWS global infrastructure](https://clarusway.com/aws-global-infrastructure/)
 
 High availability is reached by hosting resources in multiple AZ's. The AZ's in a region are connected with a high performance internal network connection.
 Different Regions have different AWS Cloud offerings.
