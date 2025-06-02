@@ -154,15 +154,31 @@ Amazon EC2 (Elastic Compute Cloud) are customziable virtual computers, called "i
 Other compute services:
 | Purpose | Description |
 | :--- | :---------- |
-| Amazon Elastic Container Service (ECS) | Fully managed container orchestration |
+| Amazon Elastic Container Service (ECS) | Fully managed container orchestration. You have to configure the EC2-Instances by yourself (compare to AWS Fargate) |
 | Amazon Elastic Kubernetes Service (EKS) | Fully managed Kubernetes management service |
 | AWS Elastic Beanstalk | Web Application PaaS which automatically launches an environment and creates and configures the AWS resources needed to run your code. |
 | Elastic Load Balancing | Automatic distributing traffic between multiple servers. |
 | AWS Lambda | Run code snippets, without provisioning servers. Event-driven. |
 | AWS Fargate | Serverless compute engine for containers. Compatible with ECS and EKS. |
-| Amazon Lightsail |  |
+| Amazon Lightsail | Preconfigured and ready-to-user operating systems, web apps and development stacks |
 
+### Storage Services
 
+TBD
+
+### Database Services
+
+TBD
+
+### Network Services
+
+TBD
+
+### AI Services
+
+TBD
+
+### Management Tools
 
 
 
