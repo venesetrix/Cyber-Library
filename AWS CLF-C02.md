@@ -96,7 +96,7 @@ Governance = The process of creating and enforcing decisions within an organizat
 ### Security Services
 | Name | Description |
 | :---: | :---------- |
-| AWS Systems Manager | Manage AWS resources. Visualize and operate on multiple AWS services from one place. Create logical groups of resources. |
+| AWS Systems Manager | Manage AWS resources. Visualize and operate on multiple AWS services from one place. Create logical groups of resources. Secure node management without the need to open inbound ports, maintain bastion hosts or manage SSH keys. |
 | AWS WAF | Classic WAF. Can be deployed in CloudFront (CDN) or API Gateway. |
 | AWS Shield | DDoS Protection and automatic mitigations. Tier: Standard (Free). Tier: Advanced (24/7 access to AWS DDoS response team, Integrates into AWS WAF). Financial protection against DDoS-related spikes. Can be integrated into CloudFront and Route 53. |
 | Amazon Inspector | Security assessment service for applications. Automatically assesses for exposure, vulnerabilities and deviations from best practices. Preset or custom policies. Reports. |
@@ -109,6 +109,7 @@ Amazon CloudWatch | Monitors application performance. Set Alarms (based on prede
 | AWS Audit Manager | Automates evidence collection to generate audit-ready reports to prove system compliance for audits. |
 | AWS Config | Detailed views of AWS resource configurations. Tracks how configurations and relationships between resources change over time. Can monitor changes and automatically alert. |
 | Parameter Store | Stores configuration data for applications like plain-text strings or passwords. Ability to use the same key but contain different values for systems. |
+| AWS Personal Health Dashboard | Provides alerts for scheduled AWS maintenance activities that could impact resources in your accout. It sends emails and notifications. |
 
 ## Cloud Technology and Services
 
@@ -154,6 +155,18 @@ Amazon EC2 (Elastic Compute Cloud) are customziable virtual computers, called "i
 | Storage optimized | High access to large datasets |
 | Accelerated optimized | Requiring high processing capabilities |
 
+An Instance is running from an Amazon Machine Image (AMI), which is a template containing a configuration for Operating systems, Applications and application servers.
+
+Each EC2 instance has an instance store, a temporary block level storage. But you can also attach an Amazon Elastic Block Storage (EBS) as volume (only one instance at a time, but multiple volumes each instance) or Amazon Elastic File Systems (EFS).
+
+__Access Instances via__
+* AWS Systems Manager
+* EC2 Instance Connect - AWS IAM policies and principals are used to control SSH access.
+* Terminal - SSH clients
+* Web Browser - By using user-data field.
+
+When creating a new instance, you can enable the instance metadata service (IMDS) through the advanced details section an display attribute details by using the instance's public IP.
+
 Other compute services:
 | Purpose | Description |
 | :--- | :---------- |
@@ -174,7 +187,9 @@ Three types of data which are stored in AWS:
 | File | Pieces of informations insida a folder in an hierarchy. | Amazon Elastic File Service (EFS) |
 | Block | Units of blocks of data. Uses identifiers. | Amazon Elastic Block Store (EBS) |
 
-__Amazon S3 Storage__ Classes:
+__Amazon S3 Storage__
+
+Storage Classes:
 
 | Class | Description |
 | :--- | :---------- |
@@ -189,6 +204,24 @@ __Amazon S3 Storage__ Classes:
 
 See also [Amazon S3 Storage Classes](https://aws.amazon.com/s3/storage-classes-infographic)
 
+Other S3 features:
+
+* S3 Storage Class Analysis
+* S3 Lifecycle Policy - Automatic transitions to another storage class
+* S3 Cross-Region Replication (CRR)
+* S3 Same-Region Replication 
+* S3 Object Lock - Enforce write-once-read-many (WORM) policies
+* Works with AWS Lambda to log activities, alert and automate workflows
+* Is compatible to Big data analytics services like Amazon Athena and RedShift
+* Versioning (States: Unversioned (default), Versioning-enabled (irreversible), Versioning-suspended)
+
+S3 Identity and Access Management
+* Resource-based Policies
+  * Access control lists - XML-Policies to grant Access to Users and Accounts
+  * Bucket Policies - JSON-Policies to define users and their actions on resources. Uses a principal.
+* User Policies
+  * Like Bucket Policies but without a principal. Allows to specify actions on buckets and objects within the buckets.
+
 __Amazon Elastic Block Store (EBS)__ 
 
 Are raw, unformatted block devices attachable to an EC2 instance even without rebooting. They are like external harddrives. You can add multiple EBS volumes to one EC2 instance and use them as file systems or hard drives. They are automatically replicated within its availability zone. Features are:
@@ -196,6 +229,11 @@ Are raw, unformatted block devices attachable to an EC2 instance even without re
  * Do not disappear when EC2 instances are rebooted
  * Can be encrypted
  * Exist independently of EC2 instances, so that they can be moved to other instances
+ * Can be snapshotted and backuped in Amazon S3
+ * With EBS direct API you can look directly into snapshots.
+ * Snapshots kann instantly being restored with the Fast Snapshot Restore (FSR) feature.
+ * Data Lifecycle Manager (DLM) can Backup, Add or Delete Snapshots at given schedules per lifecycle policies.
+ * EBS Multi-Attach can attach one IOPS SSD to up to 15 nitro-based EC2-Instances
 
 __AWS Snow Family__
 
@@ -226,7 +264,7 @@ Data in tables with predefined relationships between them. Interface is SQL. Ser
 * PostgreSQL
 * MariaDB
 
-You can use AWS Database Migration Services (AWS DMS) to migrate existent databases to RDS. If you have a non-compatible DB-Schema you can use the AWS Schema Conversion Tool (AWS SCT).
+You can use AWS Database Migration Services (AWS DMS) to migrate existent databases to RDS. If you have a non-compatible DB-Schema you can use the AWS Schema Conversion Tool (AWS SCT). Advantages of RDS are automatic backup and software patching of the RDS, but you have to configure the underling OS.
 
 __NoSQL Databases__
 
@@ -320,6 +358,7 @@ __Business Application Services__
 
  * Amazon Connect - AI powered Help Service 
  * Amazon Simple Email Service (SES) - Cloud E-Mail Service Provider to use in your app.
+ * Amazon Simple Notification Service (Amazon SNS) - Sending notifications based on Amazon CloudWatch alarms and utilizes Email, SMS and HTTP. Email and AWS Lambda can subscribe to an SNS topic to receive notifications.
 
 __Customer Engagement Services__
 
@@ -340,6 +379,7 @@ __Developer Tool Services/Capabilities__
 * AWS CodePipeline - CI/CD-Pipelines.
 * AWS CodeStar (deprecated) - Develop and deploy AWS-Apps
 * AWS OpsWorks - Provides Managed Instances of Puppet Enterprise and Chef Automate.
+* AWS Servcie Catalog - Allows creating catalogs or portfolios of AWS resources. These can be used to quickly deploy a multi-tier website.
 * AWS X-Ray - Analyze and debug apps
 
 __End-User Computing Services (VDI)__
@@ -359,4 +399,81 @@ __IoT Services__
 * AWS IoT Greengrass - Messaging and synchronization of IoT Devices
 
 ## Billing, Pricing, and Support
-TBD
+
+__AWS Billing Dashboard__
+
+* Estimate and plan AWS costs
+* Consolidated billing
+* Receive alerts for service usage thresholds
+* Visualize monthly chargeable costs and bills
+
+__Types of Charges__
+
+1. Compute
+   * Pay as you go (On-Demand Instances)
+   * Save when you commit (Reserved Instances) 
+   * Saving when you commit (Saving Plans)
+   * Take advantage of unused AWS capacity (Spot Instances)
+   * Using own licenses and dedicated hardware (Dedicated Hosts)
+   * Reserve capacity in advance (Capacity Reservations)
+2. Storage
+  * Per Gigabyte
+  * The more you use, the less you pay.
+3. Data transfer (outgoing may cost)
+
+See also [Source: AWS Pricing Resources](https://aws.amazon.com/pricing)
+
+See also [How AWS pricing works](https://docs.aws.amazon.com/pdfs/whitepapers/latest/how-aws-pricing-works/how-aws-pricing-works.pdf)
+
+### AWS Budget and Cost Management
+
+See also [Source: AWS Cost Management Resources](https://aws.amazon.com/aws-cost-management/)
+
+__AWS Budgets__
+
+Setup custom budgets to track resource costs and usage. Send alerts when you exceed thresholds. Respond with custom action to prevent outages and insufficient resource use. Receive AWS Budgets reports daily, weekly or monthly.
+
+__AWS Cost Explorer__
+
+Analyze AWS resource usages and create forecast to project future AWS costs. Create custom reports based on usage.
+
+__AWS Cost and Usage Reports (AWS CUR)__
+
+Provide cost and usage data as a report to understand cost drivers. Identify ways to optimize monthly AWS usage bills. Provides metadata on AWS services, pricing, credits, fees, taxes, discounts, cost categories, Reserved Instances and saving plans. Utilize AWS const allocation tags. Integrate data with Amazon Athena, Amazon Redshift or Amazon QuickSight.
+
+__AWS Billing Conductor__
+
+Helps to analyze spending and bill for resource usage on your defined rates. Generate AWS Cost and Usage Reports for each billing group. 
+
+__AWS Pricing Calculator__
+
+Located at [Calculator.aws](https://calculator.aws). Configure a cost estimate that fits your unique business or personal needs.
+
+__AWS Consolidated Billing__
+
+Create a payer AWS account to view and pay combined billing charges for all linked accounts in an organization. Idependent and cannot use services or deploy them. 
+
+### Support Plans
+
+Support plan costs are in addition ot resource usage bill. See also [AWS Support plans](https://aws.amazon.com/premiumsupport/plans).
+
+| Name | Description | Costs | SLA | Features |
+| :--- | :---------- | :---------- | :---------- | :---------- |
+| Basic | For experimenting or testing. | None | No SLA | Pairs well with AWS Free tier. Account and billing inquiries. Service quota increase. Access to support forums and documentation. AWS Health Dashboard and AWS Trusted advisor checks. |
+| Developer | Experimenting or testing. | Minimum spend of $29 or 3% of monthly AWS charges. | 24h for less general guidance. 12h for system impaired. | Can create support tickets. Access to best-practice guidance and client-side diagnostic tools. Support-App in Slack. Business-hour email access to cloud support associates. Access to Support Automation Workflows (SAW) with AWSSupport runbooks. |
+| Business | Minimum recommended plan for production workloads. | Minimum spend of $100 per month or a percentage (10% or less) of the monthly charges. | Like Developer plus 4h for production system impaired, 1h production system down.  | Access to AWS Support API to automate support case management with AWS Trusted Advisor and Support Center. 24/7 use-case guidance. Support automation workflows with prefixes AWSSupport and AWSPremiumSupport. Infrastructure Event Management (additional fee). |
+| Enterprise On-Ramp | For Production and/or business-critical workloads. | Minimum spend of 5.500 $ or 10% of monthly charges. | Like Business plus 30min for business-critical system down.  | More customized support. Access to consultative application architecture guidance. Once a year short-term engagement with AWS Support. Access to a pool of Technical Account Managers (TAM) as well as case routing via the Concierge Support Team. |
+| Enterprise | For business- and/or mission-critical workloads. | Minimum spend of 15.000 $ or a percentage (10% or less) of monthly charges. | Like Enterprise On-Ramp but not 30 but 15min for business- or mission-critical system down.  | Infrastructure Event Management without limits. Access to proactive workshops and reviews.  AWS Incident Detection and Response service for additional fee. Assigned a TAM. Receive recommendations from AWS Trusted Advisor Priority. Access to online self-paced labs for employee training. |
+
+### Official AWS Resources
+
+| Resource | Description |
+| :--- | :---------- |
+| [AWS Whitepapers and Guides](https://aws.amazon.com/whitepapers) |  |
+| [AWS Blog](https://aws.amazon.com/blogs) |  |
+| [AWS Documentation](https://docs.aws.amazon.com) | Library of User Guides, API references, developer Guide, CLI references. |
+| [AWS re:Post](https://repost.aws) |  |
+| [AWS Knowledge Center](https://repost.aws/knowledge-center) | Structured in FAQ-Format. |
+| [AWS Market Place](https://aws.amazon.com/marketplace) |  |
+| [AWS Support Center](https://aws.amazon.com/contact-us) |  |
+| AWS Professional Services | Official guided support by AWS. |
