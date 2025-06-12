@@ -20,7 +20,7 @@ Advantages of Cloud Computing:
 * Reliability
   * Disaster recovery
   * Redundancy
-* Effiziency
+* Efficiency
   * Go global in minutes
 * Security
   * Best practices should be automated
@@ -88,20 +88,59 @@ Governance = The process of creating and enforcing decisions within an organizat
   * Roles
   * Policies
 * Traffic Control
-  * Security Groups - Apply to both inbound and outbound traffic
+  * Security Groups
+    * Stateful (responsed to inbound traffic automatically)
+    * Virtual firewall at instance level
+    * Apply to both inbound and outbound traffic.
+    * All rules are evaluated.
+    * Allow all outbound traffic by default, but no inbound traffic.
+    * No DENY rules needed.
   * Network Access control lists (NACLs)
+    * Stateless
+    * Numbered list of rules with lowest number = highest priority
+    * Evaluation ends with first matching rule
+    * Default NACL
+      * Allows all inbound/outbound traffic
+      * Firewall at the subnet level
+    * Custom NACL
+      * Denies all inbound/outbound traffic
+      * Can be defined for multiple subnets
+      * Only one NACL per subnet
 
 ![Security Groups versus Network Access Control lists](./Resources/Images/AWS-CLF-02-2-SecGroups-vs-NSG.png)
+
+__IAM Policies__
+
+Are written in the Visual Editor or JSON. You can view a policy summary in the AWS Management Console.
+
+Consist of:
+* Version
+* Statement-ID (SID) - (OPTIONAL)
+* Effect - Allow or deny (default)
+* Action - i.e. CreateBucket, DeleteBucket
+* Resources - On which resources this policy applies.
+* Conditions - For example specific IP or MFA
+
+AWS service's actions are
+* List
+* Read
+* Tagging
+* Write
+* Permissions Management
+
+__AWS IAM Access Analysis__
+
+Evaluates policies and possible access path. Analyses permission policies for S3 buckets, AWS KMS keys, Amazon SQS queues, IAM roles and Lambda functions.
 
 ### Security Services
 | Name | Description |
 | :---: | :---------- |
-| AWS Systems Manager | Manage AWS resources. Visualize and operate on multiple AWS services from one place. Create logical groups of resources. Secure node management without the need to open inbound ports, maintain bastion hosts or manage SSH keys. |
+| AWS Systems Manager | Manage AWS resources. Visualize and operate on multiple AWS services from one place. Create logical groups of resources. Secure node management without the need to open inbound ports, maintain bastion hosts or manage SSH keys. Has the feature of Distributor that allows for the central storage, distribution, and installation of software packages to instances within AWS, including software agents. You can use Distributor to push out software files and then use Run Command to automate installation and configuration of them. |
 | AWS WAF | Classic WAF. Can be deployed in CloudFront (CDN) or API Gateway. |
 | AWS Shield | DDoS Protection and automatic mitigations. Tier: Standard (Free). Tier: Advanced (24/7 access to AWS DDoS response team, Integrates into AWS WAF). Financial protection against DDoS-related spikes. Can be integrated into CloudFront and Route 53. |
-| Amazon Inspector | Security assessment service for applications. Automatically assesses for exposure, vulnerabilities and deviations from best practices. Preset or custom policies. Reports. |
+| Amazon Inspector | Security assessment service for applications. Automatically assesses for exposure, vulnerabilities and deviations from best practices. Preset or custom policies. Reports. Scans workloads (EC2, ECR, Lambda) for Software vulnerabilities and Network exposures. |
 | AWS Trusted Advisor | Scans infrastructure and advises on how you follow AWS best practices based on five categories: cost optimization, performance, security, fault tolerance, service limits. Provides recommendations. Seven core checks for free: S3 bucket permissions, security groups, IAM use, MFA on root account, Elastic Block Store public snapshots, Relational Database Service (RDS) public snapshots, service limits. More Checks available together with notifications, automated actions (AWS CloudWatch) and AWS Support API access. |
-| Amazon GuardDuty | 24/7 threat detection by machine learning, anomaly detection and threat intelligence. |
+| Amazon GuardDuty | 24/7 threat detection by machine learning, anomaly detection and threat intelligence. Gets TI-Feeds to identify security threats. |
 | AWS Artifact | Download AWS security and compliance documents and independent software vendor (ISV) compliance reports. |
 | AWS Secrets Manager | Saves all secrets like passwords, credentials, tokes, access key and integrates with key AWS Services. |
 Amazon CloudWatch | Monitors application performance. Set Alarms (based on predefined thresholds) and thus trigger automated actions. |
@@ -110,6 +149,8 @@ Amazon CloudWatch | Monitors application performance. Set Alarms (based on prede
 | AWS Config | Detailed views of AWS resource configurations. Tracks how configurations and relationships between resources change over time. Can monitor changes and automatically alert. |
 | Parameter Store | Stores configuration data for applications like plain-text strings or passwords. Ability to use the same key but contain different values for systems. |
 | AWS Personal Health Dashboard | Provides alerts for scheduled AWS maintenance activities that could impact resources in your accout. It sends emails and notifications. |
+| AWS Security Hub | Management Service with view of security and compliance status across AWS environments/accounts/services. |
+| AWS Organizations | Used to manage multiple accounts. Uses the service control policies (SCP) to manage permissions. |
 
 ## Cloud Technology and Services
 
@@ -173,10 +214,10 @@ Other compute services:
 | Amazon Elastic Container Service (ECS) | Fully managed container orchestration. You have to configure the EC2-Instances by yourself (compare to AWS Fargate) |
 | Amazon Elastic Kubernetes Service (EKS) | Fully managed Kubernetes management service |
 | AWS Elastic Beanstalk | Web Application PaaS which automatically launches an environment and creates and configures the AWS resources needed to run your code. |
-| Elastic Load Balancing | Automatic distributing traffic between multiple servers. |
+| Elastic Load Balancing (ELB) | Automatic distributing traffic between multiple servers. Network load balancing is best where performance is key. Application Load Balancing gives flexibility with content inspection. Balances in one Region. Can be internal or Internet facing. Can unload TLS traffic. 4 types: Application (HTTP/HTTPS, gRPC), Network (TCP, UDP, TLS), Gateway (Layer 3, 4, IP and for Deep Paket Inspection), Classic (all protocols but in EC2-Classic networks). |
 | AWS Lambda | Run code snippets, without provisioning servers. Event-driven. |
 | AWS Fargate | Serverless compute engine for containers. Compatible with ECS and EKS. |
-| Amazon Lightsail | Preconfigured and ready-to-user operating systems, web apps and development stacks |
+| Amazon Lightsail | Preconfigured and ready-to-user operating systems, web apps and development stacks. Can be upgraded to EC2. |
 
 ### Storage Services
 
@@ -184,7 +225,7 @@ Three types of data which are stored in AWS:
 | Purpose | Description | Examples
 | :--- | :---------- | :---------- |
 | Object | Unstructured data like photos and videos. Best suited for static data. Consist of the data itself, it's metadata and an identifier. | Amazon Simple Storage Service (S3) |
-| File | Pieces of informations insida a folder in an hierarchy. | Amazon Elastic File Service (EFS) |
+| File | Pieces of informations insida a folder in an hierarchy. | Amazon Elastic File Service (EFS). EFS supports NFS v4.0 and v4.1. Is POSIX permissions compliant. |
 | Block | Units of blocks of data. Uses identifiers. | Amazon Elastic Block Store (EBS) |
 
 __Amazon S3 Storage__
@@ -268,7 +309,15 @@ You can use AWS Database Migration Services (AWS DMS) to migrate existent databa
 
 __NoSQL Databases__
 
-Built for lots of data. Variety of data models, like key-value, document, graph. Such a service is Amazon DynamoDB key-value database.
+Built for lots of data. Variety of data models, like key-value, document, graph. 
+
+| Name | Type/DataModel | Features |
+| :--- | :---------- | :---------- |
+| Amazon DynamoDB key-value database | Key-Value Database. | DynamoDB encrypts data at rest by default. |
+| Amazon DocumentDB | Document | Based on JSON. MongoDB compatibility. |
+| Amazon Netpune | Graph | Relationships between nodes. |
+| Amazon ElastiCache | In Memory | Eliminating time to access disks like session stores. |
+| Amazon Elasticsearch Service | Search | Indexes, categorizes. |
 
 __In-Memory Databases__
 
@@ -282,7 +331,15 @@ Petabyte-scale data warehouse service. Stores extremely large amounts of data, c
 
 __Amazon Virtual Private Cloud (VPC)__
 
-Logically isolated section in the cloud to provision resources. 
+Logically isolated section in the cloud to provision resources. Has subnets and route tables. If you want to connect subnets to the internet (only egress) you have to create a route table for a subnet with destination 0.0.0.0/0 to an 'Internet Gateway' as target.  If you want to have ingress communication available you have to use a NAT Gateway.
+
+Each subnet must reside entirely within on Availability Zone and cannot span zones.
+
+VPC's can be peered. You can also peer with VPC's in different accounts or even different regions. Must be directly peered with each other and cannot be transitive (data accross a middle VPN). Steps for peering:
+1. Sending peering request to target VPC owner.
+2. Accepting peering request.
+3. Manually add routes in each VPC.
+4. Update security groups.
 
 __Amazon CloudFront__
 
@@ -348,7 +405,7 @@ Main purpose: Logging. Track User and API usage. Logging and monitoring account 
 
 __Amazon CloudWatch__
 
-Main purpose: Performance monitoring and reacting on it. Monitoring and management system for AWS infastructure. Gain system-wide visibility into resource utilization, application performance and operational health.
+Main purpose: Performance monitoring and reacting on it. Monitoring and management system for AWS infastructure. Gain system-wide visibility into resource utilization, application performance and operational health. Can be used to create billing alarms that notify you when your AWS charges exceed thresholds you define.
 
 ### Other services
 
@@ -367,6 +424,9 @@ __Customer Engagement Services__
 * AWS Managed Services (AMS) - Enterprise service that provides ongoing management of your AWS infrastructure.
 * AWS Support
 
+__Data Analytics Services__
+* Amazon Timestream - Time series data analytics.
+
 __Developer Tool Services/Capabilities__
 
 * AWS AppConfig - Adjust application behavior in production environments without full code deployments. Provides an API to perform tasks against resources throughout AWS.
@@ -378,6 +438,7 @@ __Developer Tool Services/Capabilities__
 * AWS CodeDeploy - Automation of code-deployments
 * AWS CodePipeline - CI/CD-Pipelines.
 * AWS CodeStar (deprecated) - Develop and deploy AWS-Apps
+* AWS DataSync - Synchronize Data via an agent from on-premises file systems to Amazon EFS.
 * AWS OpsWorks - Provides Managed Instances of Puppet Enterprise and Chef Automate.
 * AWS Servcie Catalog - Allows creating catalogs or portfolios of AWS resources. These can be used to quickly deploy a multi-tier website.
 * AWS X-Ray - Analyze and debug apps
@@ -411,7 +472,9 @@ __Types of Charges__
 
 1. Compute
    * Pay as you go (On-Demand Instances)
-   * Save when you commit (Reserved Instances) 
+   * Save when you commit (Reserved Instances)
+      * Standard - Offer up to 72 % savings compared to on-demand pricing.
+      * Convertible - offer upt o 54 % savings compared to on-demand pricing, but offer the ability to change the attributes later as long as they are gerater or equal.
    * Saving when you commit (Saving Plans)
    * Take advantage of unused AWS capacity (Spot Instances)
    * Using own licenses and dedicated hardware (Dedicated Hosts)
@@ -435,7 +498,7 @@ Setup custom budgets to track resource costs and usage. Send alerts when you exc
 
 __AWS Cost Explorer__
 
-Analyze AWS resource usages and create forecast to project future AWS costs. Create custom reports based on usage.
+Analyze AWS resource usages and create forecast to project future AWS costs. Create custom reports based on usage. Range of time is 12 month back, 12 month forward.
 
 __AWS Cost and Usage Reports (AWS CUR)__
 
@@ -452,6 +515,10 @@ Located at [Calculator.aws](https://calculator.aws). Configure a cost estimate t
 __AWS Consolidated Billing__
 
 Create a payer AWS account to view and pay combined billing charges for all linked accounts in an organization. Idependent and cannot use services or deploy them. 
+
+__Service Quotas__
+
+In order to protect the availability for all users in AWS, Service Quotas (formerly called Limits) applies to each service. There quotas are specific to a region and will place a limit on the number of specific types of resources you can allocate by default.
 
 ### Support Plans
 
