@@ -315,7 +315,7 @@ Built for lots of data. Variety of data models, like key-value, document, graph.
 | :--- | :---------- | :---------- |
 | Amazon DynamoDB key-value database | Key-Value Database. | DynamoDB encrypts data at rest by default. |
 | Amazon DocumentDB | Document | Based on JSON. MongoDB compatibility. |
-| Amazon Netpune | Graph | Relationships between nodes. |
+| Amazon Neptune | Graph | Relationships between nodes. |
 | Amazon ElastiCache | In Memory | Eliminating time to access disks like session stores. |
 | Amazon Elasticsearch Service | Search | Indexes, categorizes. |
 
