@@ -471,6 +471,12 @@ __Areas of concern__
     * HVAC should shut down if a fire is detected
     * Only plenum-rated cabling is used. Should not be made of polyvinyl chloride (PVC)
 
+Combustion Elements Overview:
+![Combustion Elements](./Resources/Images/CISSP-DOM3-PHYS-Combustion.jpg)
+
+Fire Distinguisher Classes:
+![Fire Distinguisher Classes](./Resources/Images/CISSP-DOM3-PHYS-FireDistinguisherClasses.jpg)
+
 __Power/Electricity__
 
 Redundant power is applied at the same time as main power. No delay if main power fails. Backup power comes on after a power failure.
