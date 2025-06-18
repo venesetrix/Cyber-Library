@@ -83,22 +83,21 @@ Bureau of Industry and Security sets regulations on export of encyption products
 | Standards | WHAT LEVEL | Details minimum requirements or a control framework. 
 | Guidelines | SUPPLEMENTAL INFORMATION | Not mandatory, provide supplemental information on how to perform procedures |
 | Baseline | STANDARDIZED CONFIGURATION | part of configuration management |
-  
 
 ## Personal Security
-| Name | Description |
+| Process | Description |
 | ----- | ----- |
 | Candidate Screening and Hiring | Background checks, financial responsibility checks, education, criminal records, EXCLUDE: personal relationships, organization affiliations, political learnings, medical history |
 | Employment Agreements and Policies | Review, understand, attest understanding. Acceptable use, Equipment care, social media, data classification, harassement, safety, security incident |
-| Processes | 
- * Onboarding - Policy signing, provisioning of rights and equimpent, awareness training
- * Transfers - Policy update signing, refresher trainings, permission review vs. Privilege creep
- * Termination - Return of equipment, deactivation of accounts, return of data. In firing/violation situation immediately revoke access once the decision has been made. Escorted at all times.
- * Vendor controls - Ensure personnel requirements are included in all contractual agreements
-
+| Onboarding | Policy signing, provisioning of rights and equimpent, awareness training. |
+| Transfers | Policy update signing, refresher trainings, permission review vs. Privilege creep. |
+| Termination | Return of equipment, deactivation of accounts, return of data. In firing/violation situation immediately revoke access once the decision has been made. Escorted at all times. |
+| Vendor controls | Ensure personnel requirements are included in all contractual agreements. |
 
 ## Risk Management
+
 ### Elements of risk
+
 * Asset - anything of value (tangible (greifbar) or intangible)
 * Vulnerabilities - a weakness or deficiency in security measures
 * Threats - negative event that has the potential to exploit a vulnerability causing damage. 
@@ -106,6 +105,7 @@ Bureau of Industry and Security sets regulations on export of encyption products
 * Impact - Level or magnitude of damage
 
 ### Determining Risk
+
 Risk = Likelihood x Impact
 
 Identify Threats - Threat libraries, Threat modeling
@@ -120,7 +120,8 @@ Identify Vulnerabilities - Vulnerability Assessment
 | Risk culture | How the organization as a whole feels about taking risk |
 
 ### NIST SP 800-30 
-Risk Management Framework (Assessment)
+
+Risk Management Framework (Assessment):
 1. Prepare for the assessment
 2. Conduct the assessment
     1. Identify threat sources and events
@@ -131,7 +132,8 @@ Risk Management Framework (Assessment)
 4. Maintain the assessment
 
 ### Risk Analysis
-Calculate likelihood and impact for the risks
+
+Calculate likelihood and impact for the risks with:
 * Quantitative analysis - Concrete, measurable data. 25% exposure factor x 200€ asset >> 50€ loss
     * Single loss expectancy (SLE) - SLE = Asset value x exposure factor
     * Annualized loss expectancy (ALE) - ALE = SLE x Annualized Rate of occurrence (how many times per year)
@@ -139,6 +141,7 @@ Calculate likelihood and impact for the risks
 * Qualitative analysis - Subjective data (opinion) or based on extrapolation
 
 ### Risk Response
+
 | Name | Description |
 | ----- | :----- |
 | Mitigation (reduction) | Minimizing vulnerabilites or strengtheing security controls, reduce level of total risk |
@@ -148,18 +151,21 @@ Calculate likelihood and impact for the risks
 
 
 ### Risk Frameworks
- * NIST SP 800-30
- * ISO 27005
- * OCTAVE (Operationally Critical Threat, Asset and Vulnerability Evaluation)
- * FAIR (Factor Analysis of Information Risk)
+
+* NIST SP 800-30
+* ISO 27005
+* OCTAVE (Operationally Critical Threat, Asset and Vulnerability Evaluation)
+* FAIR (Factor Analysis of Information Risk)
 
 ### Countermeasure selection
+
 * Based on cost/benefit analysis
 * Must outweigh the coft of implementing and maintaining the control
 * Balanced with the cost or monetary value of the asset
 * Consider repair, replacement costs as well as amount of revenue it generates
 
 ### Types of controls
+
 | Name | Description |
 | ----- | :----- |
 | Administrative (managerial) | Imposed by management like policies |
@@ -167,6 +173,7 @@ Calculate likelihood and impact for the risks
 | Physical (operational) | Physical environment like guards and gates |
 
 ### Control functions - describe what a control does
+
 | Name | Description | Example |
 | ----- | :------------- | :----- |
 | Deterrent | Deters an indiviual | Cameras or Warning Banners |
@@ -177,6 +184,7 @@ Calculate likelihood and impact for the risks
 | Recovery | Bring a damaged asset back | Backups, Redundant spares |
 
 ### Test controls
+
 * Interviews with key personnel
 * Observing the control in operation
 * Documentation reviews
@@ -191,6 +199,7 @@ Calculate likelihood and impact for the risks
   5. Ahead of the game
 
 ## Threat Modeling
+
 * Threat Indicators - Pieces of data that show that a threat has exploited a vuln
 * Indicators of compromise - Threat indicators viewed collectively
 * Characterized
@@ -215,6 +224,7 @@ Calculate likelihood and impact for the risks
   * PASTA - Process for Attack Simulation and Threat Analysis - TM method focused on integrating technical requirements with business process objectives
 
 ## Apply Supply Chain Risk Management (SCRM)
+
 * Hardware
   * Faulty components
   * Counterfeit or fake parts
@@ -244,6 +254,7 @@ Calculate likelihood and impact for the risks
   * Personnel security
 
 ## Security Awareness
+
 * Types
   * Awareness - WHAT - Basic information
   * Education - WHY - Insight and understanding, advanced knowlege or theory
@@ -265,6 +276,7 @@ Calculate likelihood and impact for the risks
   * Record who gets trained, how often and on what topics. Maintained in HR files
 
 ## Additional
+
 * Security Goals: CIA + Authenticity und Non-Repudiation
 * Supply Chain and Third Party Risk ist ein neues topic.
 * NCA - Non Compete Agreement - Don't work at a competitor
@@ -274,24 +286,29 @@ Calculate likelihood and impact for the risks
 ## Risk Management
 
 ### Prozess of Risk analysis
+
 1. Identify Assets
 2. Identify vulnerabilites and Threats
 3. Quantify the probability and business impact
 4. Determine where to implement security controls
 
 ### Basic threat modelling process
+
 1. Assessement Scope
 2. Identify Threat Agents and possible attacks
 3. Existing counter measures
 4. Identify exploitable vulnerabilities
 
-### Vulnerability Analysis (Carried out by scanning systems and…)
+### Vulnerability Analysis
+
+* Scanning systems
 * Identify missing patches
-* Misconfigured settings
-* Orphaned user accounts
-* Programming code mistakes
+* Identify misconfigured settings
+* Identify orphaned user accounts
+* Identify programming code mistakes
 
 ### Where measuring not possible, try qualitative risk analysis
+
 * Scenario based
 * Rank threats on a scale
 * Techniques: Brainstorming, Intervidws, Checklists, Delphi technique
@@ -308,10 +325,12 @@ Due care = Acting responsibly ("doing the right thing.")
 Due diligence (Sorgfältige Prüfung) = Act of gathering the necessary information to make good decisions
 
 # Business continuity
+
 * Business continuity planning (BCP) provides methods and procedures for minimizing the impact
 * Disaster recovery planning (DRP) provides methods and procedures, when the continuity is broken
 
 ## BIA
+
 1. List, document and prioritize key business processes
 2. Process owners develop own mission and goal statements
 3. Inventory and list key upstream processes
