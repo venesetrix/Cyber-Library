@@ -58,6 +58,15 @@ Cloud Transformation Journey (CTJ) - Is different on every company
 * Launch Phase - Pilot initiatives and incremental business value demonstration
 * Scale Phase - Expand pilots and scaling up
 
+### Migration Strategies
+
+1. Rehosting - "lift-and-shift"
+2. Replatforming - Not changing the core architecture of the application but using some cloud advantages/platforms.
+3. Repurchasing - Moving to a different product. For example moving to a SaaS-Platform.
+4. Refactoriing - Using cloud-native features together with new application architecture.
+5. Retire - Get rid of.
+6. Retain - Do nothing.
+
 ## Security and Compliance
 
 ### Shared Responsibility Model
@@ -110,6 +119,7 @@ Amazon CloudWatch | Monitors application performance. Set Alarms (based on prede
 | AWS Config | Detailed views of AWS resource configurations. Tracks how configurations and relationships between resources change over time. Can monitor changes and automatically alert. |
 | Parameter Store | Stores configuration data for applications like plain-text strings or passwords. Ability to use the same key but contain different values for systems. |
 | AWS Personal Health Dashboard | Provides alerts for scheduled AWS maintenance activities that could impact resources in your accout. It sends emails and notifications. |
+| Amazon Macie | To help you manage the security posture of your organization's Amazon Simple Storage Service (Amazon S3) data estate, Macie provides you with an inventory of your S3 general purpose buckets, and automatically evaluates and monitors the buckets for security and access control. |
 
 ## Cloud Technology and Services
 
@@ -336,6 +346,10 @@ __Amazon QuickSight__
 
 Business intelligence service wich ML integrations to quickly build visualizations and ad hoc analysis on your data.
 
+__Amazon Polly__
+
+Service, which is using ML to convert Text to Speech and read it out loud.
+
 ### Management Tools
 
 __AWS CloudFormation__
@@ -398,6 +412,12 @@ __IoT Services__
 * AWS IoT Core - Connect IoT to the cloud
 * AWS IoT Greengrass - Messaging and synchronization of IoT Devices
 
+__Migration Services__
+
+* AWS Database Migration Service (DMS) - Migrate Data from local DB to AWS. DMS does not migrate to EC2 Instance.
+* AWS Migration Hub - Assists with planning of Application Migrations. Does not migrate anything itself.
+* AWS Application Migration Service (MGN) - "Lift-and-Shift"-Solution for migrating physical services with running DB's or Apps on it.
+
 ## Billing, Pricing, and Support
 
 __AWS Billing Dashboard__
@@ -411,8 +431,8 @@ __Types of Charges__
 
 1. Compute
    * Pay as you go (On-Demand Instances)
-   * Save when you commit (Reserved Instances) 
-   * Saving when you commit (Saving Plans)
+   * Save when you commit (Reserved Instances) to instance type, region and OS. 
+   * Saving when you commit (Saving Plans) to $/hour and 1 or 3 years.
    * Take advantage of unused AWS capacity (Spot Instances)
    * Using own licenses and dedicated hardware (Dedicated Hosts)
    * Reserve capacity in advance (Capacity Reservations)
