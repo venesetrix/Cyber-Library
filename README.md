@@ -7,9 +7,13 @@ A library of tools, descriptions, how-to's and other material regarding offensiv
 ## Certifications
 
 ### Cloud
+
 [AWS Cloud Practitioner CLF-C02 Exam Prep](./AWS%20CLF-C02.md)
 
+[GCP Cloud Digital Leader](./GCP%20Cloud%20Digital%20Leader.md)
+
 ### Cybersecurity Management
+
 [CISSP DOMAIN 1 - Security & Risk Management](./CISSP-DOM1.md)
 
 [CISSP DOMAIN 2 - Asset Security](./CISSP-DOM2.md)
