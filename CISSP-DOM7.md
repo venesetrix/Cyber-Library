@@ -239,235 +239,268 @@ Identify potential or actual threats to the organization - By determining threat
 
 ## Configuration Management
 
-TODO
+### Provisioning
 
-* Provisioning
-  * Initial installation and configuration of a system
-  * Manual installation of OS and Apps as well as changing configuration settings
-  * Often uses baseline images, which are preapproved configurations
-* Baselining
-  * Ensuring, that the configuration of a system is set according to established organizational standards
-  * Changing baselines is part of the change management process
-  * An organization could have several established baselines that apply to specific hosts
-  * Baseline configurations should be documented and checked periodically
-  * Configuration settings
-    * Standardized versions of OS and Apps
-    * Secure configuration settings like allowed ports, protocols and services
-    * Change of default account and password settings
-    * Removal of unused applications and services
-    * OS system and app patching
-* Automating the Configuration Management Process
-  * Active Directory Group policy settings
-  * Customized Scripts with PowerShell or Python
-  * Enterprise-level management systems
-  * Advantages:
-    * Reduce issues caused by human error
-    * Ensure standardization
-    * Make configuration changes much more efficient
-  * Security Orchestration, Automation and response (SOAR)
+* Initial installation and configuration of a system
+* Manual installation of OS and Apps as well as changing configuration settings
+* Often uses baseline images, which are preapproved configurations
+
+### Baselining
+
+* Ensuring, that the configuration of a system is set according to established organizational standards
+* Changing baselines is part of the change management process
+* An organization could have several established baselines that apply to specific hosts
+* Baseline configurations should be documented and checked periodically
+* Configuration settings
+  * Standardized versions of OS and Apps
+  * Secure configuration settings like allowed ports, protocols and services
+  * Change of default account and password settings
+  * Removal of unused applications and services
+  * OS system and app patching
+
+### Automating the Configuration Management Process
+
+* Active Directory Group policy settings
+* Customized Scripts with PowerShell or Python
+* Enterprise-level management systems
+* Advantages:
+  * Reduce issues caused by human error
+  * Ensure standardization
+  * Make configuration changes much more efficient
+* Security Orchestration, Automation and response (SOAR)
 
 ## Foundational security operations concepts
-* Need-to-know
-  * Restrictive permissions, rights and privileges
-  * Need to keep privacy information confidential
-  * Should be carefully considered and approved by authority (supervisor, data owner, senior manager)
-  * Should periodically reviewed
-  * Revoke access if it is no longer required
-* Principle of least privilege
-  * If someone has access to system or information (need-to-know), they can only perform certain actions
-  * Perform tasks at the minimal level necessary
-* Separation of Duties and Responsibilities
-  * Prevents a single individual from performing a critical function that may cause damage to the organization
-  * Multiperson-control - Action or task requires more than one person acting jointly (e.g. sign and countersign a document)
-  * Collusion - Two persons secretly agree to commit a crime
-  * M-of-N control - doesn't require all designated individuals to be present to perform a task. You could say M OUT OF N people are needed.
-* Privileged account management
-  * Privileged accounts should be approved by the management chain.
-  * Individual should have proper need-to-know, security cleareance as well as additional training
-  * Still should only have necessary privileges
-  * Only use these privileged accounts only for a limited amount of time and then log out
-  * Lends itself to RBAC - but then with more frequent auditing and to a greater level of detail
-* Job rotation
-  * Rotates employees periodically through various positions so that an individual in not long enough to conduct fraud or other malicious acts
-  * Is a detective an deterrent control because the next person is able to discover wrongdoing
-  * Then carefully planned periodic cross-training is necessary
-  * An organization should never depend on one person only to perform a job function
-  * Mandatory vacations - Step away from the job position to take rest or to perform an investigation
-* Service Level Agreements
-  * Agreement that ensure consistent levels of function and performance
-  * Specifies the responsibilities of both parties
-  * Failing to meet SLA requirements often incurs a financial penalty
+
+### Need-to-know
+
+* Restrictive permissions, rights and privileges
+* Need to keep privacy information confidential
+* Should be carefully considered and approved by authority (supervisor, data owner, senior manager)
+* Should periodically reviewed
+* Revoke access if it is no longer required
+
+### Principle of least privilege
+
+* If someone has access to system or information (need-to-know), they can only perform certain actions
+* Perform tasks at the minimal level necessary
+
+### Separation of Duties and Responsibilities
+
+* Prevents a single individual from performing a critical function that may cause damage to the organization
+* Multiperson-control - Action or task requires more than one person acting jointly (e.g. sign and countersign a document)
+* Collusion - Two persons secretly agree to commit a crime
+* M-of-N control - doesn't require all designated individuals to be present to perform a task. You could say M OUT OF N people are needed.
+
+### Privileged account management
+
+* Privileged accounts should be approved by the management chain.
+* Individual should have proper need-to-know, security cleareance as well as additional training
+* Still should only have necessary privileges
+* Only use these privileged accounts only for a limited amount of time and then log out
+* Lends itself to RBAC - but then with more frequent auditing and to a greater level of detail
+
+### Job rotation
+
+* Rotates employees periodically through various positions so that an individual in not long enough to conduct fraud or other malicious acts
+* Is a detective an deterrent control because the next person is able to discover wrongdoing
+* Then carefully planned periodic cross-training is necessary
+* An organization should never depend on one person only to perform a job function
+* Mandatory vacations - Step away from the job position to take rest or to perform an investigation
+
+### Service Level Agreements
+
+* Agreement that ensure consistent levels of function and performance
+* Specifies the responsibilities of both parties
+* Failing to meet SLA requirements often incurs a financial penalty
 
 ## Media Management and Protection
-* Management should create a media protection and use policy
-  * Data residing on media should be protected at the highest level of sensitivity dictated by the policy
-  * All media must be maintained under inventory control procedures and secured in storage, trans and use
-  * Proper access controls such as object permissions
-  * Only authorized portable media should be used and portable media must be encrypted
-  * Media should only be reused if sensitive data can be adequately wiped from it
-  * Media should be considered for destruction if it cannot be reused
-* Media Protection techniques
-  * Media access controls
-    * Sensitive data stored on media should be encrypted
-    * Access control permissions based upon job duties and nee-to-know, least priv and SoD
-    * Strong authentication mechanisms even for authorized users
-  * Media storage and transportation
-    * Secure media storage areas (locked closets and rooms)
-    * Physical ACL's
-    * Proper temperature and humidity controls
-    * Media inventory and accountability systems
-    * Proper labeling of all media
-      * Point-of-contact information
-      * Sensitivity Level
-      * Archival or backup date
-      * Special handling instructions
-    * Two-person integrity for transporting media (requiring two people)
-* Sanitization and Destruction
-  * Media should be kept only as long as it is needed
-  * 
-  * Often media can be sanitized or cleared for reuse but in certain circumstances it must be destroyed
-    * Wiping - Writing set patterns of ones and zeros to the media to overwrite data
-    * Clearing - Wiping or overwriting with zeroes or ones
-    * Purging/Sanitizing -  Stronger permanent method that can include methods such as sanitizing or degaussing, Data is not considered recoverable by any known methods
-  * Media destruction methods (reference NIST 800-88r1)
-    * Degaussing
-    * Burning
-    * Pulverizing
-    * Physical destruction using hammers
-    * Encrypt the drive an destroy the key
-  * Types of devices
-    * Floppies
-      * Clear: Overwrite
-      * Purge: Degauss
-      * Destroy: Burning or Shred
-    * HDD
-      * Clear: Overwrite once or multiple times
-      * Purge:  Sanitize, Crypto-Erase, Degauss
-      * Destroy: Shred, Disintegrate, Pulverize, Burn
-    * Optical Media (CD, DVD)
-      * Clear: N/A
-      * Purge: N/A
-      * Destroy: Shredder
-    * Non-magnetic drives (SSD/USB): 
-      * Clear: Overwrite (2x)
-      * Purge: Crypto-Erase
-      * Destroy: Physical destruction or a combination of overwriting, purging and encryption
-    * Tapes
-      * Clear: Overwrite
-      * Purge: Degaussing for clearing if you want to reuse it
-      * Destroy: Burn
-    * RAM
-      * DRAM: Clear/Purge by removing the power & battery
-      * EAPROM, EEPROM: Full chip purge as manufacturer says
+
+### Media protection and use policy
+
+* Data residing on media should be protected at the highest level of sensitivity dictated by the policy
+* All media must be maintained under inventory control procedures and secured in storage, trans and use
+* Proper access controls such as object permissions
+* Only authorized portable media should be used and portable media must be encrypted
+* Media should only be reused if sensitive data can be adequately wiped from it
+* Media should be considered for destruction if it cannot be reused
+
+### Media Protection techniques
+
+__Media access controls__
+
+* Sensitive data stored on media should be encrypted
+* Access control permissions based upon job duties and nee-to-know, least priv and SoD
+* Strong authentication mechanisms even for authorized users
+
+__Media storage and transportation__
+
+* Secure media storage areas (locked closets and rooms)
+  * Physical ACL's
+  * Proper temperature and humidity controls
+  * Media inventory and accountability systems
+* Proper labeling of all media
+  * Point-of-contact information
+  * Sensitivity Level
+  * Archival or backup date
+  * Special handling instructions
+* Two-person integrity for transporting media (requiring two people)
+
+__Sanitization and Destruction__
+
+* Media should be kept only as long as it is needed
+* Often media can be sanitized or cleared for reuse but in certain circumstances it must be destroyed
+  * Wiping - Writing set patterns of ones and zeros to the media to overwrite data
+  * Clearing - Wiping or overwriting with zeroes or ones
+  * Purging/Sanitizing -  Stronger permanent method that can include methods such as sanitizing or degaussing, Data is not considered recoverable by any known methods
+
+__Media destruction methods (reference NIST 800-88r1):__
+
+* Degaussing
+* Burning
+* Pulverizing
+* Physical destruction using hammers
+* Encrypt the drive an destroy the key
+
+__Dealing with different types of devices__
+
+| Device type | Clear | Purge | Destroy |
+| :----- | :-----: | :-----: | :-----: |
+| Floppies | Overwrite | Degauss | Burning or Shred |
+| HDD | Overwrite once or multiple times | Sanitize, Crypto-Erase, Degauss | Shred, Disintegrate, Pulverize, Burn |
+| Non-Magnetic (SSD/USB) | Overwrite (2x) | Crypto-Erase | Physical destruction or a combination of overwriting, purging and encryption |
+| Tapes | Overwrite | Degaussing for clearing if you want to reuse it | Burn |
+| DRAM | Removing Power & Battery | Removing Power & Battery | Removing Power & Battery |Shred, Disintegrate, Pulverize, Burn |
+| EAPROM, EEPROM | Full chip purge as manufacturer says | Full chip purge as manufacturer says | Shred, Disintegrate, Pulverize, Burn |
 
 ## Security Incident Management
-* Incident - An event with negative consequences for the organization
-* Security Incident - An event that affect the CIA
-* Life cycle (NIST SP 800-61r2 - Computer Security Incident Handling Guide)
-  * Preparation
-    * NOT part of the formal CISSP exam objectives for incident management
-    * Having all the correct processes in place as well as supporting procedures, equipment, personnel…
-    * Development of the IR strategy, policy, plan and procedures
-    * Staffing and training a qualified team
-    * Providing facilities, equipment and supplies for the IR capability
-    * Processes
-      * Incident definition and classification
-      * Communication procedures, alerting, escalation, communications with stakeholders
-      * Incident triage, prioritization and escalation
-      * Analysis
-      * Attack containment
-      * Recovery procedures
-      * Damage mitigation and remediation
-  * Detection
-    * Should be included as a normal part of the infrastructure, architecture and design
-    * IDS/IPS, alarms, auditing mechanisms which must be tuned
-    * Detection comes from Anti-Malware apps, device and app logs, IDS alerts, user awareness
-  * Response
-    * Triage if it is a false positive and determine its scope and impact
-    * Notify IR team and escalate to upper management and outside agencies and in case disaster team
-    * Decision to notify outside agencies must come from a senior manager
-    * A call tree is often activated to ensure that team members get notified quickly
-    * IR team gathers data and analyze the cause of the incident, scope and what the incident is affecting
-    * Contain the incident and find the source
-    * Gather and preserve forensic evidence and trace the incident back to its root cause
-    * Initial response is not considered complete until the incident is contained and halted
-  * Mitigation (Schadensbegrenzung)
-    * Implement temporary measures (shutting down systems, rerouting networks and halting processes)
-    * Implement permanent measures have to be considered
-    * Corrective controls = temporary in nature
-    * Compensating controls = longer-term in nature
-  * Reporting
-    * Reports of the status, efforts to contain and eradicate are communicated up and down the chain and laterally to other departments
-    * Reporting to external third parties may occur, such as law enforcement, customers, stakeholders
-    * Types: E-Mail, Calls, Press conferences or summary reports
-    * Post-incident reporting
-      * More formal and comprehensive
-      * Normally takes place after the remediation
-      * Normally nontechnical but technical appendices
-      * Includes
-        * Root-Cause analysis
-        * Responses action
-        * Timeframe
-        * Mitigations put in place
-        * Recommendations to prevent
-  * Recovery
-    * Restore systems and data and bring business back online
-    * Tests the effectiveness of the organization's BCP
-  * Remediation (Schadensbehebung)
-    * Long-term mitigations that repair the damage (system replacement, data recovery, new solutions)
-    * Develop a plan to remediate issues that causes the incident
-    * Perform an updated risk assessment and analysis
-    * Management must recommit to providing resources
-  * Lessons learned
-    * Perform in-depth analysis why the incident occurred, what could have prevented it, what must be done in the future
-    * Should be included in the final report
-    * Improvements:
-      * Response time - Detection, Notification, escalation and response
-      * Deployment of resources - People, equipment and time
-      * Personnel staffing and training
-      * IR policy, plan and procedures
+
+Incident = An event with negative consequences for the organization
+Security Incident = An event that affect the CIA
+
+### Life cycle (NIST SP 800-61r2 - Computer Security Incident Handling Guide)
+
+* Preparation
+  * NOT part of the formal CISSP exam objectives for incident management
+  * Having all the correct processes in place as well as supporting procedures, equipment, personnel…
+  * Development of the IR strategy, policy, plan and procedures
+  * Staffing and training a qualified team
+  * Providing facilities, equipment and supplies for the IR capability
+  * Processes
+    * Incident definition and classification
+    * Communication procedures, alerting, escalation, communications with stakeholders
+    * Incident triage, prioritization and escalation
+    * Analysis
+    * Attack containment
+    * Recovery procedures
+    * Damage mitigation and remediation
+* Detection
+  * Should be included as a normal part of the infrastructure, architecture and design
+  * IDS/IPS, alarms, auditing mechanisms which must be tuned
+  * Detection comes from Anti-Malware apps, device and app logs, IDS alerts, user awareness
+* Response
+  * Triage if it is a false positive and determine its scope and impact
+  * Notify IR team and escalate to upper management and outside agencies and in case disaster team
+  * Decision to notify outside agencies must come from a senior manager
+  * A call tree is often activated to ensure that team members get notified quickly
+  * IR team gathers data and analyze the cause of the incident, scope and what the incident is affecting
+  * Contain the incident and find the source
+  * Gather and preserve forensic evidence and trace the incident back to its root cause
+  * Initial response is not considered complete until the incident is contained and halted
+* Mitigation (Schadensbegrenzung)
+  * Implement temporary measures (shutting down systems, rerouting networks and halting processes)
+  * Implement permanent measures have to be considered
+  * Corrective controls = temporary in nature
+  * Compensating controls = longer-term in nature
+* Reporting
+  * Reports of the status, efforts to contain and eradicate are communicated up and down the chain and laterally to other departments
+  * Reporting to external third parties may occur, such as law enforcement, customers, stakeholders
+  * Types: E-Mail, Calls, Press conferences or summary reports
+  * Post-incident reporting
+    * More formal and comprehensive
+    * Normally takes place after the remediation
+    * Normally nontechnical but technical appendices
+    * Includes
+      * Root-Cause analysis
+      * Responses action
+      * Timeframe
+      * Mitigations put in place
+      * Recommendations to prevent
+* Recovery
+  * Restore systems and data and bring business back online
+  * Tests the effectiveness of the organization's BCP
+* Remediation
+  * Long-term mitigations that repair the damage (system replacement, data recovery, new solutions)
+  * Develop a plan to remediate issues that causes the incident
+  * Perform an updated risk assessment and analysis
+  * Management must recommit to providing resources
+* Lessons learned
+  * Perform in-depth analysis why the incident occurred, what could have prevented it, what must be done in the future
+  * Should be included in the final report
+  * Improvements:
+    * Response time - Detection, Notification, escalation and response
+    * Deployment of resources - People, equipment and time
+    * Personnel staffing and training
+    * IR policy, plan and procedures
 
 ## Allow- and Deny-Listing
-* Allow-Listing = Whitelisting - Allows only items in that rule to be processed. All other are default-denied
-* Deny-Listing = Blacklisting - All the elements are denied. Anything not in the rule set is default-allowed
-* Rule-set - Collection of rules that uses allow and deny action based on content items
-* Access-Control-Lists (ACL) - Normally associated with network devices and traffic
-* Explicit - Actual entries  in an list
-* Implicit - Not listed but by implication allowed or denied
+
+| Name | Description |
+| :----- | :----- |
+| Allow-Listing/Whitelisting | Allows only items in that rule to be processed. All other are default-denied |
+| Deny-Listing/Blacklisting | All the elements are denied. Anything not in the rule set is default-allowed |
+| Rule-set | Collection of rules that uses allow and deny action based on content items |
+| Access-Control-Lists (ACL) | Normally associated with network devices and traffic |
+| Explicit | Actual entries  in an list |
+| Implicit | Not listed but by implication allowed or denied |
 
 ## Firewalls
-* Network-Based Firewall - on the network perimeter
-* Demilitarized zone (DMZ) or screened subnet architecture
-* Host-Based Firewall
-* Types
-  * Packet-Filtering/Static firewalls
-    * Filter based on traffic characteristics as IP/Address/Port or protocol
-    * At the network layer
-    * Also known as screening routers
-    * 1st Gen firewalls
-  * Circuit-Level firewalls
-    * Filter session layer traffic based on the end-to-end communcation sessions rather than traffic content
-  * Application-Layer firewalls
-    * Based on characteristics of applications
-    * At the application layer
-    * Also known as proxy firewalls
-    * 2nd Gen firewalls
-  * Stateful inspection firewalls
-    * Based on connection state of the inbound and outbound network traffic, state of established conns
-    * At layers 3 and 4
-    * 3rd Gen firewalls
-  * Next-generation firewalls (NGFW)
-    * Multifunctional devices that incorporate firewall, proxy and IDS/IPS services
-    * Based on any combination of all the techniques of other firewalls, including Deep packet inspection (DPI), connection state and basic TCP/IP characteristics
-    * At multiple layers but primarily at layer 7
-  * Web Application Firewalls (WAF)
-    * Protect web application servers from web-based attacks
-    * Can also perform other functions including authentication and authorization
-  * Cloud-Based Firewalls
-    * Firewall as a Service (FWaaS)
-    * Can greatly simplify management of the security infrastructure
+
+A Firewall will be typically be on the network perimeter, called "Network-Based Firewall" or on a single host, called host-based firewall. It allows or denies access based on rules and divides networks into segments. Most famous is the Demilitarized zone (DMZ) or screened subnet architecture which is the network segment between an organisations production networks and untrusted networks like the internet.
+
+There are different types of firewalls based on their capabilities, functions and features.
+
+### Packet-Filtering/Static firewalls
+
+* Filter based on traffic characteristics as IP/Address/Port or protocol
+* At the network layer
+* Also known as screening routers
+* 1st Gen firewalls
+
+### Circuit-Level firewalls
+
+* Filter session layer traffic based on the end-to-end communcation sessions rather than traffic content
+
+### Application-Layer firewalls
+
+* Based on characteristics of applications
+* At the application layer
+* Also known as proxy firewalls
+* 2nd Gen firewalls
+
+### Stateful inspection firewalls
+
+* Based on connection state of the inbound and outbound network traffic, state of established conns
+* At layers 3 and 4
+* 3rd Gen firewalls
+
+### Next-generation firewalls (NGFW)
+
+* Multifunctional devices that incorporate firewall, proxy and IDS/IPS services
+* Based on any combination of all the techniques of other firewalls, including Deep packet inspection (DPI), connection state and basic TCP/IP characteristics
+* At multiple layers but primarily at layer 7
+
+### Web Application Firewalls (WAF)
+
+* Protect web application servers from web-based attacks
+* Can also perform other functions including authentication and authorization
+
+### Cloud-Based Firewalls
+
+* Firewall as a Service (FWaaS)
+* Can greatly simplify management of the security infrastructure
 
 ## IDS/IPS
+
 * IDS focused on simply detecting potentially harmful events
 * IPS prevent intrusions by dynamically rerouting traffic of by making allow or deny decisions
 * IDS/IPS have merged and become integrated
@@ -477,40 +510,51 @@ TODO
   * Host-based - Looks at traffic entering/exiting a specific host, installed as software, most modern soluations are agent-based, centrally managed systems
 
 ## Third-Party provided security services
-* Managed security services (MSS)
-* Advantages
+
+Managed security services (MSS) are security related services which are outsources to a third-party. For example, instead of building and maintaining a SIEM/SOC-Infrastructure by the organisation itself it can hand over this task to a specialized provider.
+
+* Advantages:
   * Cost savings
   * Risk sharing
-* Disadvantages
+* Disadvantages:
   * Less control over the infrastructure
   * Legal liability (organization still retains ultimate resposibility)
   * Lack of visibility into the service provider's infrastructure
 * Key is the SLA
 
 ## Other security technologies
-* Honeypots & Honeynets
-  * Intentionally vulnerable host, segregated from the live network
-  * Honeynet is a network of honeypots that can simulate an entire network
-  * If implemented improperly it can cause legal issues for an organization
-  * Consult with legal department before deploying honeypot technologies
-* Anti-malware
-  * Commodity malware (commercial or COTS) - Malicious entities obtain it online
-  * Polymorphic malware - Mutates in the wild
-  * Advanced malware - Produced by advanced criminals or nation-states
-  * Methods
-    * Signature or pattern based detection
-    * Behavior analysis or heuristic detection
-    * Reputation-based services - Based on what other have seen the code do (reputation score)
-* Sandboxing
-  * Protected environment within which an administrator can execute unknown software
-  * Can be a protected area of memory, a virtual machine, an application container or full physical host
-  * Also been known as detonation chambers - Media with unknown executables are inserted and started
-  * Bit-flipping is a way to changing pattern of the malware
-* Machine Learning and Artificial Intelligence
-  * Can assist in analyzing very large heterogenous datasets
-  * Can be used for historical data as well as for predictive methods to determine trends or threats
+
+### Honeypots & Honeynets
+
+* Intentionally vulnerable host, segregated from the live network
+* Honeynet is a network of honeypots that can simulate an entire network
+* If implemented improperly it can cause legal issues for an organization
+* Consult with legal department before deploying honeypot technologies
+
+### Anti-malware
+
+* Commodity malware (commercial or COTS) - Malicious entities obtain it online
+* Polymorphic malware - Mutates in the wild
+* Advanced malware - Produced by advanced criminals or nation-states
+* Methods
+  * Signature or pattern based detection
+  * Behavior analysis or heuristic detection
+  * Reputation-based services - Based on what other have seen the code do (reputation score)
+
+### Sandboxing
+
+* Protected environment within which an administrator can execute unknown software
+* Can be a protected area of memory, a virtual machine, an application container or full physical host
+* Also been known as detonation chambers - Media with unknown executables are inserted and started
+* Bit-flipping is a way to changing pattern of the malware
+
+### Machine Learning and Artificial Intelligence
+
+* Can assist in analyzing very large heterogenous datasets
+* Can be used for historical data as well as for predictive methods to determine trends or threats
             
 ## Patch and Vulnerability Management
+
 * Organizations policies must address vulnerability management based on system ciritcality and vulnerability severity, including a patch management schedule, and address how to test patches
 * Technical vulnerabilities are usually detected during vulnerability scanning 
 * Criticality of the system and the patch are a key concern
@@ -523,40 +567,55 @@ TODO
 * All patches should be documented.
 
 ## Change Management
-*  Includes how changes are introduced into the infrastructure, testing and approval process
-* Types
-  * Software and hardware changes
-  * Significant architecture or design changes to the network
-  * Security or risk issues requiring changes
-* Processes
-  * Begins with policy that specifies individual roles
-    * Formalizes the change management program
-    * Creating a change management cycle
-    * Defining change levels
-    * Creating a change control board
-  * Change Management Board (CMB)
-    * Group tasked with overseeing infrastructure changes
-    * Also names Change control Board (CCB) or Change advisory board (CAB)
-    * Members are appointed by the organizations senior management
-    * Come from Management, IT, security and various functional areas
-    * Ensures, that changes are formally requested, tested, approved and implemented
-    * Often created by a document known as a charter which establishes the various roles and duties
-  * Life cycle
-    * Identify the need for change
-    * Request the change
-    * Testing approval
-    * Implement the change
-    * Post-change activities - documenting, monitoring, updating risk assessments, rolling back if needed
-* Change levels
-  * Emergency or urgent changes - Must be made immediately
-  * Critical changes - As soon as possible
-  * Important - As soon as practical but planned
-  * Routine - Daily or monthly basis like noncritical patching
-* Security considerations
-  * Any change introduce a degree of risk
-  * Perform vulnerability testing before and after a change
-  * Affected systems should be "frozen" or locked in configuration
-  * You need a backup plan if the change does not go as planned
+
+Includes how changes are introduced into the infrastructure, testing and approval process.
+
+### Types
+
+* Software and hardware changes
+* Significant architecture or design changes to the network
+* Security or risk issues requiring changes
+
+### Processes
+
+* Begins with policy that specifies individual roles
+* Formalizes the change management program
+* Creating a change management cycle
+* Defining change levels
+* Creating a change control board
+
+### Change Management Board (CMB)
+
+* Group tasked with overseeing infrastructure changes
+* Also names Change control Board (CCB) or Change advisory board (CAB)
+* Members are appointed by the organizations senior management
+* Come from Management, IT, security and various functional areas
+* Ensures, that changes are formally requested, tested, approved and implemented
+* Often created by a document known as a charter which establishes the various roles and duties
+
+### Life cycle
+
+* Identify the need for change
+* Request the change
+* Testing approval
+* Implement the change
+* Post-change activities - documenting, monitoring, updating risk assessments, rolling back if needed
+
+### Change levels
+
+* Emergency or urgent changes - Must be made immediately
+* Critical changes - As soon as possible
+* Important - As soon as practical but planned
+* Routine - Daily or monthly basis like noncritical patching
+
+### Security considerations
+
+* Any change introduce a degree of risk
+* Perform vulnerability testing before and after a change
+* Affected systems should be "frozen" or locked in configuration
+* You need a backup plan if the change does not go as planned
+
+TODO
 
 ## Recovery strategies
 * Backup Storage Strategies Factors
