@@ -111,6 +111,8 @@ __Characteristics:__
 | Documentary evidence | Originals and copies of business records, computer-generated and computer-stored records, manuals, policies, standards, procedures and log files. In fact, most of the evidence presented in a computer crime case is documentary evidence. |
 | Demonstrative evidence | Used to help the court understand a case. Opinions are considered demonstrative evidence and can be either expert or non-expert. |
 
+![Types of evidence](./Resources/Images/CISSP-DOM7-OPS-EvidenceTypes.jpg)
+
 ### Rules
 
 | Rule | Description |
@@ -225,6 +227,8 @@ Identify potential or actual threats to the organization - By determining threat
 | STRIDE | Microsoft TM methodology. |
 | VAST | TM methodology incorporated into SDLC. |
 | PASTA | TM methodology focused on integrating technical requirements with business process objectives. |
+
+![Phases](./Resources/Images//CISSP-DOM7-OPS-TM-Standards.jpg)
 
 ### UEBA - User and Entity Behavior Analytics
 
@@ -442,6 +446,8 @@ Security Incident = An event that affect the CIA
     * Personnel staffing and training
     * IR policy, plan and procedures
 
+![Phases](./Resources/Images/CISSP-DOM7-OPS-IR.jpg)
+
 ## Allow- and Deny-Listing
 
 | Name | Description |
@@ -615,318 +621,382 @@ Includes how changes are introduced into the infrastructure, testing and approva
 * Affected systems should be "frozen" or locked in configuration
 * You need a backup plan if the change does not go as planned
 
-TODO
-
 ## Recovery strategies
-* Backup Storage Strategies Factors
-  * How much data can the organization afford to lose
-  * How much data it requires to restore its processing capability
-  * How fast it requires the data to be restored
-  * How much the backup method or system cost
-  * How efficient it's network and Internet connection are in speed and bandwidth
-* Traditional Backup strategies
-  * Full backup
-    * How: Entire hard disk is backed up
-    * Con: 
-      * Backup takes much longer
-      * Requires a great deal of storage space
-  * Incremental backup
-    * How: Only the amount of data that has changed. 
-    * Con: Data restore time can take longer
-    * Restore: Last full backup and each incremental backup since last full backup to be restored
-    * Archive bit: Resets the bit on a backup file (if set to on, this means it has not been backed up)
-  * Differential backup
-    * How: Only data that has changed since last full or incremental backup. Subsequent Backup includes all previous changed data.
-    * Con: Differential backups become larger and larger
-    * Restore: Only last full backup and last differential backup have to be restored
-    * Archive bit: Does not turn of the archive bit
-* Storage types
-  * Direct attached storage
-    * Least dependable, because it is unreliable and susceptible to accidents, damage and theft
-    * May be effective as a secondary means of backup for individual user workstations or small datasets
-  * Network attached storage (NAS)
-    * Network enabled storage device which is directly accessible or managed by a server
-    * Suffers from some of the reliability issues as direct-attached storage
-    * May be sufficient for small to medium-sized businesses
-    * Redundant arrays of inexpensive disks (RAID)
-      * RAID 0: Striping - Higher throughput, Minimum 2 disks
-      * RAID 1: Mirroring - Redundancy, Minimum 2 disks
-      * RAID 3: Byte-Level striping with parity-bit, Minimum 3 disks
-      * RAID 4: Block-Level (chunks) striping with parity bit, Minimum 3 disks
-      * RAID 5: Striping plus redundancy plus parity, Minimum 3 disks
-  * Storage Area Network (SAN)
-    * Own cluster of management servers and security devices
-    * Often built for redundancy by having multiple storage devices that fail over each other
-    * Works with high-speed fiber connections
-    * Damage to the facility can also damage the SAN
-  * Cloud Storage
-    * Supports large-scale data recovery that is fast and reliable
-    * Associated costs may increase with the amount of data as well as availability of bandwidth
-  * Offline Storage
-    * Backed up and stored off the network and/or at a remote location
-    * Traditionally, organizations manually transported backup media to another site
-    * Malware infection is far less likely to impact the offline storage
-  * Electronic Vaulting and Remote Journaling
-    * Backups can also be performed on individual files or transactions
-    * Electronic vaulting - Backup method where entire data files are transmitted in batch mode
-    * Remote journaling - Only sends changes to files in either near or actual real time
-* Recovery sites strategies
-  * Considerable issues
-    * Costs and resources
-    * How easy is the activation of the recovery site?
-    * Potential level of damage or destruction
-    * Possible size of the area affected by a disaster
-    * Nature of the disaster
-    * Availability of public infrastructure
-    * Government-imposed requirements
-  * Types
-    * Cold site - Empty space in a facility
-    * Warm site - Equipped, has Internet and phone access already turned on, spares or redundant equipment has already be staged at the facility
-    * Hot site - Is ready for transition within a matter of minutes or hours, has all utilities and equipment: Receives data transfers quick or in real-time and therefore needs a high-speed Internet connection
-    * Reciprocal site - Agreement with another organization to share resources in a disaster
-    * Cloud site - As cloud service
-    * Mobile site - Built into a large van, a bus or transfer truck. Gives leadership and key personnel the ability to work together from a physical "command post". Are considered miniature hot sites.
-* Resiliency - The capability of a system to continue to function. Is one of the goals of Business Continuity
-* High Availability (HA) - Available on a near constant basis. 99.999% = 5min and 15sec per year
-* Quality of Service (QoS) - Minimum level of service performance that an organization requires.
-  * VoIP gets top priority in a network, as it can't tolerate low bandwidth that causes interruptions (jitter)
-  * Improved by redundant or alternative capabilities, fault tolerance and service availability
-* Fault tolerance - System is resistant to failure. Assured by higher-quality or redundant components or clustering
-        
+
+### Backup Storage Strategies Factors
+
+* How much data can the organization afford to lose?
+* How much data it requires to restore its processing capability?
+* How fast it requires the data to be restored?
+* How much the backup method or system cost?
+* How efficient it's network and Internet connection are in speed and bandwidth?
+
+### Traditional Backup strategies
+
+| Strategy | Procedure | Issues | Restore | Archive Bit
+| :----- | :----- | :----- | :----- | :----- |
+| Full backup | Entire hard disk is backed up. | Backup takes much longer. Requires a great deal of storage space. | Full restore. | No archive bit |
+| Incremental backup | Only the amount of data that has changed. | Data restore time can take longer. | Last full backup and each incremental backup since last full backup to be restored. | Resets the bit on a backup file (if set to on, this means it has not been backed up). |
+| Differential backup | Only data that has changed since last full or incremental backup. Subsequent Backup includes all previous changed data. | Differential backups become larger and larger. | Only last full backup and last differential backup have to be restored. | Does not turn of the archive bit. |
+
+### Storage types
+
+__Direct attached storage__
+
+* Least dependable, because it is unreliable and susceptible to accidents, damage and theft
+* May be effective as a secondary means of backup for individual user workstations or small datasets
+
+__Network attached storage (NAS)__
+
+* Network enabled storage device which is directly accessible or managed by a server
+* Suffers from some of the reliability issues as direct-attached storage
+* May be sufficient for small to medium-sized businesses
+
+__Redundant arrays of inexpensive disks (RAID)__
+
+* RAID 0: Striping - Higher throughput, Minimum 2 disks
+* RAID 1: Mirroring - Redundancy, Minimum 2 disks
+* RAID 3: Byte-Level striping with parity-bit, Minimum 3 disks
+* RAID 4: Block-Level (chunks) striping with parity bit, Minimum 3 disks
+* RAID 5: Striping plus redundancy plus parity, Minimum 3 disks
+
+__Storage Area Network (SAN)__
+
+* Own cluster of management servers and security devices
+* Often built for redundancy by having multiple storage devices that fail over each other
+* Works with high-speed fiber connections
+* Damage to the facility can also damage the SAN
+
+__Cloud Storage__
+
+* Supports large-scale data recovery that is fast and reliable
+* Associated costs may increase with the amount of data as well as availability of bandwidth
+
+__Offline Storage__
+
+* Backed up and stored off the network and/or at a remote location
+* Traditionally, organizations manually transported backup media to another site
+* Malware infection is far less likely to impact the offline storage
+
+__Electronic Vaulting and Remote Journaling__
+
+* Backups can also be performed on individual files or transactions
+* Electronic vaulting - Backup method where entire data files are transmitted in batch mode
+* Remote journaling - Only sends changes to files in either near or actual real time
+
+## Recovery sites strategies
+
+### Considerable issues
+
+* Costs and resources
+* How easy is the activation of the recovery site?
+* Potential level of damage or destruction
+* Possible size of the area affected by a disaster
+* Nature of the disaster
+* Availability of public infrastructure
+* Government-imposed requirements
+
+### Types
+
+* Cold site - Empty space in a facility
+* Warm site - Equipped, has Internet and phone access already turned on, spares or redundant equipment has already be staged at the facility
+* Hot site - Is ready for transition within a matter of minutes or hours, has all utilities and equipment: Receives data transfers quick or in real-time and therefore needs a high-speed Internet connection
+* Reciprocal site - Agreement with another organization to share resources in a disaster
+* Cloud site - As cloud service
+* Mobile site - Built into a large van, a bus or transfer truck. Gives leadership and key personnel the ability to work together from a physical "command post". Are considered miniature hot sites.
+
 ## Disaster recovery (DR)
-* Focused foremost on saving lives and preventing harm to individuals, second is saving equipment
-* Key elements
-  * Establish solid emergency procedures
-  * Be prepared with proper lifesaving and emergency safety equipment as well as options to triage injuries and transport people to the closest medical facility
-  * Training personnel
-* The Disaster Recovery plan (DRP)
-  * Criteria for declaring a disaster
-  * Preserving human lives and ensuring personnel safety
-  * Procedures for activating the disaster recovery team
-  * Communication strategies for all critical personnel
-  * Lines of authority and responsibilities
-  * Procedures for assessing damage and recoverability of assets
-  * Processes for initiating business continuity activities
-  * Exercising contingency plans
-* Response
-  * Steps for declaring a disaster
-  * Activating the response team
-  * Determining safety and status of all personnel
-  * Establishing communications and command structure
-  * Damage assessment
-  * Recovering or salvaging equipment
-  * Establishing alternate facilities
-  * Restoring utilities as power, water, heat and comms
-  * Implementing business continuity efforts
-* Communication plan
-  * Should dictate primary and alternate communications personnel who will pass Informations
-  * Radios are excellent contingency communications methods
-  * Runners are designated personnel to send them to relay information
-  * Up and down management chain, laterally across the organization and with external stakeholders
-* Assessment
-  * Precedes recovery and BC
-  * Determining
-    * Safety of facilities for return
-    * Viability of Equipment and systems for functionality
-    * If damage can be repaired
-    * Whether any data is intact
-    * Is utilities are still functional or present
-  * Go as soon as conditions permit but wait until conditions are safe or stable
-  * Some determinations may require outside expertise
-* Restoration
-  * Getting and organization from the point of being damaged to a point where it is ready to begin business
-  * Goal is to restore the environment to a condition in which personnel can safely resume
-* Training and Awareness
-  * Minimal level of training for everyone
-  * Some with DR responsibilities receive more training
-  * Classroom training as well as exercising the DR plan is of critical importance
-* Lessons learned
-  * Document as soon as possible
+
+Focused foremost on saving lives and preventing harm to individuals, second is saving equipment.
+
+### Key elements
+
+* Establish solid emergency procedures
+* Be prepared with proper lifesaving and emergency safety equipment as well as options to triage injuries and transport people to the closest medical facility
+* Training personnel
+
+### The Disaster Recovery plan (DRP)
+
+* Criteria for declaring a disaster
+* Preserving human lives and ensuring personnel safety
+* Procedures for activating the disaster recovery team
+* Communication strategies for all critical personnel
+* Lines of authority and responsibilities
+* Procedures for assessing damage and recoverability of assets
+* Processes for initiating business continuity activities
+* Exercising contingency plans
+
+### Response
+
+* Steps for declaring a disaster
+* Activating the response team
+* Determining safety and status of all personnel
+* Establishing communications and command structure
+* Damage assessment
+* Recovering or salvaging equipment
+* Establishing alternate facilities
+* Restoring utilities as power, water, heat and comms
+* Implementing business continuity efforts
+
+### Communication plan
+
+* Should dictate primary and alternate communications personnel who will pass Informations
+* Radios are excellent contingency communications methods
+* Runners are designated personnel to send them to relay information
+* Up and down management chain, laterally across the organization and with external stakeholders
+
+### Assessment
+
+* Precedes recovery and BC
+* Determining
+  * Safety of facilities for return
+  * Viability of Equipment and systems for functionality
+  * If damage can be repaired
+  * Whether any data is intact
+  * Is utilities are still functional or present
+* Go as soon as conditions permit but wait until conditions are safe or stable
+* Some determinations may require outside expertise
+
+### Restoration
+
+* Getting and organization from the point of being damaged to a point where it is ready to begin business
+* Goal is to restore the environment to a condition in which personnel can safely resume
+
+### Training and Awareness
+
+* Minimal level of training for everyone
+* Some with DR responsibilities receive more training
+* Classroom training as well as exercising the DR plan is of critical importance
+
+### Lessons learned
+
+Document as soon as possible.
 
 ## Testing disaster recovery plans
+
 * Every organization should test its DRP on a periodic basis, at least annualy
 * Test - Determining if a particular task, actually works as planned
 * Exercise - Performing a programmed series of tasks that have been tested to gain experience and insight
-* Types of exercises from least to most intrusive:
-  * Read-Through/Tabletop
-    * Gathering of stakeholders and participants for going through the documented plan step by step.
-    * Helps become familiar with the plan and understand their general role in it.
-    * Just for familiarization and covers the theoretical aspects of the plan.
-    * Non-Intrusive (the least intrusive of all)
-  * Walk-Through
-    * With plan in hand people walk through all different business areas that have a role to play in DR
-    * No actual equipment is used but it helps the people to visualize sequences of events
-    * Do not affect normal business operations
-  * Simulation
-    * Perform some DR tasks and activities as well as interact with systems and data to a degree
-    * Will normally be focused on specific activities.
-    * Any technical activities will be performed on test systems
-    * Should not normally interfere with actual operations
-  * Parallel Testing
-    * The organization actually turns on redundant or backup processing equipment in parallel to main
-    * Purpose is to determine if the alternative processing capabilities will actually function and perform
-    * Risk that it interferes with actual business operations
-    * May require resources and personnel doing additional work
-  * Full Interruption
-    * Primary processing capabilities are completely cut over to the alternate capabilities
-    * The alternate processing site is used for normal business operations for the duration of the test
-    * Most intrusive
+
+### Types of exercises from least to most intrusive:
+
+* Read-Through/Tabletop
+  * Gathering of stakeholders and participants for going through the documented plan step by step.
+  * Helps become familiar with the plan and understand their general role in it.
+  * Just for familiarization and covers the theoretical aspects of the plan.
+* Non-Intrusive (the least intrusive of all)
+* Walk-Through
+  * With plan in hand people walk through all different business areas that have a role to play in DR
+  * No actual equipment is used but it helps the people to visualize sequences of events
+  * Do not affect normal business operations
+* Simulation
+  * Perform some DR tasks and activities as well as interact with systems and data to a degree
+  * Will normally be focused on specific activities.
+  * Any technical activities will be performed on test systems
+  * Should not normally interfere with actual operations
+* Parallel Testing
+  * The organization actually turns on redundant or backup processing equipment in parallel to main
+  * Purpose is to determine if the alternative processing capabilities will actually function and perform
+  * Risk that it interferes with actual business operations
+  * May require resources and personnel doing additional work
+* Full Interruption
+  * Primary processing capabilities are completely cut over to the alternate capabilities
+  * The alternate processing site is used for normal business operations for the duration of the test
+  * Most intrusive
             
 ## Business Continuity Planning
-* Chain of incident steps
-        a. Incident Response - Reacts on an incident. IR Team determines a disaster
-        b. Disaster Recovery - DR team takes over and tries to safe human live and equipment
-        c. Business Continuity - If live and equipment is preserved BC takes over
-* BC planning
-  * Staff a BC planning team (business process owners, senior managers and other advisors like IT and cyber)
-  * Business Impact Analysis (BIA)
-    * Inventory and prioritize the critical business processes
-    * BC questions how to recover, repair or replace identified critical assets
-    * Result is an analysis of critical assets and how long the organization can function without them
-  * Developing a Business Continuity Plan (BCP)
-    * Details the processes and activities that must take place during and immediately following a catastrophic event
-    * Key BC metrics
-      * Maximum tolerable downtime (MTD) - Time that a business can endure disruption
-      * Recovery time objective (RTO) - Time it can tolerate a disruption to a process/system
-      * Recovery point objective (RPO) - Amount of data that it can afford to lose (to recover)
-      * Mean time to failure (MTTF) - Time a component is rated to function before it fails (lifespan)
-      * Mean time between failures (MTBF) - Time between failures. Calc how many spares to keep
-      * Mean time to repair (MTTR) - Time needed to obtain parts and repair a damaged component
+
+### Chain of incident steps
+
+1. Incident Response - Reacts on an incident. IR Team determines a disaster
+2. Disaster Recovery - DR team takes over and tries to safe human live and equipment
+3. Business Continuity - If live and equipment is preserved BC takes over
+
+### BC planning
+
+* Staff a BC planning team (business process owners, senior managers and other advisors like IT and cyber)
+* Business Impact Analysis (BIA)
+  * Inventory and prioritize the critical business processes
+  * BC questions how to recover, repair or replace identified critical assets
+  * Result is an analysis of critical assets and how long the organization can function without them
+* Developing a Business Continuity Plan (BCP)
+  * Details the processes and activities that must take place during and immediately following a catastrophic event
+  * Key BC metrics
+    * Maximum tolerable downtime (MTD) - Time that a business can endure disruption
+    * Recovery time objective (RTO) - Time it can tolerate a disruption to a process/system
+    * Recovery point objective (RPO) - Amount of data that it can afford to lose (to recover)
+    * Mean time to failure (MTTF) - Time a component is rated to function before it fails (lifespan)
+    * Mean time between failures (MTBF) - Time between failures. Calc how many spares to keep
+    * Mean time to repair (MTTR) - Time needed to obtain parts and repair a damaged component
                 
 ## Physical Security
-* Perimeter security zones
-  * Separate untrusted/public areas from sensitive
-  * Can be delineated by fences, bollards, shrubbery
-  * Should be monitored by security cameras, guards an organizational personnel
-* Entry Control Points
-  * Small to medium facilities should have a single primary entry control point
-  * Larger could have more and maybe dedicated to employees only or shipment
-  * Can be automated but video surveillance and a security guard should be present to handle issues
-  * Should be located a reasonable distance away from the main facility
-* Fencing
-  * Used to distinguish which parts of property are controlled by the organization and which not
-  * There is usually an exterior perimeter fence but there are also interior areas fenced in
-  * Types:
-    * Under 4 feet - keep casual intruders out
-    * Up to eight feet - deter most trespassers
-    * Over eight feet - designed for higher security areas
-  * Sometimes fences have a razor wire
-  * Perimeter Intrusion Detection and Assessment System (PIDAS)
-    * Type of fencing that may have two or more deterrents used together to create physical security zones.
-    * Normally used for secure military installations and critical infrastructure
-    * Between fencing layers, there is typically an area for security guards to patrol
-    * Accompanied by intense flood lighting
-    * Have physical intrusion detection sensors and alarms
-  * Gates are controlled entry and exit points
-  * Turnstiles are doors or barriers that only rotate in one direction (enter OR exit not both)
-* Barriers
-  * Controlled paths to route and control vehicle/pedestrian traffic
-  * Could be plants, concrete blocks or bollards
-* Lighting
-  * Deterrent control to prevent people to enter at night and prevent crime
-  * A lumen (intensity of light over distance) illuminates one square meter/3 square feet (lux)
-  * Security areas should be illuminated at an intensity of at least two lumens (lm)
-  * Overlapping coverage of light minimizes unlit areas
-* Surveillance
-  * Accomplished using video or closed-circuit television (CCTV) cameras
-  * Two important control functions:
-    * Detection - Records events visually
-    * Deterrence - It deters people from performing illegal acts or policy violations
-  * Also performed by human guards
-  * Modern systems are built into the network system and use IP-based cameras
-  * Have the ability to record for long periods and store the data on removable media (like SD card)
-  * Other abilities are pan, tilt and zoom (PTZ), detect object in motion and facial recognition
-  * Can be part of an automated intrusion detection system
-* Guards and dogs
-  * Organization should always have humans present to control security mechanisms and processes
-  * They can make rapid decisions and decide whether it is a false alarm or not
-  * Advantages:
-    * Decision making
-    * Can override automation systems
-    * Bridge between employees and security functions
-  * Disadvantages:
-    * Can be expensive (salaries, benefits and supervision)
-    * Must be cleared and trained
-    * Have typical HR issues like discipline, conflicts, development etc.
-  * Guard dogs can be problematic because of training, veterinary care, housing, feeding and liability
-* Internal security controls
-  * Meant to keep people away from sensitive areas and enforce least privilege, Separation of duties and need-to-know.
-  * Internal physical security zone is the reception area (initial access, identification, escorted)
-  * Areas where only employees are allowed (offices, break rooms, restrooms), based on their job requirements and after a background check
-* Personnel Entry Requirements
-  * Everyone who enters need a valid reason an must be cleared
-  * Non-Employees should be escorted at all times and/or a restricted badge
-  * Employees of permanent contractors should have proper background checks, need-to-know and supervisory approval
-  * Access should be granted only to specific areas and be periodically reviewed.
-* Locks
-  * Are useful to deter and delay intruders
-  * Mechanical lock types
-    * Warded lock - Spring-loaded bolt. (Vorhängeschloss)
-    * Tumbler lock - (Zylinderschloss)
-    * Combination lock - (Kombinationsschloss)
-  * Electronic locks (cipher locks)
-    * Can be programmed
-    * Requires a specific combination to be entered or requires a badge (proximity badge)
-    * Features
-      * Door delay - Triggers an alarm if a door is held open too long
-      * Key override - Specific combination to override normal function in an emergency
-      * Master key - Code to program the lock
-      * Duress code - Input a secret code that alerts security personnel
-      * Programming to work only for specific times of day
-      * Specific combinations to users for auditing and access control
-* Physical Intrusion Detection Systems (PIDS)
-  * Can detect intrusions as well as theft of equipment
-  * Types:
-    * Photoelectric or photometric - Changes in light
-    * Acoustical - Sounds and vibrations
-    * Passive infrared - Changes in temperature
-    * Wave pattern - Sense disturbances in patterns of micro-, ultrasonic, low-frequency waves
-    * Proximity/Capacitance - Measure disruptions in an electromagnetic field (prevent theft)
-    * Electromechanical - Changes in electric circuit continuity (open doors)
-  * Key issues
-    * Can be expensive
-    * Should have redundant power supplies or emergency backup power
-    * Should be linked to a centralized, integrated system
-    * Should fail to activated
-    * Should alert security personnel if any tamper attempt is detected
-    * Require human monitoring and interaction when triggering an alarm
-* Auditing Facility Access
-  * Conduct it frequently and routinely
-  * Pen-and-paper visitor's log should be reviewed daily and transferred to a DB.
-  * Manual logs should be kept a specific period of time
-  * Automated access will record Identification info (badge number), type of event, date and time
-  * Collected and shipped to a centralized logging facility
-  * Tailgating / piggybacking - Someone closely follows an authorized person
+
+### Perimeter security zones
+
+* Separate untrusted/public areas from sensitive
+* Can be delineated by fences, bollards, shrubbery
+* Should be monitored by security cameras, guards an organizational personnel
+
+### Entry Control Points
+
+* Small to medium facilities should have a single primary entry control point
+* Larger could have more and maybe dedicated to employees only or shipment
+* Can be automated but video surveillance and a security guard should be present to handle issues
+* Should be located a reasonable distance away from the main facility
+
+### Fencing
+
+* Used to distinguish which parts of property are controlled by the organization and which not
+* There is usually an exterior perimeter fence but there are also interior areas fenced in
+* Types:
+  * Under 4 feet - keep casual intruders out
+  * Up to eight feet - deter most trespassers
+  * Over eight feet - designed for higher security areas
+* Sometimes fences have a razor wire
+
+### Perimeter Intrusion Detection and Assessment System (PIDAS)
+   
+* Type of fencing that may have two or more deterrents used together to create physical security zones.
+* Normally used for secure military installations and critical infrastructure
+* Between fencing layers, there is typically an area for security guards to patrol
+* Accompanied by intense flood lighting
+* Have physical intrusion detection sensors and alarms
+* Gates are controlled entry and exit points
+* Turnstiles are doors or barriers that only rotate in one direction (enter OR exit not both)
+
+### Barriers
+
+* Controlled paths to route and control vehicle/pedestrian traffic
+* Could be plants, concrete blocks or bollards
+
+### Lighting
+
+* Deterrent control to prevent people to enter at night and prevent crime
+* A lumen (intensity of light over distance) illuminates one square meter/3 square feet (lux)
+* Security areas should be illuminated at an intensity of at least two lumens (lm)
+* Overlapping coverage of light minimizes unlit areas
+
+### Surveillance
+
+* Accomplished using video or closed-circuit television (CCTV) cameras
+* Two important control functions:
+  * Detection - Records events visually
+  * Deterrence - It deters people from performing illegal acts or policy violations
+* Also performed by human guards
+* Modern systems are built into the network system and use IP-based cameras
+* Have the ability to record for long periods and store the data on removable media (like SD card)
+* Other abilities are pan, tilt and zoom (PTZ), detect object in motion and facial recognition
+* Can be part of an automated intrusion detection system
+
+### Guards and dogs
+
+* Organization should always have humans present to control security mechanisms and processes
+* They can make rapid decisions and decide whether it is a false alarm or not
+* Advantages:
+  * Decision making
+  * Can override automation systems
+  * Bridge between employees and security functions
+* Disadvantages:
+  * Can be expensive (salaries, benefits and supervision)
+  * Must be cleared and trained
+  * Have typical HR issues like discipline, conflicts, development etc.
+* Guard dogs can be problematic because of training, veterinary care, housing, feeding and liability
+
+### Internal security controls
+
+* Meant to keep people away from sensitive areas and enforce least privilege, Separation of duties and need-to-know.
+* Internal physical security zone is the reception area (initial access, identification, escorted)
+* Areas where only employees are allowed (offices, break rooms, restrooms), based on their job requirements and after a background check
+
+### Personnel Entry Requirements
+
+* Everyone who enters need a valid reason an must be cleared
+* Non-Employees should be escorted at all times and/or a restricted badge
+* Employees of permanent contractors should have proper background checks, need-to-know and supervisory approval
+* Access should be granted only to specific areas and be periodically reviewed.
+
+### Locks
+
+* Are useful to deter and delay intruders
+* Mechanical lock types
+  * Warded lock - Spring-loaded bolt. (Vorhängeschloss)
+  * Tumbler lock - (Zylinderschloss)
+  * Combination lock - (Kombinationsschloss)
+* Electronic locks (cipher locks)
+  * Can be programmed
+  * Requires a specific combination to be entered or requires a badge (proximity badge)
+  * Features
+    * Door delay - Triggers an alarm if a door is held open too long
+    * Key override - Specific combination to override normal function in an emergency
+    * Master key - Code to program the lock
+    * Duress code - Input a secret code that alerts security personnel
+    * Programming to work only for specific times of day
+    * Specific combinations to users for auditing and access control
+
+### Physical Intrusion Detection Systems (PIDS)
+
+* Can detect intrusions as well as theft of equipment
+ * Types:
+  * Photoelectric or photometric - Changes in light
+  * Acoustical - Sounds and vibrations
+  * Passive infrared - Changes in temperature
+  * Wave pattern - Sense disturbances in patterns of micro-, ultrasonic, low-frequency waves
+  * Proximity/Capacitance - Measure disruptions in an electromagnetic field (prevent theft)
+  * Electromechanical - Changes in electric circuit continuity (open doors)
+* Key issues
+  * Can be expensive
+  * Should have redundant power supplies or emergency backup power
+  * Should be linked to a centralized, integrated system
+  * Should fail to activated
+  * Should alert security personnel if any tamper attempt is detected
+  * Require human monitoring and interaction when triggering an alarm
+
+### Auditing Facility Access
+
+* Conduct it frequently and routinely
+* Pen-and-paper visitor's log should be reviewed daily and transferred to a DB.
+* Manual logs should be kept a specific period of time
+* Automated access will record Identification info (badge number), type of event, date and time
+* Collected and shipped to a centralized logging facility
+* Tailgating / piggybacking - Someone closely follows an authorized person
 
 ## Personnel Safety and Security
-* Travel precautions
-  * Take a mobile device containing sensitive information only if necessary
-  * Minimize the sensitive information to only that which is needed
-  * Ensure the device is locked or powered down
-  * Be aware of your surroundings at all times
-  * Have a plan when traveling and share it with people (times when you call them or meet)
-  * Avid free Wi-Fi hotspots unless in a trusted location
-  * Only use secure VPN connections
-* Training and awareness
-  * Design and implement formal training programs to increase safety and security habits
-  * Topics
-    * Personal and professional cyber hygiene
-    * Awareness of surroundings and environment
-    * Precautions to take when traveling
-    * Adherence to emergency procedures
-    * General workplace safety procedures
-* Emergency Management
-    * Emergency evacuation plans
-    * Formalized safety program
-    * Recurring safety training
-    * Safety-related risk assessments
-    * Safety and emergency equipment prepositioned
-    * Fire prevention, detection and suppression
-    * Environmental monitoring systems
-    * Disaster recovery procedures
-* Duress
-  * Someone is physically harmed or being threatened with violence
-  * Duress systems can alert guards or law enforcement, automatically lock doors and sound alarms
+
+### Travel precautions
+
+* Take a mobile device containing sensitive information only if necessary
+* Minimize the sensitive information to only that which is needed
+* Ensure the device is locked or powered down
+* Be aware of your surroundings at all times
+* Have a plan when traveling and share it with people (times when you call them or meet)
+* Avid free Wi-Fi hotspots unless in a trusted location
+* Only use secure VPN connections
+
+### Training and awareness
+
+* Design and implement formal training programs to increase safety and security habits
+* Topics
+  * Personal and professional cyber hygiene
+  * Awareness of surroundings and environment
+  * Precautions to take when traveling
+  * Adherence to emergency procedures
+  * General workplace safety procedures
+
+### Emergency Management
+
+* Emergency evacuation plans
+* Formalized safety program
+* Recurring safety training
+* Safety-related risk assessments
+* Safety and emergency equipment prepositioned
+  * Fire prevention, detection and suppression
+  * Environmental monitoring systems
+  * Disaster recovery procedures
+
+### Duress
+
+* Someone is physically harmed or being threatened with violence
+* Duress systems can alert guards or law enforcement, automatically lock doors and sound alarms
 
 ### Terms
 
@@ -935,8 +1005,8 @@ TODO
 | Computer forensics | Science of identification, preservation, acquisition, analysis, discovery, documentation and presentation of evidence to a court of law. |
 | E-Discovery | Process of discovering digital evidence and preparing that information to be presented in court. |
 | Artifacts | Any items of potential evidentiary value which can serve as evidence or support evidences. |
-
-
-
-Additional
-* DAM - Database Access Managementtools haben auch die Möglichkeit Zugriffe und Sicherheitsvorfälle zu melden.
+| Resiliency | The capability of a system to continue to function. Is one of the goals of Business Continuity. |
+| High Availability (HA) | Available on a near constant basis. 99.999% = 5min and 15sec per year. |
+| Quality of Service (QoS) | Minimum level of service performance that an organization requires. VoIP gets top priority in a network, as it can't tolerate low bandwidth that causes interruptions (jitter). Improved by redundant or alternative capabilities, fault tolerance and service availability. |
+| Fault tolerance | System is resistant to failure. Assured by higher-quality or redundant components or clustering. |
+| Database Access Management (DAM) | Tool with the capability to alarm accesses and security events. |

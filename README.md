@@ -32,4 +32,5 @@ A library of tools, descriptions, how-to's and other material regarding offensiv
 
 
 ## Applications
+
 [Git Basics](./git-basics.md)
