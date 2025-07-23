@@ -270,3 +270,13 @@ Structured or Semi-Structured data:
 **_Database Migration Service (DMS)_** easily migrate databases to Google Cloud.
 
 **_Datastream_** can syncrhonize data across databases, storage systems and applications.
+
+## Making Data Useful and Accessible
+
+**_Looker_** is Google's Business Intelligence (BI) platform. It supports BigQuery along with more than 60 different SQL databases. Provides rich, interactive dashboards and reports. Is 100% web-based.
+
+Streaming analytics is the processing and analyzing of data records continuously instead of in batches. This is used to analyze data in real time and provide insights into activities such as metering, servcer activity, geolocation of devices and website clicks. 
+
+**_Pub/Sub_** is a Google service which ingests hundreds of millions of events per second. This happens in IoT-Devices. Pub/Sub is a distributed messaging service, that can receive these events and streams. It is an abbreviation of Publisher/Subscriper or Publish messages to subscribers. 
+
+**_Dataflow_** is a Google service which unifies streaming and batch data analysis and build cohesive data pipelines. It extracts, transforms and loads (called "ETL") stream and batch data into data warehouses. A popular solution for pipeline design is **_Apache Beam_**. Fully-Managed and serverless. 
