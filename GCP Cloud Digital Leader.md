@@ -279,4 +279,90 @@ Streaming analytics is the processing and analyzing of data records continuously
 
 **_Pub/Sub_** is a Google service which ingests hundreds of millions of events per second. This happens in IoT-Devices. Pub/Sub is a distributed messaging service, that can receive these events and streams. It is an abbreviation of Publisher/Subscriper or Publish messages to subscribers. 
 
-**_Dataflow_** is a Google service which unifies streaming and batch data analysis and build cohesive data pipelines. It extracts, transforms and loads (called "ETL") stream and batch data into data warehouses. A popular solution for pipeline design is **_Apache Beam_**. Fully-Managed and serverless. 
+**_Dataflow_** is a Google service which unifies streaming and batch data analysis and build cohesive data pipelines. It extracts, transforms and loads (called "ETL") stream and batch data into data warehouses. A popular solution for pipeline design is **_Apache Beam_**. Fully-Managed and serverless.
+
+## AI and ML Fundamentals
+
+### Artificial Intelligence
+
+The use of technologies to build machines and computers that are able to mimic cognitive functions associated with human intelligence. Uses techniques like deep learning, robotics, expert sytems, natural language processing and of course machine learning.
+
+**Generative AI** = Producing new Files, Images, Videos, Audio and other data.
+
+Business Analytics is creating dashboard on analyzing data from the past. AI/ML makes predictions for the future based on data from the past.
+
+**_Explainable AI_** is Google Cloud's set of tools and frameworks to help understand and interpret prections made by ML models.
+
+Googles AI principles:
+
+* Bold innovation
+* Responsible development and deployment
+* Collaborative progress
+
+### Machine Learning
+
+A subset of AI that enables a machine to learn from data without being explicitly programmed.
+
+Can solve following problems:
+
+* Replacing or simplifying rule based systems (i.e. location based queries on Google Search)
+* Automate processes (i.e. Pipelines of error checking, documentation and following actions)
+* Understanding unstructured data (i.e. route incoming mail to the right department)
+* Personalization (i.e. "Watch next" on Youtube)
+
+There's a need to use high-quality data to train models. Characteristics are:
+
+* Completeness - All the required information is present
+* Uniqueness - Data does not have duplicate records
+* Timeliness - Data is up-to-date
+* Validity - Data conforms to a set of predefined standards and definitions, such as type and format 
+* Accuracy - Correctness of the data, such as the accurate number of units sold
+* Consistency - The data is uniform and doesn't contain any contradictory information
+
+## Google Cloud's AI and ML Solutions
+
+### BigQuery ML
+
+Use SQL queries to create and execute machine learning models. Can work with **_Vertex AI_** (End-to-end AI and ML platform).
+
+### Pre-trained APIs
+
+Leverage ML models that have already been built and trained by Google. Can be deployed in the Cloud and On-Premise. Examples are:
+
+* **_Vision API_** uses Googles ML models to identify faces, objects, sentiments and text in images and label or categorize them. 
+* **_Natural Language API_** can identify syntax, sentiments in text. 
+* **_Cloud Translation API_** converts text from one language to another.
+* **_Speech-to-Text API_** converts audio to text for data processing.
+* **_Text-to-Speech API_** converts text into audio.
+* **_Video Intelligence API_** recognizes motion and action in video.
+
+### AutoML
+
+A no-code solution to build ML models on **_Vertex AI_**. Your own data can used with Vertex AI to create ML projects. Auto ML lets you build and train machine learning models from end to end by using graphical user interfaces. For example I use a set of images to custom train AutoML Vision and learn which images are correct and which are not.
+
+### Custom models
+
+Code own ML environment to have the control over the ML pipeline. You can use Vertex AI to built custom ML models with custom data while going down the following chain:
+
+1. Gather data
+2. Feature engineering
+3. Build models
+4. Deploy and monitor models
+
+### TensorFlow
+
+An end to end open source platform for machine learning. It has a flexible ecosystem of tools, libraries, and community resources that enable researchers to innovate in ML and developers to build and deploy ML powered applications. Can use **_Tensor Processing Units (TPU)_** which is a specific hardware to run ML-workloads.
+
+### AI solutions
+
+* Contact Center AI -  Models for speaking with customers and assisting human agents
+* Document AI - Extracting and classifying information from unstructured documents such as invoices, receipts, forms, letters, and reports.
+* Discovery AI for Retail - Select the optimal ordering of products on a retailer's e-commerce site.
+* Cloud Talent Solution - Job search and talent acquisition capabilities, matches candidates to ideal jobs faster.
+
+### Considerations when selecting AI/ML solutions
+
+* Speed to production
+* Differentiation / How customized does it have to be?
+* Required Expertise
+* Effort
