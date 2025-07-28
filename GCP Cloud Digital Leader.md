@@ -366,3 +366,86 @@ An end to end open source platform for machine learning. It has a flexible ecosy
 * Differentiation / How customized does it have to be?
 * Required Expertise
 * Effort
+
+## Modernize Infrastructure in the Cloud
+
+### Terms
+
+| Term | Description |
+| :----- | :----- |
+| Workload | A specific application, service, or capability that can be run in the Cloud or on premises like containers, databases or virtual machines. |
+| Retired | Remove a workload from the platform. |
+| Retained | Intentionally kept workload. |
+| Rehosted | The migration of a workload to the Cloud without changing anything in the workload's code or architecture. Often referred to as "Lift-and-Shift". |
+| Replatform | Migrating a workload to the Cloud while making some changes to the workloads code or architecture. Often referred to as "Move-and-Improve". |
+| Refactored | Refers to the process of changing the code of a workload.  |
+| Reimagined | The process of rethinking how an organization uses technology to achieve its business goals. |
+
+### Benefits of running compute workloads in the cloud
+
+* Total cost of ownership (TCO) - Measure of the total cost of a system or solution over its lifetime.
+* Scalability - Scale up and down by demand
+* Reliability - High reliability 
+* Security
+* Flexibility - Choose the cloud services you need whenever you need it.
+* Abstraction - Provide management layer without concern about the details.
+
+
+### Virtual machine
+
+Virtualization is a form of resource optimization that lets multiple systems run on the same hardware. **_Compute engine_** is Google's IaaS solution. Can be configured like a physical server by specifing the amount of CPU and memory needed.
+
+Virtual machines can be created through **_Google's Cloud Console_** (Web based tool) or the **_Google Cloud CLI_** (command-line interface).
+
+Will be billed by the second with the one minute minimum. Automatically applied sustained-use discounts the longer they run. Compute Engine also offers committed-use discounts (1- or 3-year period).
+
+Costs can be reduced, in some cases by up to 90%, by choosing Preemptible or Spot VMs to run the job. Compute Engine might preemptively interrupt Spot VMs to reclaim the capacity at any time. Spot VMs differ from Preemptible VMs by offering more features.
+
+* Spot VMs
+  * More features
+  * No maximum runtime
+  * Same pricing
+* Preemptible VMs
+  * Less features
+  * Runtime up to 24h
+  * Same pricing
+
+### Containers
+
+Provide isolated environments to run software services and optimize resources from one piece of hardware. Well suited for a microservices based architecture. Communicate with each other through APIs or other lightweight communication methods, such as REST or gRPC.
+
+### Managing containers
+
+Kubernetes, originally developed by Google, is an open-source platform for managing containerized workloads and services. **_Google Kubernetes Engine (GKE)_** is a managed Kubernetes service in the Cloud. Provides Web-GUI and API to manage containers. 
+
+**_Cloud Run_** is a fully managed serverless platform to deploy and run containerized applications. Takes care of scaling and managing the infrastructure automatically. Ideal for running stateless applications that need to scale up and down quickly in response to traffic.
+
+### Serverless computing
+
+Means that resources like compute power are automatically provisioned in the background as needed. Businesses provide the code for whatever function they want and the public Cloud provider does everything else. Google's Function as a service (FaaS) are:
+
+* **_Cloud Run_** - Containerized application hosting.
+* **_Cloud Run functions_** - Hosting simple, single-purpose functions that are attached to events.
+* **_App Engine_** - Service to build and deploy web applications.
+
+## Modernizing Applications in the cloud
+
+### Benefits of modern cloud application development
+
+Modern cloud applications are typically built as a collection of microservices and are deployed to the cloud with all advantages like scalability, pay-as-you-go pricing model, resiliency and security. 
+
+### Rehosting legacy applications in the cloud
+
+**_Google Cloud VMware Engine_** helps migrating existing VMware workloads to the cloud without rearchitect the applications or retool operations. With that you can use other Google services.
+
+For organizations with legacy applications on Oracle, Google Cloud offers **_Bare Metal Solution_**.
+
+### Application programming interfaces (APIs)
+
+An API is a set of instructions that lets different software programs communicate with each other. Provides a standardized and predictable way for them to exchange data and interact. 
+
+**_Apigee API Management_** is Googles API management service to operate APIs with enhanced scale, security and automation.
+
+### Hybrid and multi-cloud
+
+**_GKE Enterprise_** is a production-ready platform for running Kubernetes applications across multiple cloud environments. It provides a consistent way to manage Kubernetes, clusters, applications and services regardless of where they are running. GKE enterprise can run Kubernetes clusters on Google Cloud, AWS, Azure, and other public clouds.
