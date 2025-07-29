@@ -566,3 +566,118 @@ The **_Compliance resource center_** hub provides detailed information on the re
 In addition, the **_Compliance Reports Manager_** offers access to critical compliance resources at no extra cost like ISO/IEC certificates, SOC reports and self-assessments.
 
 **Link:** [Compliance Reports Manager](https://cloud.google.com/security/compliance/compliance-reports-manager)
+
+## Scaling with Google Cloud Operations
+
+### Fundamentals of cloud financial governance
+
+To manage cloud costs effectively, a partnership across finance, technology, and business functions is required. The central team would consist of several experts who ensure that best practices are in place across the organization and that there's visibility into the ongoing cloud spend. **_Center of excellence_** is a centralized hub within an organization for that.
+
+On a daily or weekly basis, organizations should monitor and analyze their cloud usage and costs. Then, on a weekly or monthly basis, the finance team should analyze the results, charge back the costs through the appropriate teams, and determine whether any changes are needed to ensure that the organization's cloud spend is optimized.
+
+### Cloud financial governance best practices
+
+* Identify who manage cloud costs.
+  * Defining clear ownership for projects.
+  * Sharing cost views with the departments and teams that are using cloud resources.
+  * Creating multiple budgets with meaningful alerts.
+* Understand invoices versus cost management tools
+  * An invoice is a document that is sent by a cloud service provider to a customer to request payment for the services that were used.
+  * A cost management tool is software to help track, analyze, and optimize cloud spend.
+* Use Google Cloud's cost management tools
+  * Capture what cloud resources are being used, by whom, for what purpose, and at what cost.
+  * Determine who will be responsible for monitoring that information, who will be involved in managing costs, and how the spending information will be reported on an ongoing basis.
+  * Set up the cadence and format for ongoing communication with main cloud stakeholders.
+
+The **_Pricing Calculator_** lets you estimate how changes to cloud usage will affect costs. **Link:** [Pricing Calculator](https://cloud.google.com/products/calculator)
+
+### Using the resource hierarchy to control access
+
+The **_Google Cloud resource hierarchy_** is a powerful tool that can be used to control access to cloud resources. 
+
+Google Cloud’s resource hierarchy contains four levels, and starting from the bottom up they are:
+
+1. Resources
+2. Projects
+3. Folders
+4. Organization node
+
+A policy is a set of rules that define who can access a resource an what they can do with it. Policies can be defined on levels 2 to 4. Some services can even add policies on resource level.
+
+### Controlling cloud consumtion
+
+Google Cloud offers several tools to help control cloud consumption:
+
+* **_Resource quota policies_** - Set limits on the amount of resources that can be used by a project or user.
+* **_Budget threshold rules_** - Set alerts to be informed when your cloud costs exceed a certain threshold.
+* **_Cloud Billing reports_** - Offer a reactive method to help you track and understand what you’ve already spent on Google Cloud resources and provide ways to help optimize your costs. Data can be exported to **_BigQuery_** for further analysis.
+
+## Operational Excellence and Reliability at Scale
+
+### Fundamentals of cloud reliability
+
+DevOps is a software development approach that emphasizes collaboration and communication between development and operations teams to enhance the efficiency, speed, and reliability of software delivery.
+
+One particular concept within the DevOps framework is **_Site Reliability Engineering_**, or SRE, which ensures the reliability, availability, and efficiency of software systems and services deployed in the cloud.
+
+Monitoring is the foundation of product reliability. There are "Four Golden Signals" that measure a systems's performance and reliability:
+
+| Signal | Description |
+| :----- | :----- |
+| Latency | Measures how long it takes for a particular part of a system to return a result. |
+| Traffic | Measures how many requests reach your system. |
+| Saturation | Measures how close to capacity a system is. |
+| Errors | Events that measure system failures or other issues. |
+
+Three main concepts in site reliability engineering are:
+
+| Concept | Abbreviation | Description |
+| :----- | :-----: | :----- |
+| Service-level indicators  | SLI | Measurements that show how well a system or service is performing. |
+| Service-level objectives  | SLO | The goals that we set for a system's performance based on SLIs. |
+| Service-level agreements  | SLA | Agreements between a cloud service provider and its customers. They outline the promises and guarantees regarding the quality of service. |
+
+### Designing resilient infrastructure and processes
+
+Key design considerations:
+
+| Consideration | Description | Advantages | 
+| :----- | :----- | :----- |
+| Redundancy | Duplicating critical components or resources to provide backup alternatives. | Enhances system reliability and mitigates the impact of single points of failure. |
+| Replication | Creating multiple copies of data or services and distributing them across different servers or locations. | Ensures redundancy and fault tolerance by allowing systems to continue functioning even if certain components or servers fail. |
+| Regions | Distributing resources across regions. | Improves resilience and reduces the risk of prolonged service interruptions. |
+| Scalable infrastructure | Dynamic allocation and deallocation of resources based on workload fluctuations by autoscaling mechanisms. | Ensuring that services remain available and responsive during peak periods or sudden spikes in traffic. |
+| Backups | Regular backups of critical data and configurations. | Ensure that if data loss, hardware failures, or cyber-attacks occur, organizations can restore their systems to a previous state. |
+
+### Modernizing operations by using Google Cloud
+
+Observability involves collecting, analyzing, and visualizing data from various sources within a system to gain insights into its performance, health, and behavior.
+
+**_Google Cloud Observability_**, is a comprehensive set of monitoring, logging, and diagnostics tools:
+
+| Tool | Description |
+| :----- | :----- |
+| **_Cloud Monitoring_** | Collects metrics, logs, and traces from your applications and infrastructure, and provides you with insights into their performance, health, and availability. It also lets you create alerting policies to notify you when metrics, health check results, and uptime check results meet specified criteria. |
+| **_Cloud Logging_** | Collects and stores all application and infrastructure logs. |
+| **_Cloud Trace_** | Helps identify performance bottlenecks in applications. It collects latency data from applications, and provides insights into how they’re performing. |
+| **_Cloud Profiler_** | It continuously gathers CPU usage and memory-allocation information from production applications and provides insights into how applications are using resources. |
+| **_Error Reporting_** | Counts, analyzes, and aggregates the crashes in running cloud services in real-time. A centralized error management interface displays the results with sorting and filtering capabilities. Error Reporting supports email and mobile alerts notification through its API. |
+
+### Google Cloud customer care
+
+| Service Level | Description |
+| :----- | :----- |
+| Basic | Free and is included for all Google Cloud customers. It provides access to documentation, community support, Cloud Billing Support, and Active Assist recommendations. **_Active Assist_** is the portfolio of tools used in Google Cloud to generate insights and recommendations to help you optimize your cloud projects. |
+| Standard | Recommended for workloads under development. Offers unlimited individual access to English-speaking support representatives during working hours, 5 days a week.  Provides access to the **_Cloud Support API_**, which lets you integrate Cloud Customer Care with your organization's customer relationship management (CRM) system. |
+| Enhanced | Designed for workloads in production. Support is available 24/7 in a selection of languages, and initial response times are quicker than those provided by Standard Support. Offers technical support escalations and third-party technology support to help you resolve multi-vendor issues. |
+| Premium | Designed for enterprises with critical workloads. It features the fastest response time, Customer Aware Support, and a dedicated Technical Account Manager. Offers credit for the Google Cloud Skills Boost training platform, an event management service for planned peak events, operational health reviews, and customer aware support. |
+
+Both the Enhanced and Premium support plans offer Value-Add Services that are available for additional purchase. **Link:** [Support](https://cloud.google.com/support)
+
+### The life of a support case
+
+
+
+### Sustainability with Google Cloud
+
+
