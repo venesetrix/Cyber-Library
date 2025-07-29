@@ -449,3 +449,120 @@ An API is a set of instructions that lets different software programs communicat
 ### Hybrid and multi-cloud
 
 **_GKE Enterprise_** is a production-ready platform for running Kubernetes applications across multiple cloud environments. It provides a consistent way to manage Kubernetes, clusters, applications and services regardless of where they are running. GKE enterprise can run Kubernetes clusters on Google Cloud, AWS, Azure, and other public clouds.
+
+## Trust and Security with Google Cloud
+
+### Terms
+
+| Term | Description |
+| :----- | :----- |
+| Privileged access | Grants specific users access to a broader set of resources. |
+| Least Privilege | Advocates granting users only the access they need to perform their job responsibilities. |
+| Zero-trust architecture | No user or device can be trusted by default. Every user and device must be authenticated and authorized before accessing resources. |
+| Security by default | Integrating security measures into systems and applications from the initial stages of development. |
+| Security posture | Overall security status of a cloud environment. |
+| Cyber resilience | An organization's ability to withstand and recover quickly from cyber attacks. |
+| Firewall | A network device that regulates traffic based on predefined security rules. |
+| Encryption | The process of converting data into an unreadable format by using an encryption algorithm. |
+| Decryption | Uses an encryption key to restore encrypted data back to its original form. |
+
+### Cloud security components
+
+| Concept | Description |
+| :----- | :----- |
+| Confidentiality | Keeping important information safe and secret. |
+| Identity | Keeping data accurate and trustworthy. |
+| Availability | Systems and services are always accessible and ready for use by the right people when needed. |
+| Controls | THe measures and processes implemented to manage and mitigate security risks. Most important are Authentication, Access and Awareness. |
+| Compliance | Ensuring that security practices and measures align with established standards and guidelines. |
+
+### Cloud security versus traditional on-premises security
+
+* Location - Local vs. cloud provider
+* Responsibility - Securitng Data/Apps/Access vs. Infrastructure/Network
+* Scalability/Elasticity - Long cycles vs. agile
+* Maintenance/Updates - Self vs. Provider
+* Expenditure - CapEx vs. OpEx
+
+### Cybersecurity Threats
+
+| Threat | Description |
+| :----- | :----- |
+| Social Engineering | Skillfully craft tailored emails and mimic authenticity to deceive their targets. |
+| Physical damage | Damage to hardware components, power disruptions, or natural disasters such as floods. |
+| Malware, viruses and ransomware | Aim to disrupt operations, inflict damage, or gain unauthorized access to computer systems. |
+| Vulnerable 3rd party systems | Imagine inviting a trusted ally into your domain, only to discover that they inadvertently compromise your security. |
+| Misconfiguration | When errors arise during the setup or configuration of resources, which inadvertently exposes sensitive data and systems to unauthorized access. |
+
+## Google's Trusted Infrastructure
+
+### Data centers
+
+Google operates over 30 data centers worldwide. Has custom hardware and software with features like Tamper-evident hardware, secure boot, Hardware-based encryption.
+
+Measures the success through Power Usage Effectiveness (PUE) score.
+
+### Secure storage
+
+Automatic (free, built-in) encryption of data at rest in Google Cloud. With **_Cloud Key Management Service (Cloud KMS)_** the customer can use his own key. Data in transit will be encrypted as well, especially when it comes to outside connections. Google Cloud uses memory encryption for data in use. 
+
+### Identity
+
+Leveraged by '3A': 
+
+* Authentication - Validating identity by using 2-step-verification (2SV or 2FA or MFA).
+* Authorization - What a user is allowed to do by rules, hierarchy or responsibilites.
+* Auditing/Accounting - Collecting and analysing logs of user activity and system events.
+
+Can be used by **_Identity and Management (IAM)_**.
+
+### Network security
+
+Implement Zero-trust security model by using Google's **_BeyondCorp Enterprise_** which analyzes credentials and context.
+
+Secure connections between on-premises datacenters and Google Cloud can be established by using **_Cloud VPN_** or **_Cloud Interconnect_**.
+
+Networks inside of Google Cloud can be secured by **_Firewall_** and **_Virtual Private Cloud_**.
+
+Customers can protect themselves from DDoS-Attacks by using **_Cloud Armor_**.
+
+With automation tools like **_Terraform_**, **_Jenkins_** and **_Cloud Build_** customers can assure to create secure and reliable cloud environments.
+
+### Security operations
+
+Google Cloud's **_Security Command Center (SCC)_** provides a centralized view of the security posture and helps to identify and fix vulnerabilites.
+
+**_Cloud Logging_** is a service to collect and analyze security logs from your entire Google Cloud environment.
+
+Other aspects of SecOps are Incident Response and Awareness measures.
+
+## Google Cloud's Trust Principles and Compliance
+
+### Trust Principles and Transparency Reports
+
+* You own your data, not Google
+* Google does not sell customer data to third parties
+* Google Cloud does not use customer data for advertising
+* All customer data is encrypted by default
+* We guard against insider access to your data
+* We never give any government entity "backdoor" access
+* Our privacy practices are audited against international standards
+
+Transparency reports,Independent Audit transparency, 3rd party audits and certifications proof these principles.
+
+### Data residency and data souvereignty
+
+* Data souvereignty - The legal concept that data is subject to the laws and regulations of the country where it resides.
+* Data residency - Refers to the physical location where data is stored or processed.
+
+Can be implemented by choosing the correct data center region. You can also use Organization Policy constraints coupled with IAM configuration to prevent accidental data storage in the wrong region. **_VPC service controls_** let you restrict network access to data based on defined perimeters.
+
+### Industry and regional compliance
+
+The **_Compliance resource center_** hub provides detailed information on the regional and industry related certifications and compliance standards Google Cloud satisfy.
+
+**Link:** [Compliance Resource Center](https://cloud.google.com/security/compliance)
+
+In addition, the **_Compliance Reports Manager_** offers access to critical compliance resources at no extra cost like ISO/IEC certificates, SOC reports and self-assessments.
+
+**Link:** [Compliance Reports Manager](https://cloud.google.com/security/compliance/compliance-reports-manager)
