@@ -70,7 +70,7 @@ Serves as a map for cloud adoption through a set of actions around People, Proce
 
 ### Total cost of ownership (TCO)
 
-TCO analysis mean to compare On-Premise investments for infrastructure and operating with cloud operation costs as well as predicting future expenditures.
+TCO analysis mean to compare On-Premise investments for infrastructure and operating with cloud operation costs as well as predicting future expenditures. Evaluating the return on investment helps determine the total cost of ownership when moving to the cloud.
 
 ### Capital Expenditures (CapEx) vs. Operating expenses (OpEx)
 
@@ -96,6 +96,8 @@ OpEx means, that you're paying for what you use. This means constant monitoring 
     * Improve reliability and resiliency
     * Maintain regulatory compliance
     * Running apps at remote edge locations
+
+ **_Google Cloud Anthos_** is a hybrid, cloud-agnostic container environment. Google Cloud Anthos is a software product that enables enterprises to use container clusters instead of cloud virtual machines (VMs) to bridge gaps between legacy software and cloud hardware. Google Cloud Anthos aims to containerize legacy applications by including migration software that transforms VM images into containers before being deployed onto Anthos.
 
 ### Cloud networking
 
@@ -233,7 +235,7 @@ Google's own SQL RDMS for high availability and Input/Output Operations. Has unl
 
 **_BigQuery_**
 
-Is a fully-managed data warehouse. Provides two services in one: Storage and analytics. You can store Petabytes of data and analyze them with Machine Learning, Geospatial analysis and Business Intelligence. Data is encrypted at rest by default. Provides seamless integration with the partner ecosystem and works in a multicloud environment. Can export datasets to **_Vertex AI_** which is used to train the Machine Learning modules to generate SQL for BigQuery.
+Is a fully-managed data warehouse. Provides two services in one: Storage and analytics. You can store Petabytes of data and analyze them with Machine Learning, Geospatial analysis and Business Intelligence. Data is encrypted at rest by default. Provides seamless integration with the partner ecosystem and works in a multicloud environment. Can export datasets to **_Vertex AI_** which is used to train the Machine Learning modules to generate SQL for BigQuery. It's a serverless, highly-scalable data warehouse that decouples storage and compute resources.
 
 ### Semi-structured data storage solutions
 
@@ -349,16 +351,19 @@ Code own ML environment to have the control over the ML pipeline. You can use Ve
 3. Build models
 4. Deploy and monitor models
 
+**_Vertex AI Data Labeling_** is specifically designed for creating high-quality labeled datasets to train machine learning models. 
+
 ### TensorFlow
 
 An end to end open source platform for machine learning. It has a flexible ecosystem of tools, libraries, and community resources that enable researchers to innovate in ML and developers to build and deploy ML powered applications. Can use **_Tensor Processing Units (TPU)_** which is a specific hardware to run ML-workloads.
 
 ### AI solutions
 
-* Contact Center AI -  Models for speaking with customers and assisting human agents
-* Document AI - Extracting and classifying information from unstructured documents such as invoices, receipts, forms, letters, and reports.
-* Discovery AI for Retail - Select the optimal ordering of products on a retailer's e-commerce site.
-* Cloud Talent Solution - Job search and talent acquisition capabilities, matches candidates to ideal jobs faster.
+* **_Contact Center AI_** -  Models for speaking with customers and assisting human agents
+* **_Document AI_** - Extracting and classifying information from unstructured documents such as invoices, receipts, forms, letters, and reports.
+* **_Discovery AI for Retail_** - Select the optimal ordering of products on a retailer's e-commerce site.
+* **_Cloud Talent Solution_** - Job search and talent acquisition capabilities, matches candidates to ideal jobs faster.
+* **_AI Platform Notebooks_** - Provides fully managed JupyterLab environments for data science and machine learning.
 
 ### Considerations when selecting AI/ML solutions
 
@@ -390,7 +395,6 @@ An end to end open source platform for machine learning. It has a flexible ecosy
 * Flexibility - Choose the cloud services you need whenever you need it.
 * Abstraction - Provide management layer without concern about the details.
 
-
 ### Virtual machine
 
 Virtualization is a form of resource optimization that lets multiple systems run on the same hardware. **_Compute engine_** is Google's IaaS solution. Can be configured like a physical server by specifing the amount of CPU and memory needed.
@@ -419,6 +423,8 @@ Provide isolated environments to run software services and optimize resources fr
 Kubernetes, originally developed by Google, is an open-source platform for managing containerized workloads and services. **_Google Kubernetes Engine (GKE)_** is a managed Kubernetes service in the Cloud. Provides Web-GUI and API to manage containers. 
 
 **_Cloud Run_** is a fully managed serverless platform to deploy and run containerized applications. Takes care of scaling and managing the infrastructure automatically. Ideal for running stateless applications that need to scale up and down quickly in response to traffic.
+
+**_Artifact Registry_** is a central repository for storing and managing build artifacts like container images and language packages.
 
 ### Serverless computing
 
@@ -555,7 +561,7 @@ Transparency reports,Independent Audit transparency, 3rd party audits and certif
 * Data souvereignty - The legal concept that data is subject to the laws and regulations of the country where it resides.
 * Data residency - Refers to the physical location where data is stored or processed.
 
-Can be implemented by choosing the correct data center region. You can also use Organization Policy constraints coupled with IAM configuration to prevent accidental data storage in the wrong region. **_VPC service controls_** let you restrict network access to data based on defined perimeters.
+Can be implemented by choosing the correct data center region. You can also use Organization Policy constraints coupled with IAM configuration to prevent accidental data storage in the wrong region. **_VPC service controls_** let you restrict network access to data based on defined perimeters. They prevent data exfiltration.
 
 ### Industry and regional compliance
 
@@ -662,6 +668,7 @@ Observability involves collecting, analyzing, and visualizing data from various 
 | **_Cloud Trace_** | Helps identify performance bottlenecks in applications. It collects latency data from applications, and provides insights into how they’re performing. |
 | **_Cloud Profiler_** | It continuously gathers CPU usage and memory-allocation information from production applications and provides insights into how applications are using resources. |
 | **_Error Reporting_** | Counts, analyzes, and aggregates the crashes in running cloud services in real-time. A centralized error management interface displays the results with sorting and filtering capabilities. Error Reporting supports email and mobile alerts notification through its API. |
+| **_Cloud Source Repositories_** | Hosts and manages source code repositories in the cloud. |
 
 ### Google Cloud customer care
 
@@ -676,8 +683,22 @@ Both the Enhanced and Premium support plans offer Value-Add Services that are av
 
 ### The life of a support case
 
+Any Google Cloud customer on the Standard, Enhanced, or Premium Support plan can use the **_Google Cloud console_** to create and manage support cases.
 
+The life of a support case in general is as follows:
+
+1. Case creation
+2. Case triage
+3. Case assigment
+4. Troubleshooting and investigation
+5. Communication and updates
+6. Escalation
+7. Resolution and mitigation
+8. Validation and testing
+9. Case closure
+
+You can select a priority from P4, which means low impact, up to P1, which means critical impact.
 
 ### Sustainability with Google Cloud
 
-
+Google's data centers were the first to achieve ISO 14001 certification - a framework for an organization to enhance its environmental performance through improving resource efficiency and reducing waste.
