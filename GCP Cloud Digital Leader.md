@@ -231,7 +231,7 @@ The service applies patches/updates, manages backups and configures replications
 
 **_Spanner_**
 
-Google's own SQL RDMS for high availability and Input/Output Operations. Has unlimited scale and strong consistency as well as up to 99.999% availability. Handles replicas, sharding and transaction processing.
+Google's own SQL RDMS for high availability and Input/Output Operations. Has unlimited scale and strong consistency as well as up to 99.999% availability. Handles replicas, sharding and transaction processing. ACID is a term standing for Atomicity, Consistency, Isolation and Durability , which are key properties that guarantee reliable database transactions.
 
 **_BigQuery_**
 
@@ -364,6 +364,7 @@ An end to end open source platform for machine learning. It has a flexible ecosy
 * **_Discovery AI for Retail_** - Select the optimal ordering of products on a retailer's e-commerce site.
 * **_Cloud Talent Solution_** - Job search and talent acquisition capabilities, matches candidates to ideal jobs faster.
 * **_AI Platform Notebooks_** - Provides fully managed JupyterLab environments for data science and machine learning.
+* **_Recommendations AI_** - Recommendations AI is designed specifically for categorizing and anlyzing thext like customer reviews.
 
 ### Considerations when selecting AI/ML solutions
 
