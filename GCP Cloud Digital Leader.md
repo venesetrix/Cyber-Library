@@ -64,7 +64,7 @@ Cloud usage models:
 Serves as a map for cloud adoption through a set of actions around People, Process and Technology. 
 
 * Cloud Maturity Assessment
-* Actionable adoptiom program
+* Actionable adoption program
 
 ## Foundational Cloud Concepts
 
@@ -85,7 +85,7 @@ OpEx means, that you're paying for what you use. This means constant monitoring 
 * Private cloud - Own or dedicated provider. Used, when there has already been large upfront investments or for compliance reasons.
 * Hybrid cloud - On-Prem and one or Public cloud provider like Google. Most-Used.
 * Multi-Cloud - Two or more Public cloud providers to use the key stengths of the different providers. 
-  * Gartner: "81% of organizations are working with two or more public cloud providers
+  * Gartner: "81% of organizations are working with two or more public cloud providers"
   * Flexera: "93% of enterprises have a multicloud strategy."
   * Benefits:
     * Access to the latest technologies of all cloud providers.
@@ -231,7 +231,7 @@ The service applies patches/updates, manages backups and configures replications
 
 **_Spanner_**
 
-Google's own SQL RDMS for high availability and Input/Output Operations. Has unlimited scale and strong consistency as well as up to 99.999% availability. Handles replicas, sharding and transaction processing.
+Google's own SQL RDMS for high availability and Input/Output Operations. Has unlimited scale and strong consistency as well as up to 99.999% availability. Handles replicas, sharding and transaction processing. ACID is a term standing for Atomicity, Consistency, Isolation and Durability , which are key properties that guarantee reliable database transactions.
 
 **_BigQuery_**
 
@@ -271,13 +271,13 @@ Structured or Semi-Structured data:
 
 **_Database Migration Service (DMS)_** easily migrate databases to Google Cloud.
 
-**_Datastream_** can syncrhonize data across databases, storage systems and applications.
+**_Datastream_** can synchronize data across databases, storage systems and applications.
 
 ## Making Data Useful and Accessible
 
 **_Looker_** is Google's Business Intelligence (BI) platform. It supports BigQuery along with more than 60 different SQL databases. Provides rich, interactive dashboards and reports. Is 100% web-based.
 
-Streaming analytics is the processing and analyzing of data records continuously instead of in batches. This is used to analyze data in real time and provide insights into activities such as metering, servcer activity, geolocation of devices and website clicks. 
+Streaming analytics is the processing and analyzing of data records continuously instead of in batches. This is used to analyze data in real time and provide insights into activities such as metering, server activity, geolocation of devices and website clicks. 
 
 **_Pub/Sub_** is a Google service which ingests hundreds of millions of events per second. This happens in IoT-Devices. Pub/Sub is a distributed messaging service, that can receive these events and streams. It is an abbreviation of Publisher/Subscriper or Publish messages to subscribers. 
 
@@ -293,7 +293,7 @@ The use of technologies to build machines and computers that are able to mimic c
 
 Business Analytics is creating dashboard on analyzing data from the past. AI/ML makes predictions for the future based on data from the past.
 
-**_Explainable AI_** is Google Cloud's set of tools and frameworks to help understand and interpret prections made by ML models.
+**_Explainable AI_** is Google Cloud's set of tools and frameworks to help understand and interpret predictions made by ML models.
 
 Googles AI principles:
 
@@ -340,7 +340,7 @@ Leverage ML models that have already been built and trained by Google. Can be de
 
 ### AutoML
 
-A no-code solution to build ML models on **_Vertex AI_**. Your own data can used with Vertex AI to create ML projects. Auto ML lets you build and train machine learning models from end to end by using graphical user interfaces. For example I use a set of images to custom train AutoML Vision and learn which images are correct and which are not.
+A no-code solution to build ML models on **_Vertex AI_**. Your own data can used with Vertex AI to create ML projects. Auto ML lets you build and train machine learning models from end to end by using graphical user interfaces. For example I can use a set of images to custom train AutoML Vision and learn which images are correct and which are not.
 
 ### Custom models
 
@@ -364,6 +364,7 @@ An end to end open source platform for machine learning. It has a flexible ecosy
 * **_Discovery AI for Retail_** - Select the optimal ordering of products on a retailer's e-commerce site.
 * **_Cloud Talent Solution_** - Job search and talent acquisition capabilities, matches candidates to ideal jobs faster.
 * **_AI Platform Notebooks_** - Provides fully managed JupyterLab environments for data science and machine learning.
+* **_Recommendations AI_** - Recommendations AI is designed specifically for categorizing and analyzing text like customer reviews.
 
 ### Considerations when selecting AI/ML solutions
 
@@ -626,6 +627,14 @@ DevOps is a software development approach that emphasizes collaboration and comm
 
 One particular concept within the DevOps framework is **_Site Reliability Engineering_**, or SRE, which ensures the reliability, availability, and efficiency of software systems and services deployed in the cloud.
 
+Three main concepts in site reliability engineering are:
+
+| Concept | Abbreviation | Description |
+| :----- | :-----: | :----- |
+| Service-level indicators  | SLI | Measurements that show how well a system or service is performing. |
+| Service-level objectives  | SLO | The goals that we set for a system's performance based on SLIs. |
+| Service-level agreements  | SLA | Agreements between a cloud service provider and its customers. They outline the promises and guarantees regarding the quality of service. |
+
 Monitoring is the foundation of product reliability. There are "Four Golden Signals" that measure a systems's performance and reliability:
 
 | Signal | Description |
@@ -634,14 +643,6 @@ Monitoring is the foundation of product reliability. There are "Four Golden Sign
 | Traffic | Measures how many requests reach your system. |
 | Saturation | Measures how close to capacity a system is. |
 | Errors | Events that measure system failures or other issues. |
-
-Three main concepts in site reliability engineering are:
-
-| Concept | Abbreviation | Description |
-| :----- | :-----: | :----- |
-| Service-level indicators  | SLI | Measurements that show how well a system or service is performing. |
-| Service-level objectives  | SLO | The goals that we set for a system's performance based on SLIs. |
-| Service-level agreements  | SLA | Agreements between a cloud service provider and its customers. They outline the promises and guarantees regarding the quality of service. |
 
 ### Designing resilient infrastructure and processes
 
