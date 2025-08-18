@@ -42,6 +42,7 @@ Kubernetes is also called K8s. Is written in Go for a planet-scale deployment.
 | kubectl get pods -n <namespace> | Show the Pods in a specific namespace. |
 | kubectl get pods -n <namespace> -o wide | Show the Pods in a specific namespace with additional info like IP-Adresses. |
 | kubectl get services | Shows the Services running in the cluster |
+| kubectl logs <podname> -n <namespace> | View the logs of a pod |
 
 
 
