@@ -49,7 +49,16 @@
 * Accountability
 
 ## Design AI Architectures
-TBD
+
+### Types of Business requirements
+
+* Functional - What the AI System should do like image classification
+* Performance - Latency, Throughput, Scalability
+* Data - Data needs of the AI System like volume and variety
+* Security - Access control, data protection and compliance
+* Cost - Budgets
+
+![Azure AI Reference Architecture](./Resources/Images/AI-102-Reference-Arch.png)
 
 ## Manage and Secure AI Solutions
 TBD
