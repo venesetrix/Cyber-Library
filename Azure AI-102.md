@@ -146,10 +146,20 @@ Moderate unsafe content at scale with Content Safety and Vision API.
 
 [Vision Studio Link](https://portal.vision.cognitive.azure.com/)
 
-Results of the Vision API will have a text, polygons ("boundingPolygons") around the identified text and a confidence score.  
+Results of the Vision API will have a text, polygons ("boundingPolygons") around the identified text and a confidence score. 
+
+Categories in Image moderation might be:
+* Optical character recognition (OCR) = Find text in images
+* Spatial analysis = Find stuff in a 3D environment (aka Video)
+* Face = Face recognition
+* Photo ID matching = Match a photo ID to a person's face
 
 ## Analyze Images with Pre-Built Models
-TBD
+
+Azure AI Vision = pre-trained models, no ML expertise needed
+
+* ideal for object detection, scene understanding and image tagging
+* Part of Azure Cognitive Services
 
 ## Create Custom Computer Vision Models
 TBD
