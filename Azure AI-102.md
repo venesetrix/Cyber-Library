@@ -131,6 +131,8 @@ Components:
 * Decision logic based on moderation scores
 * Actions for approved, flagged and rejected content
 
+[Python Script Example](./Scripts/AI-102-ContentAPI.py)
+
 ## Moderate Image Content
 
 ### Implement Image moderation
@@ -161,8 +163,16 @@ Azure AI Vision = pre-trained models, no ML expertise needed
 * ideal for object detection, scene understanding and image tagging
 * Part of Azure Cognitive Services
 
+[Python Script Example](./Scripts/AI-102-VisionAPI.py)
+
 ## Create Custom Computer Vision Models
-TBD
+
+Use when prebuilt models fail your domain. Choose the base domain that is closest to your use case (i.e. "Food", when you need to built a custom "tomato"-Model). 
+
+The flow is:
+1. Create project (classification or detection)
+2. Add tags and images (>=50/tag recommended)
+3. Train > Evaluate > Publish
 
 ## Analyze Video Content
 TBD
