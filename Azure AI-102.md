@@ -131,7 +131,7 @@ Components:
 * Decision logic based on moderation scores
 * Actions for approved, flagged and rejected content
 
-[Python Script Example](./Scripts/AI-102-ContentAPI.py)
+[Python Script Example](./Resources/Scripts/AI-102-ContentAPI.py)
 
 ## Moderate Image Content
 
@@ -163,16 +163,45 @@ Azure AI Vision = pre-trained models, no ML expertise needed
 * ideal for object detection, scene understanding and image tagging
 * Part of Azure Cognitive Services
 
-[Python Script Example](./Scripts/AI-102-VisionAPI.py)
+[Python Script Example](./Resources/Scripts/AI-102-VisionAPI.py)
 
 ## Create Custom Computer Vision Models
 
-Use when prebuilt models fail your domain. Choose the base domain that is closest to your use case (i.e. "Food", when you need to built a custom "tomato"-Model). 
+Use Custom Vision API Models when prebuilt models fail your domain. Choose the base domain that is closest to your use case (i.e. "Food", when you need to built a custom "tomato"-Model). 
 
 The flow is:
 1. Create project (classification or detection)
+    * Classification = Image classification tags whole images
+    * Detection = Detection finds the location of content within an image
 2. Add tags and images (>=50/tag recommended)
-3. Train > Evaluate > Publish
+3. Workflow
+    1. Train - Via API or the [Custom Vision Training Site](https://www.customvision.ai/)
+    2. Evaluate - Test with Test-Images
+    3. Publish - Access via API or Download the model in different formats
+
+Metrics to deal with are:
+
+* **Precision**
+    * Base question: How many of the cases predicted to be positive were actually positive? 
+    * Focus: Avoiding false positives.
+* **Recall**
+    * Base question: How many of the actual positive cases did the model find? 
+    * Focus: Finding all positive cases (avoiding false negatives).
+* **F1**
+    * Base task: The F1 score is the harmonic mean of precision and recall. It combines both metrics into a single value to provide a balanced overall picture of model performance. 
+    * Focus: When both false positives and false negatives are to be avoided.
+
+### Endpoints for Models
+
+* CoreML (iOS) - Run Model on iPHones and iPads
+* TensorFlow (Android) - On Android apps or edge devivces with TensorFlow Lite
+* ONNX - Integrate into Windows ML, ML.NET or cross-plattform apps using open standards
+* Dockerfile - Package for Azure IoT Edge, Functions or custom containers in Azure MLVision
+* AI Dev Kit (VAIDK) - Deploy models to physical camera devices.
+
+![CustomVision Workflow](./Resources/Images/AI-102-CustomVision-Workflow.png)
+
+[Python Script Example](./Resources/Scripts/AI-102-CustomVisionAPI.py)
 
 ## Analyze Video Content
 TBD
