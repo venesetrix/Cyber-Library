@@ -16,12 +16,6 @@ async def safe_langAPIrequest(client, serviceType, text):
         "lang": lambda client, text: client.detect_language([text]),
         "naer": lambda client, text: client.recognize_entities([text]),
         "rpii": lambda client, text: client.recognize_pii_entities([text]),
-        #"summ": lambda client, text: client.begin_extract_summary([text]),
-    }
-
-    LRO_MAP = {
-        "rphi": lambda client, text: client.begin_analyze_healthcare_entities([text]),
-        "summ": lambda client, text: client.begin_extract_summary([text]),
     }
 
     for attempt in range(5):
@@ -67,7 +61,7 @@ async def main():
         "Patient needs to take 50 mg of ibuprofen, and 2 mg of Coumadin."
     ]
 
-    serviceType = "summ"
+    serviceType = "rpii"
 
     async with TextAnalyticsClient(
         endpoint=endpoint,
@@ -86,11 +80,8 @@ async def main():
                 "lang": lambda r: f"[+] Language Detection -> {r.primary_language.name} ({r.primary_language.iso6391_name})",
                 "naer": lambda r: f"[+] Entities recognized -> {'; '.join([e.text for e in r.entities])}",
                 "rpii": lambda r: f"[+] PII recognized -> {'; '.join([e.text for e in r.entities])}",
-                "rphi": lambda r: f"[+] PHI recognized -> {'; '.join([e.text for e in r.entities])}",
-                "summ": lambda r: f"[+] Summary -> {" ".join([sentence.text for sentence in r.sentences])}"
             }
 
-            print("RESULT:",r)
             if r:
                 formatter = OUTPUT_MAP.get(serviceType)
                 if formatter:
