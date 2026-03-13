@@ -2,6 +2,7 @@ import os
 import sys
 import argparse
 from urllib.parse import urlparse
+from dotenv import load_dotenv
 
 from azure.ai.vision.imageanalysis import ImageAnalysisClient
 from azure.ai.vision.imageanalysis.models import VisualFeatures
@@ -17,6 +18,7 @@ def is_url(value: str) -> bool:
 
 def get_env(name: str) -> str:
     """Fail-fast if env var is missing."""
+    load_dotenv()
     value = os.getenv(name)
     if not value:
         raise RuntimeError(f"Missing environment variable '{name}'")
