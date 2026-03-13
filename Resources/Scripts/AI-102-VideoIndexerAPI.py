@@ -1,64 +1,81 @@
-import requests
-import argparse
-import os
-
-
-def analyze_remote_url(sourceURL):
-# Set the values of the endpoint and computer vision key as environment variables:
-    try:
-        endpoint = os.environ["AZURE_VIDEOINDEX_ENDPOINT"]
-        key = os.environ["AZURE_VIDEOINDEX_KEY"]
-    except KeyError:
-        print("[-] Missing environment variable 'AZURE_VIDEOINDEX_ENDPOINT' or 'AZURE_VIDEOINDEX_KEY'")
-        print("[-] Set them before running this sample.")
-        exit()
-
-    headers = {
-        "Ocp-Apim-Subscription-Key": key
-    }
-
-    params = {
-        "name": "TestVideo",
-        "videoURL": sourceURL,
-        "privacy": "Private",
-        "language": "German"
-    }
-
-    response = requests.post(endpoint, headers=headers, params=params)
-    return response
-
-def main():
-    parser = argparse.ArgumentParser(
-        description="Analyze a video using Azure AI Video Indexer."
-    )
-    parser.add_argument(
-        "source",
-        help="Public URL (https://...)"
-    )
-    args = parser.parse_args()
-    
-    result = analyze_remote_url(args.source)
-
-    print("[+] Results received!\n")
-    print(result)
-
-
-if __name__ == "__main__":
-    main()
-
 
 #https://www.das-bes.de/downloads/PICVid.mp4
 
-
-"""
 import os
 import time
 from urllib.parse import urlparse
 import requests
 from typing import Optional
+from dataclasses import dataclass
+import requests
+from azure.identity import DefaultAzureCredential
 
-from VideoIndexerClient.Consts import Consts
-from VideoIndexerClient.account_token_provider import get_arm_access_token, get_account_access_token_async
+def get_arm_access_token(consts:Consts) -> str:
+    '''
+    Get an access token for the Azure Resource Manager
+    Make sure you're logged in with `az` first
+
+    :param consts: Consts object
+    :return: Access token for the Azure Resource Manager
+    '''
+    credential = DefaultAzureCredential()
+    scope = f"{consts.AzureResourceManager}/.default" 
+    token = credential.get_token(scope)
+    return token.token
+
+
+def get_account_access_token_async(consts, arm_access_token, permission_type='Contributor', scope='Account',
+                                   video_id=None):
+    '''
+    Get an access token for the Video Indexer account
+    
+    :param consts: Consts object
+    :param arm_access_token: Access token for the Azure Resource Manager
+    :param permission_type: Permission type for the access token
+    :param scope: Scope for the access token
+    :param video_id: Video ID for the access token, if scope is Video. Otherwise, not required
+    :return: Access token for the Video Indexer account
+    '''
+
+    headers = {
+        'Authorization': 'Bearer ' + arm_access_token,
+        'Content-Type': 'application/json'
+    }
+
+    url = f'{consts.AzureResourceManager}/subscriptions/{consts.SubscriptionId}/resourceGroups/{consts.ResourceGroup}' + \
+          f'/providers/Microsoft.VideoIndexer/accounts/{consts.AccountName}/generateAccessToken?api-version={consts.ApiVersion}'
+
+    params = {
+        'permissionType': permission_type,
+        'scope': scope
+    }
+    
+    if video_id is not None:
+        params['videoId'] = video_id
+
+    response = requests.post(url, json=params, headers=headers)
+    
+    # check if the response is valid
+    response.raise_for_status()
+    
+    access_token = response.json().get('accessToken')
+
+    return access_token
+
+@dataclass
+class Consts:
+    ApiVersion: str
+    ApiEndpoint: str
+    AzureResourceManager: str
+    AccountName: str
+    ResourceGroup: str
+    SubscriptionId: str
+
+    def __post_init__(self):
+        if self.AccountName is None or self.AccountName == '' \
+            or self.ResourceGroup is None or self.ResourceGroup == '' \
+            or self.SubscriptionId is None or self.SubscriptionId == '':
+            raise ValueError('Please Fill In SubscriptionId, Account Name and Resource Group on the Constant Class!')
 
 
 def get_file_name_no_extension(file_path):
@@ -451,4 +468,3 @@ class VideoIndexerClient:
 
         url = response.url
         print(f'Got the player widget URL: {url}')
-"""
