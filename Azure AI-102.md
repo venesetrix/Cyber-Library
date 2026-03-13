@@ -204,10 +204,32 @@ Metrics to deal with are:
 [Python Script Example](./Resources/Scripts/AI-102-CustomVisionAPI.py)
 
 ## Analyze Video Content
-TBD
+
+### Azure AI Video Indexer
+
+Is a prebuilt pipepline combining Vision, Speech and Language AI accessible via Portal, REST API and SDK. It extracts:
+
+* Spoken words (speech-to-text)
+* Faces and emotions
+* Brands, topics and scenes
+* OCR text from frames
+* Translations and keywords
 
 ## Process Text with Azure AI Language
-TBD
+
+Use Azure AI Language to extract structured insight from raw text. Supports over 90 languaged and is accessible via Azure AI Language Studio, REST API and SDK.
+
+It extracts:
+* Positive, neutral and negative tones
+* Key themes with Key Phrase Extraction
+* Confidence scores
+* Auto-language detection
+
+Use in feedback analysis, support prioritization and brand monitoring.
+
+[Python Script Example](./Resources/Scripts/AI-102-LanguageAPI.py)
+[Python Script Example with asyncronous Requests](./Resources/Scripts/AI-102-LanguageAPIpro.py)
+[Python Script Example with long running Objects](./Resources/Scripts/AI-102-LanguageAPI-LRO.py)
 
 ## Build Conversational AI with Bots
 TBD
