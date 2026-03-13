@@ -1,0 +1,5 @@
+azure-core
+azure-identity
+azure-ai-contentsafety
+azure-ai-vision-imageanalysis
+azure-ai-textanalytics

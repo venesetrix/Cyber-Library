@@ -1,6 +1,4 @@
 
-#https://www.das-bes.de/downloads/PICVid.mp4
-
 import os
 import time
 from urllib.parse import urlparse
