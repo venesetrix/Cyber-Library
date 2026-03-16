@@ -42,10 +42,10 @@ if __name__ == "__main__":
     
     docs = [
         "Microsoft Azure, sometimes stylized Azure, and formerly Windows Azure, is the cloud computing platform developed by Microsoft. It offers management, access and development of applications and services to individuals, companies, and governments through its global infrastructure. It also provides capabilities that are usually not included within other cloud platforms, including software as a service (SaaS), platform as a service (PaaS), and infrastructure as a service (IaaS). Microsoft Azure supports many programming languages, tools, and frameworks, including Microsoft-specific and third-party software and systems. Azure was first introduced at the Professional Developers Conference (PDC) in October 2008 under the codename \"Project Red Dog\". It was officially launched as Windows Azure in February 2010 and later renamed to Microsoft Azure on March 25, 2014. Max Mustermann likes this Project very much!",
-        "Patient needs to take 50 mg of ibuprofen, and 2 mg of Coumadin."
+        "Due to coronary artery disease the patient needs to take 50 mg of ibuprofen, and 2 mg of Coumadin."
     ]
 
-    serviceType = "summ"
+    serviceType = "rphi"
 
     client = TextAnalyticsClient(
         endpoint=endpoint,
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     for text, r in zip(docs, results):
 
         OUTPUT_MAP = {
-            "rphi": lambda r: f"[+] PHI recognized -> {"; ".join([entity.text for entity in result.entities])}",
+            "rphi": lambda r: f"[+] PHI recognized -> {"; ".join([entity.text+" ("+entity.category+")" for entity in result.entities])}",
             "summ": lambda r: f"[+] Summary -> {" ".join([sentence.text for sentence in result.sentences])}"
         }
 

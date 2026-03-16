@@ -78,7 +78,7 @@ async def main():
                 "sent": lambda r: f"[+] Sentiment Analysis -> {r.sentiment}",
                 "keyp": lambda r: f"[+] Key-Phrase Analysis -> {r.key_phrases}",
                 "lang": lambda r: f"[+] Language Detection -> {r.primary_language.name} ({r.primary_language.iso6391_name})",
-                "naer": lambda r: f"[+] Entities recognized -> {'; '.join([e.text for e in r.entities])}",
+                "naer": lambda r: f"[+] Named Entities recognized -> {'; '.join([e.text for e in r.entities])}",
                 "rpii": lambda r: f"[+] PII recognized -> {'; '.join([e.text for e in r.entities])}",
             }
 

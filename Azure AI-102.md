@@ -217,7 +217,7 @@ Is a prebuilt pipepline combining Vision, Speech and Language AI accessible via 
 
 ## Process Text with Azure AI Language
 
-Use Azure AI Language to extract structured insight from raw text. Supports over 90 languaged and is accessible via Azure AI Language Studio, REST API and SDK.
+Use Azure AI Language to extract structured insight from raw text. Supports over 90 languaged and is accessible via [Azure AI Language Studio](https://language.cognitive.azure.com/), REST API and SDK.
 
 It extracts:
 * Positive, neutral and negative tones
@@ -225,14 +225,32 @@ It extracts:
 * Confidence scores
 * Auto-language detection
 
-Use in feedback analysis, support prioritization and brand monitoring.
+Use in feedback analysis, support prioritization and brand monitoring:
+* Named Entity Recognition (NER) identifies/labels/classifies pleople, places, orgs
+* PII detection on the other hand redacts sensitive data like Social Security Numbers, emails, phone numbers 
 
 [Python Script Example](./Resources/Scripts/AI-102-LanguageAPI.py)
 [Python Script Example with asyncronous Requests](./Resources/Scripts/AI-102-LanguageAPIpro.py)
 [Python Script Example with long running Objects](./Resources/Scripts/AI-102-LanguageAPI-LRO.py)
 
 ## Build Conversational AI with Bots
-TBD
+
+The Azure Bot Service is a managed Azure service to register, deploy and manage bots. It supports the Bot Framework SDK or Copilot Studio.
+
+Definitions:
+* **Bots** are nothing more or less than conversational user interfaces.
+* **Channels** (the "Client side") include Microsoft Teams, Web Chat, Slack, WhatsApp and custom web clients.
+* **AI Agents** are autonomous workflows powered by tools like AutoGen, Semantic Kernel, Lang Chain etc. They let us build AI that reasons, plans and acts.
+
+Can optionally use integrations like:
+* Azure AI Language (intent/QA)
+* Azure Cognitive Searchs (RAG Grounding)
+* Azure OpenAI (for generative replies)
+
+Microsofts perferred modern bot pattern is:
+* AI Language or OpenAI for Natural Language Processing (NLP)
+* Cognitive Search for Grounding
+* Azure Communication Services (ACS) + Direct Line for Multichannel reach
 
 ## Implement Speech-to-Text Solutions
 TBD
