@@ -4,6 +4,8 @@ from azure.ai.vision.imageanalysis.models import VisualFeatures
 from azure.core.credentials import AzureKeyCredential
 from dotenv import load_dotenv
 
+# AI-102 Prep - Azure AI Vision API Example
+
 load_dotenv()
 
 # Set the values of your computer vision endpoint and computer vision key

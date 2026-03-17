@@ -3,6 +3,8 @@ from azure.ai.contentsafety.models import AnalyzeTextOptions
 from azure.core.credentials import AzureKeyCredential
 import os
 
+# AI-102 Prep - Azure AI Content API Example
+
 client = ContentSafetyClient(
     os.environ["AZURE_CONTENT_SAFETY_ENDPOINT"], 
     AzureKeyCredential(os.environ["AZURE_CONTENT_SAFETY_KEY"])

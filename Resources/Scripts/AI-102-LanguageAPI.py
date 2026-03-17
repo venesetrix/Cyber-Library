@@ -3,6 +3,8 @@ from azure.core.credentials import AzureKeyCredential
 import asyncio
 import os
 
+# AI-102 Prep - Azure AI asynchronous Textanalytics (Sentiment, Key Phrases) Example
+
 async def main():
     try:
         endpoint = os.environ["AZURE_LANGUAGE_ENDPOINT"]

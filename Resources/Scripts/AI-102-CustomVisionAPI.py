@@ -3,6 +3,8 @@ from pprint import pprint
 import requests
 from dotenv import load_dotenv
 
+# AI-102 Prep - Azure AI Custom Vision API Example
+
 load_dotenv()
 
 # Set the values of your computer vision endpoint and computer vision key

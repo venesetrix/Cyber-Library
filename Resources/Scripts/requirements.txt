@@ -3,3 +3,6 @@ azure-identity
 azure-ai-contentsafety
 azure-ai-vision-imageanalysis
 azure-ai-textanalytics
+azure-mgmt-botservice
+azure-ai-language-conversations
+azure-cognitiveservices-speech

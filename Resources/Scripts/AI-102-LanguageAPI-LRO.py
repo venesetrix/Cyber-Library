@@ -4,6 +4,7 @@ from azure.core.exceptions import HttpResponseError
 import os
 import random
 
+# AI-102 Prep - Azure AI Language API (TextAnalytics) Example
 #Updated Version of Language API for Long-running Services with enhanced features like parallel requests, error handling and all API-Services etc.
 
 def safe_langAPIrequest(client, serviceType, text):

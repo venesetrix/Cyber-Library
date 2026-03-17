@@ -8,6 +8,8 @@ from azure.ai.vision.imageanalysis import ImageAnalysisClient
 from azure.ai.vision.imageanalysis.models import VisualFeatures
 from azure.core.credentials import AzureKeyCredential
 
+# AI-102 Prep - Extract Text from Images through OCR by Azure Vision API
+
 def is_url(value: str) -> bool:
     """Return True if value looks like an http(s) URL."""
     try:

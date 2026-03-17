@@ -1,4 +1,3 @@
-
 import os
 import time
 from urllib.parse import urlparse
@@ -7,6 +6,8 @@ from typing import Optional
 from dataclasses import dataclass
 import requests
 from azure.identity import DefaultAzureCredential
+
+# AI-102 Prep - Azure AI Video Indexer API Example
 
 def get_arm_access_token(consts:Consts) -> str:
     '''

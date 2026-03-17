@@ -26,15 +26,6 @@ async def safe_langAPIrequest(client, serviceType, text):
                 result = await coro
                 return result[0]
 
-            # Long-running Services
-            elif serviceType in LRO_MAP:
-                poller = await LRO_MAP[serviceType](client, text)
-                result = await poller.result()
-                async for page in result:
-                    docs = page.get("results", [])
-                    if docs:
-                        return docs[0]
-
             else:
                 raise ValueError(f"[-] Unknown service type: {serviceType}")
 

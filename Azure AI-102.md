@@ -244,6 +244,8 @@ Definitions:
 
 Can optionally use integrations like:
 * Azure AI Language (intent/QA)
+    * Answer user questions
+    * Detect intents (CLUs - Conversational Language Understanding) 
 * Azure Cognitive Searchs (RAG Grounding)
 * Azure OpenAI (for generative replies)
 
@@ -253,7 +255,33 @@ Microsofts perferred modern bot pattern is:
 * Azure Communication Services (ACS) + Direct Line for Multichannel reach
 
 ## Implement Speech-to-Text Solutions
-TBD
+
+Can be accessed via SDK for live transcription in apps, by REST PI for batch jobs on stored files or [Microsoft Foundry > Playgrounds > Speech-Playground](https://ai.azure.com/). The incoming formats are WAV, MP3, OGG or mic/network audio.
+
+The flow is:
+1. Input: An audio stream or file is sent to Azure endpoint
+2. Decode: An acoustic model decodes sound into phonemes
+3. Assembling: A language Model assembles phonemes into text
+4. Appling Enhancements: Profanity mask, custom phrases, speaker ID
+5. Output: JSON with text and confidence scores
+
+Transkription models can be optimized for accuracy with:
+* Custom Speech - Train on labeled audio + text
+* Phrase hints - Accuracy for key terms
+* Features - Language ID, multi-channel, diarization
+* Metrics - track WER and view logs in Azure Monitor
+* Compliance - PII masking
+* Containers - support offline or air-gapped use
+
+Deployment patterns:
+| Deployment | Usage |
+| :----- | :----- |
+| Client SDK | Capture MIC input on desktop, mobile, IoT |
+| REST API | Save Audio to blob / Batch |
+| Hybrid | Local preprocessing > Cloud analytics |
+| Edge | Run containers in secure or offline sites |
+| Security | Key Vault, Private Link, RBAC |
+| Monitoring | Azure Monitor alerts and logs |
 
 ## Deploy Text-to-Speech Solutions
 TBD
