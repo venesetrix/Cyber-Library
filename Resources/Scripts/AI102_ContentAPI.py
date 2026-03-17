@@ -1,7 +1,8 @@
+import argparse
+import os
 from azure.ai.contentsafety import ContentSafetyClient
 from azure.ai.contentsafety.models import AnalyzeTextOptions
 from azure.core.credentials import AzureKeyCredential
-import os
 
 # AI-102 Prep - Azure AI Content API Example
 
