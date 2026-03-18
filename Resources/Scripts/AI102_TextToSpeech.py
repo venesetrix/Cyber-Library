@@ -3,7 +3,7 @@ from azure.core.credentials import AzureKeyCredential
 import os
 from dotenv import load_dotenv
 
-# AI-102 Prep - Azure AI Text-to-Speech SDK Example
+# AI-102 Prep - Azure AI Text-to-Speech SDK Example (with SSML)
 
 def main():
     load_dotenv()
@@ -23,13 +23,22 @@ def main():
 
     speech_config.speech_synthesis_voice_name = "fr-FR-DeniseNeural"
 
+    ssml = '''<speak version='1.0' xml:lang='en-US'>
+                <voice name='en-US-JennyNeural'>
+                    <prosody rate='slow' pitch='+10%'>Welcome to Paris!</prosody>
+                    <break time='500ms'/>
+                    <emphasis level='moderate'>Your stay in our Hotel is confirmed.</emphasis>
+                </voice>
+            </speak>'''
+
     try:
         speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config)
-
-        result = speech_synthesizer.speak_text("Bonjour, bienveneu chez Paris.")
+        
+        #result = speech_synthesizer.speak_text("Bonjour, bienveneu chez Paris.")
+        result = speech_synthesizer.speak_ssml(ssml)
 
         if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
-            print("[+] Speech synthesized!: ", result.text)
+            print("[+] Speech synthesized!")
         elif result.reason == speechsdk.ResultReason.Canceled:
             cancellation_details = result.cancellation_details
             print(f"[-] canceled: {cancellation_details.reason}")
