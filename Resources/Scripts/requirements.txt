@@ -6,3 +6,4 @@ azure-ai-textanalytics
 azure-mgmt-botservice
 azure-ai-language-conversations
 azure-cognitiveservices-speech
+azure-keyvault-secrets

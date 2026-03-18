@@ -284,7 +284,16 @@ Deployment patterns:
 | Monitoring | Azure Monitor alerts and logs |
 
 ## Deploy Text-to-Speech Solutions
-TBD
+
+Azure AI Speech supports more than 400 Voices in 140+ languages. Can be used for reading dynamic content in the user's preferred language. Is accessible via [Microsoft Foundry > Playgrounds > Speech-Playground](https://ai.azure.com/), REST API or SDK. Include styles like 'cheerful', 'assistant' and 'newscast'.
+
+In Use-Cases the text has to be translated first and then synthesized. Otherwise the pronounciation may be wrong. The flow is:
+
+1. User Inputs text
+2. Azure Translator translates into target language
+3. Azure Speech SDK applies SSML Customization
+4. TTS Engie generates Speech Audio
+5. Output the Audio
 
 ## Translate and Localize Content
 TBD
