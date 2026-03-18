@@ -291,9 +291,37 @@ In Use-Cases the text has to be translated first and then synthesized. Otherwise
 
 1. User Inputs text
 2. Azure Translator translates into target language
-3. Azure Speech SDK applies SSML Customization
-4. TTS Engie generates Speech Audio
+3. Azure Speech SDK applies SSML (Speech Synthesis Markup Language) Customization
+4. TTS Engine generates Speech Audio
 5. Output the Audio
+
+### SSML
+SSML is markup for pitch, rate, pauses, volume and emphasis. By this we can swap voices and emotions [see Speech Studio Voice Gallery](https://speech.microsoft.com/portal/voicegallery). It works in REST and SDK.
+
+Important tags are:
+* \<voice> - Switch speakers
+* \<break time="500ms"> - pause naturally
+* \<prosody rate="slow" pitch="+10%"> - control delivery
+* \<phoneme ph="t€k 'tr€ina"> - fix pronunciation
+* \<lang xml:lang="fr-FR"> - mix languages
+
+SSML Example:
+```xml
+<speak version='1.0' xml:lang='en-US'>
+    <voice name='en-US-JennyNeural'>
+        <mstts:express-as style='cheerful'>
+            <prosody rate='slow' pitch='+10%'>Welcome to Paris!</prosody>
+            <break time='500ms'/>
+            <emphasis level='moderate'>Your stay in our Hotel is confirmed.</emphasis>
+        </mstts:express-as>
+    </voice>
+</speak>
+```
+### TTS Best-Practices
+* Use Azure Key Vault for API Keys
+* Pre-generate frequent phrases
+* Don't feed raw translations to TTS
+* Test audio for pacing and tone
 
 ## Translate and Localize Content
 TBD
@@ -321,3 +349,4 @@ TBD
 
 * Focus on matching between specific Azure AI services to business requirements (compare (Azure AI Architecture Framework)[https://learn.microsoft.com/en-us/azure/architecture/browse/?terms=Azure%20ai])
 * Expect scenario-based questions where choosing the correct service involves considering Scalability, Security, Compliance, Cost and Performance trade-offs.
+* In Sandbox Environments read through all the tabs. Each question will usually have the answer in one of the bullet lists in the tabs. Watch out for Buzzwords.
