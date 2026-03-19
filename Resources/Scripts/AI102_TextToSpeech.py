@@ -1,5 +1,4 @@
 import azure.cognitiveservices.speech as speechsdk
-from azure.core.credentials import AzureKeyCredential
 import os
 from dotenv import load_dotenv
 

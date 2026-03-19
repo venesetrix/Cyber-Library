@@ -296,7 +296,8 @@ In Use-Cases the text has to be translated first and then synthesized. Otherwise
 5. Output the Audio
 
 ## Translate and Localize Content
-TBD
+
+The Azure Translation Service is capable of Real-time text translation, broad language support, custom translation and document translation with access via SDK, REST API and container support.
 
 ## Deploy Knowledge Mining Solutions
 TBD
