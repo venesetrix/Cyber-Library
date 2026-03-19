@@ -1,3 +1,4 @@
 **/.env
 **/importer.py
 **/__pycache__
+.todo.md

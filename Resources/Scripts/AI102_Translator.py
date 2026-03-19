@@ -20,16 +20,7 @@ def translateText(text,lang):
     try:
         credential = AzureKeyCredential(key)
         client = TextTranslationClient(credential=credential,region=region)
-        """
-        to_language = [lang]
 
-        body = {
-            "sourceLanguage": "en",
-            "inputs": [
-                {"text": text}
-            ]
-        }
-        """
         response = client.translate(body=[text],to_language=[lang],from_language="en")
 
         return response[0]["translations"][0]["text"]
@@ -56,19 +47,19 @@ def getSupportedLanguages():
         response = client.get_supported_languages()
 
         if response.translation is not None:
-            print("Translation Languages:")
+            print("[+] Translation Languages:")
             for key, value in response.translation.items():
                 print(f"{key} - {value.name} ({value.native_name})")
 
     except HttpResponseError as exception:
         if exception.error is not None:
-            print(f"Error Code: {exception.error.code}")
-            print(f"Message: {exception.error.message}")
+            print(f"[+] Error Code: {exception.error.code}")
+            print(f"[+] Message: {exception.error.message}")
         raise
 
 
 if __name__ == "__main__":
 
-    text = input("Input a text to translate: ")
-    lang = input("What should be the target language (i.e. 'de'): ")
+    text = input("[!] Input a text to translate: ")
+    lang = input("[!] Enter the target language (i.e. 'de'): ")
     print(translateText(text,lang))

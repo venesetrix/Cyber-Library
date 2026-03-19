@@ -131,7 +131,7 @@ Components:
 * Decision logic based on moderation scores
 * Actions for approved, flagged and rejected content
 
-[Python Script Example](./Resources/Scripts/AI-102-ContentAPI.py)
+[Python Script Example](./Resources/Scripts/AI102-ContentAPI.py)
 
 ## Moderate Image Content
 
@@ -163,7 +163,7 @@ Azure AI Vision = pre-trained models, no ML expertise needed
 * ideal for object detection, scene understanding and image tagging
 * Part of Azure Cognitive Services
 
-[Python Script Example](./Resources/Scripts/AI-102-VisionAPI.py)
+[Python Script Example](./Resources/Scripts/AI102-VisionAPI.py)
 
 ## Create Custom Computer Vision Models
 
@@ -199,9 +199,9 @@ Metrics to deal with are:
 * Dockerfile - Package for Azure IoT Edge, Functions or custom containers in Azure MLVision
 * AI Dev Kit (VAIDK) - Deploy models to physical camera devices.
 
-![CustomVision Workflow](./Resources/Images/AI-102-CustomVision-Workflow.png)
+![CustomVision Workflow](./Resources/Images/AI102-CustomVision-Workflow.png)
 
-[Python Script Example](./Resources/Scripts/AI-102-CustomVisionAPI.py)
+[Python Script Example](./Resources/Scripts/AI102-CustomVisionAPI.py)
 
 ## Analyze Video Content
 
@@ -229,9 +229,9 @@ Use in feedback analysis, support prioritization and brand monitoring:
 * Named Entity Recognition (NER) identifies/labels/classifies pleople, places, orgs
 * PII detection on the other hand redacts sensitive data like Social Security Numbers, emails, phone numbers 
 
-[Python Script Example](./Resources/Scripts/AI-102-LanguageAPI.py)
-[Python Script Example with asyncronous Requests](./Resources/Scripts/AI-102-LanguageAPIpro.py)
-[Python Script Example with long running Objects](./Resources/Scripts/AI-102-LanguageAPI-LRO.py)
+[Python Script Example](./Resources/Scripts/AI102-LanguageAPI.py)
+[Python Script Example with asyncronous Requests](./Resources/Scripts/AI102-LanguageAPIpro.py)
+[Python Script Example with long running Objects](./Resources/Scripts/AI102-LanguageAPI-LRO.py)
 
 ## Build Conversational AI with Bots
 
@@ -253,6 +253,8 @@ Microsofts perferred modern bot pattern is:
 * AI Language or OpenAI for Natural Language Processing (NLP)
 * Cognitive Search for Grounding
 * Azure Communication Services (ACS) + Direct Line for Multichannel reach
+
+[Python Script Example](./Resources/Scripts/AI102_QuestionAnswering.py)
 
 ## Implement Speech-to-Text Solutions
 
@@ -282,6 +284,8 @@ Deployment patterns:
 | Edge | Run containers in secure or offline sites |
 | Security | Key Vault, Private Link, RBAC |
 | Monitoring | Azure Monitor alerts and logs |
+
+[Python Script Example](./Resources/Scripts/AI102_SpeechToText.py)
 
 ## Deploy Text-to-Speech Solutions
 
@@ -323,9 +327,13 @@ SSML Example:
 * Don't feed raw translations to TTS
 * Test audio for pacing and tone
 
+[Python Script Example](./Resources/Scripts/AI102_TextToSpeech.py)
+
 ## Translate and Localize Content
 
 The Azure Translation Service is capable of Real-time text translation, broad language support, custom translation and document translation with access via SDK, REST API and container support.
+
+[Python Script Example](./Resources/Scripts/AI102_Translator.py)
 
 ## Deploy Knowledge Mining Solutions
 TBD
