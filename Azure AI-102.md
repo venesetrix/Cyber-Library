@@ -338,7 +338,29 @@ It's possible to use Azure Functions, Azure Logic Apps or Power Automate to auto
 [Python Script Example](./Resources/Scripts/AI102_Translator.py)
 
 ## Deploy Knowledge Mining Solutions
-TBD
+ 
+Knowledge mining = Extracting structured info from unstrctured content (PDFs, images, ...). It combines AI Search, Document Intelligence and AI Language.
+
+### Vector based search
+
+Azure AI Search (formerly Azure Cognitive Search) is working with vectors:
+* Contents are transformed into vectors ('embeddings').
+* All vectors are safed in a vector-DB.
+* The search-term is also transfered into a vector.
+* The database is finding the closest vectors - these are the most relevant contents.
+
+### Creating and managing indexes
+
+* An index defines the structure of searchable content, including fields and data types.
+* Use the Azure portal or REST API to create and manage indexes.
+
+[Python Script Example](./Resources/Scripts/AI102_SearchAPI.py)
+
+### Azure AI Document Intelligence
+
+Azure AI Document Intelligence (formerly Form Recognizer) automates the extraction of information from documents using machine learning. It supports prebuilt models (i.e. invoices, receipts, ID cards, credit cards, contracts, business cards) for common document types and custom models for specific layouts. Specialization on forms. It is accessible via SDK, REST API and the [Document Intelligence Studio](https://contentunderstanding.ai.azure.com/documentintelligence/studio).
+
+[Python Script Example](./Resources/Scripts/AI102_DocumentIntelligenceAPI.py)
 
 ## Extract Data from Documents
 TBD

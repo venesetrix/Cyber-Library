@@ -1,4 +1,3 @@
-import argparse
 import os
 from azure.ai.contentsafety import ContentSafetyClient
 from azure.ai.contentsafety.models import AnalyzeTextOptions

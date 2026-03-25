@@ -9,3 +9,6 @@ azure-cognitiveservices-speech
 azure-keyvault-secrets
 azure-ai-translation-text
 azure-ai-translation-document
+azure-search-documents 
+azure-ai-documentintelligence
+numpy
