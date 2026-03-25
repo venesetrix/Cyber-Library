@@ -30,8 +30,9 @@ def translateText(text,lang):
         return False
 
 
-def getSupportedLanguages():
+def getSupportedLanguages(printit=False):
     load_dotenv()
+    listofLanguages = []
 
     try:
         key = os.getenv("AZURE_TRANSLATION_KEY")
@@ -47,19 +48,28 @@ def getSupportedLanguages():
         response = client.get_supported_languages()
 
         if response.translation is not None:
-            print("[+] Translation Languages:")
+            if printit:
+                print("[+] Translation Languages:")
+
             for key, value in response.translation.items():
-                print(f"{key} - {value.name} ({value.native_name})")
+                listofLanguages.append(key)
+                if printit:
+                    print(f"{key} - {value.name} ({value.native_name})")
+
+        if printit == False:
+            return listofLanguages
 
     except HttpResponseError as exception:
         if exception.error is not None:
             print(f"[+] Error Code: {exception.error.code}")
             print(f"[+] Message: {exception.error.message}")
-        raise
+        return False
 
 
 if __name__ == "__main__":
 
-    text = input("[!] Input a text to translate: ")
-    lang = input("[!] Enter the target language (i.e. 'de'): ")
-    print(translateText(text,lang))
+    #text = input("[!] Input a text to translate: ")
+    #lang = input("[!] Enter the target language (i.e. 'de'): ")
+    #print(translateText(text,lang))
+
+    print(getSupportedLanguages())

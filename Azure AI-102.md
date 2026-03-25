@@ -331,7 +331,9 @@ SSML Example:
 
 ## Translate and Localize Content
 
-The Azure Translation Service is capable of Real-time text translation, broad language support, custom translation and document translation with access via SDK, REST API and container support.
+The Azure Translation Service is capable of Real-time text translation, broad language support, custom translation and document translation with access via [Language Studio](https://language.cognitive.azure.com/translation), SDK, REST API and container support.
+
+It's possible to use Azure Functions, Azure Logic Apps or Power Automate to automate translation workflows.
 
 [Python Script Example](./Resources/Scripts/AI102_Translator.py)
 
