@@ -1,46 +1,38 @@
 from azure.core.credentials import AzureKeyCredential
-from azure.ai.documentintelligence import DocumentIntelligenceClient
-from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
+from azure.ai.documentintelligence import DocumentIntelligenceClient, DocumentIntelligenceAdministrationClient
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest, AnalyzeOutputOption, AnalyzeResult
 from AI102_KeyVaultHelper import getKey
+from dotenv import load_dotenv
+from urllib.parse import urlparse
 import os
 import argparse
 import base64
 import numpy as np
-from dotenv import load_dotenv
 
-# AI-102 Prep - Azure Document Intelligence Example
+# AI-102 Prep - Azure Document Intelligence SDK Example
 
-def docIntel(filepath, detailed=False):
-    load_dotenv()
-
-    with open(filepath, "rb") as f:
-        data = f.read()
+# Input a path to or an URL of a file (i.e. a PDF) and extract it's text 
+def getTextfromFile(filepath, detailed=False):
     
-    encodedFile = base64.b64encode(data).decode("utf-8")
-    
-    try:
-        endpoint = os.getenv("AZURE_DOCINTEL_ENDPOINT")
-        keyVaultName = os.getenv("AZURE_KEYVAULT_NAME")
-        keyName = os.getenv("AZURE_DOCINTEL_KEYNAME")
-    except KeyError:
-        print("[-] Missing environment variable")
-        print("[-] Set them before running this sample.")
-        exit()
-    
-    try:
-        key = getKey(keyVaultName=keyVaultName,keyName=keyName)
-    except Exception as e:
-        print("[-] Error loading Admin-Key from KeyVault.", e)
-        return False
+    endpoint, key = getDocIntelSetup()
 
     try:
         docIntelClient = DocumentIntelligenceClient(
             endpoint=endpoint, credential=AzureKeyCredential(key)
         )
 
-        poller = docIntelClient.begin_analyze_document(
-            "prebuilt-read", AnalyzeDocumentRequest(bytes_source=encodedFile)
-        )
+        if is_url(filepath):
+            poller = docIntelClient.begin_analyze_document(
+                "prebuilt-read", AnalyzeDocumentRequest(url_source=filepath)
+            )
+        else:
+            with open(filepath, "rb") as f:
+                data = f.read()
+            
+            encodedFile = base64.b64encode(data).decode("utf-8")
+            poller = docIntelClient.begin_analyze_document(
+                "prebuilt-read", AnalyzeDocumentRequest(bytes_source=encodedFile)
+            )
 
         result = poller.result()
 
@@ -53,7 +45,90 @@ def docIntel(filepath, detailed=False):
         print("[-] Error creating Document Intelligence Client.", e)
         return False
 
+# Input a path to or an URL of a file (i.e. a PDF) and extract it's text 
+def getFiguresFromFile(filepath):
+    
+    endpoint, key = getDocIntelSetup()
 
+    docIntelClient = DocumentIntelligenceClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+
+    with open(filepath, "rb") as f:
+        poller = docIntelClient.begin_analyze_document(
+            "prebuilt-layout",
+            body=f,
+            output=[AnalyzeOutputOption.FIGURES],
+        )
+
+    result: AnalyzeResult = poller.result()
+    operation_id = poller.details["operation_id"]
+
+    if result.figures:
+        for figure in result.figures:
+            if figure.id:
+                response = docIntelClient.get_analyze_result_figure(
+                    model_id=result.model_id, result_id=operation_id, figure_id=figure.id
+                )
+                with open(f"{figure.id}.png", "wb") as writer:
+                    writer.writelines(response)
+    else:
+        print("[-] No figures found.")
+
+# Input a file (i.e. an image) of an ID card and extract the information based on a prebuilt model
+def getTextfromID(filepath):
+
+    endpoint, key = getDocIntelSetup()
+
+    docIntelClient = DocumentIntelligenceClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+
+    if is_url(filepath):
+            poller = docIntelClient.begin_analyze_document(
+                "prebuilt-idDocument", AnalyzeDocumentRequest(url_source=filepath)
+            )
+    else:
+        with open(filepath, "rb") as f:
+            data = f.read()
+            
+        encodedFile = base64.b64encode(data).decode("utf-8")
+        poller = docIntelClient.begin_analyze_document(
+            "prebuilt-idDocument", AnalyzeDocumentRequest(bytes_source=encodedFile)
+        )
+
+    IDs: AnalyzeResult = poller.result()
+
+    if IDs.documents:
+        for idx, id in enumerate(IDs.documents):
+            print(f"[+] --------Analysis of ID #{idx + 1}--------")
+            print(f"[+] ID type: {id.doc_type if id.doc_type else 'N/A'}")
+            if id.fields:
+                print(f"[+] Document Number: {id.fields['DocumentNumber']['content']}")
+                print(f"[+] Name: {id.fields['DateOfBirth']['content']}")
+                print(f"[+] Date of birth: {id.fields['DateOfBirth']['content']}")
+                print(f"[+] Date of Expiration: {id.fields['DateOfExpiration']['content']}")
+                print(f"[+] Name: {id.fields['FirstName']['content']} {id.fields['LastName']['content']}")
+
+# Get a list of the prebuilt models available
+def getModels():
+
+    endpoint, key = getDocIntelSetup()
+
+    docIntelAdminClient = DocumentIntelligenceAdministrationClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+
+    # Alle Modelle abrufen
+    models = docIntelAdminClient.list_models()
+
+    print("Document Models:")
+    for model in models:
+        print(f"- ID: {model.model_id} | Description: {model.description}")
+
+# Helper function to identify if the filepath is local or a URL
+def is_url(s: str) -> bool:
+    try:
+        result = urlparse(s)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+# Helper function to print out a detailed analysis of a file
 def detailedAnalysis(result):
     for idx, style in enumerate(result.styles):
         print("[+] Document contains {} content".format(
@@ -81,12 +156,34 @@ def detailedAnalysis(result):
 
         print("[+] ----End of page #{}----\n".format(page.page_number))
 
+# Helper function to format bounding boxes for better output
 def format_bounding_box(bounding_box):
     if not bounding_box:
         return "N/A"
     reshaped_bounding_box = np.array(bounding_box).reshape(-1, 2)
     return ", ".join(["[{}, {}]".format(x, y) for x, y in reshaped_bounding_box])
 
+# Helper function to get the endpoint and API-Key for the requests
+def getDocIntelSetup():
+
+    load_dotenv()
+   
+    try:
+        endpoint = os.getenv("AZURE_DOCINTEL_ENDPOINT")
+        keyVaultName = os.getenv("AZURE_KEYVAULT_NAME")
+        keyName = os.getenv("AZURE_DOCINTEL_KEYNAME")
+    except KeyError:
+        print("[-] Missing environment variable")
+        print("[-] Set them before running this sample.")
+        return False
+    
+    try:
+        key = getKey(keyVaultName=keyVaultName,keyName=keyName)
+    except Exception as e:
+        print("[-] Error loading Admin-Key from KeyVault.", e)
+        return False
+    
+    return endpoint, key
 
 if __name__ == "__main__":
 
@@ -98,7 +195,11 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    """
     if args.detailed:
-        docIntel(args.filepath, True)
+        getTextfromFile(args.filepath, True)
     else:
-        docIntel(args.filepath)
+        getTextfromFile(args.filepath)
+    """
+
+    getTextfromID(args.filepath)

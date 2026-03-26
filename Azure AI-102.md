@@ -341,6 +341,14 @@ It's possible to use Azure Functions, Azure Logic Apps or Power Automate to auto
  
 Knowledge mining = Extracting structured info from unstrctured content (PDFs, images, ...). It combines AI Search, Document Intelligence and AI Language.
 
+### Azure AI Search
+
+The main components are Indexes, Indexers, Skills and Data Sources. To built an usable Azure AI Search Service follow this procedure:
+1. Connect to Data - Select data sources like Databases, Storage Services or Data Lakes
+2. Add cognitive skills - For example document intelligence
+3. Customize target index - Create an index with key extracted fields from the source data. It's the actual search database for your data. It's like a book index and tells you where to find data.
+4. Create an indexer - Extract load agent. It pulls data from the source, extracts data and pulls it into the index.
+
 ### Vector based search
 
 Azure AI Search (formerly Azure Cognitive Search) is working with vectors:
@@ -358,7 +366,12 @@ Azure AI Search (formerly Azure Cognitive Search) is working with vectors:
 
 ### Azure AI Document Intelligence
 
-Azure AI Document Intelligence (formerly Form Recognizer) automates the extraction of information from documents using machine learning. It supports prebuilt models (i.e. invoices, receipts, ID cards, credit cards, contracts, business cards) for common document types and custom models for specific layouts. Specialization on forms. It is accessible via SDK, REST API and the [Document Intelligence Studio](https://contentunderstanding.ai.azure.com/documentintelligence/studio).
+Azure AI Document Intelligence (formerly Form Recognizer) automates the extraction of information from documents using machine learning. It supports prebuilt models (i.e. invoices, receipts, ID cards, credit cards, contracts, business cards) for common document types and custom models for specific layouts. Specialization on forms. It is accessible via SDK, REST API and the [Document Intelligence Studio](https://contentunderstanding.ai.azure.com/documentintelligence/studio). It supports PDFs, images and scanned forms.
+
+Supported File-Formats:
+* PDF
+* Images: JPEG/JPG, PNG, BMP, TIFF, HEIF
+* Office: Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML
 
 [Python Script Example](./Resources/Scripts/AI102_DocumentIntelligenceAPI.py)
 
@@ -383,3 +396,5 @@ TBD
 * Focus on matching between specific Azure AI services to business requirements (compare (Azure AI Architecture Framework)[https://learn.microsoft.com/en-us/azure/architecture/browse/?terms=Azure%20ai])
 * Expect scenario-based questions where choosing the correct service involves considering Scalability, Security, Compliance, Cost and Performance trade-offs.
 * In Sandbox Environments read through all the tabs. Each question will usually have the answer in one of the bullet lists in the tabs. Watch out for Buzzwords.
+* Whenever you can decide between API key and RBAC, use RBAC as it is the best practice approach.
+* What can you do, when you not have enough performance? Adjust the scale of the service.
