@@ -5,6 +5,8 @@ from AI102_KeyVaultHelper import getKey
 from dotenv import load_dotenv
 from urllib.parse import urlparse
 import os
+import re
+import sys
 import argparse
 import base64
 import numpy as np
@@ -106,6 +108,54 @@ def getTextfromID(filepath):
                 print(f"[+] Date of Expiration: {id.fields['DateOfExpiration']['content']}")
                 print(f"[+] Name: {id.fields['FirstName']['content']} {id.fields['LastName']['content']}")
 
+# Input a file and extract checklists and their status
+def getChecklistsfromFile(filepath):
+
+    endpoint, key = getDocIntelSetup()
+
+    docIntelClient  = DocumentIntelligenceClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+
+    if is_url(filepath):
+            poller = docIntelClient.begin_analyze_document(
+                "prebuilt-layout", AnalyzeDocumentRequest(url_source=filepath)
+            )
+    else:
+        with open(filepath, "rb") as f:
+            data = f.read()
+            
+        encodedFile = base64.b64encode(data).decode("utf-8")
+        poller = docIntelClient.begin_analyze_document(
+            "prebuilt-layout", AnalyzeDocumentRequest(bytes_source=encodedFile)
+        )
+
+    result = poller.result()
+
+    for idx, style in enumerate(result.styles):
+        print(
+            "[+] Document contains {} content!".format(
+            "handwritten" if style.is_handwritten else "no handwritten"
+            )
+        )
+    
+    # Regex: Find sections, starting with :unselected: or :selected:
+    pattern = r"(?=(:(?:unselected|selected):))"
+
+    for paragraph in result.paragraphs:
+        parts = re.split(pattern, paragraph['content'])
+        result = []
+
+        i = 1
+        while i < len(parts):
+            tag = parts[i]
+            content = parts[i+1].split(" :unselected:")[0].split(" :selected:")[0].strip()
+            content = content.replace(":unselected:","[ ]")
+            content = content.replace(":selected:", "[x]")
+            result.append(f"{content}")
+            i += 2
+
+        for r in result:
+            print(r)
+
 # Get a list of the prebuilt models available
 def getModels():
 
@@ -116,9 +166,9 @@ def getModels():
     # Alle Modelle abrufen
     models = docIntelAdminClient.list_models()
 
-    print("Document Models:")
+    print("[+] Document Models:")
     for model in models:
-        print(f"- ID: {model.model_id} | Description: {model.description}")
+        print(f"[+] ID: {model.model_id} | Description: {model.description}")
 
 # Helper function to identify if the filepath is local or a URL
 def is_url(s: str) -> bool:
@@ -186,20 +236,50 @@ def getDocIntelSetup():
     return endpoint, key
 
 if __name__ == "__main__":
-
+    
     parser = argparse.ArgumentParser(
         description="Analyze a document"
     )
-    parser.add_argument("filepath", help="Path of a file to analyze")
+
+    parser.add_argument("--filepath", help="Path of a file to analyze")
     parser.add_argument("--detailed", action="store_true", help="Prints out a detailed analysis of the file")
+
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--tff", action="store_true", help="Option: Text from file")
+    group.add_argument("--tfi", action="store_true", help="Option: Text from ID card")
+    group.add_argument("--cff", action="store_true", help="Option: Checklists from file")
+    group.add_argument("--mod", action="store_true", help="Option: Get list of prebuilt models")
 
     args = parser.parse_args()
 
-    """
-    if args.detailed:
-        getTextfromFile(args.filepath, True)
-    else:
-        getTextfromFile(args.filepath)
-    """
+    # Case 1: --mod → no filepath
+    if args.mod:
+        if args.filepath:
+            print("[-] Warning: --filepath for --mod is ignored.")
+        if args.detailed:
+            print("[-] Error: --detailed not used with --mod.")
+            sys.exit(1)
+        getModels()
+        sys.exit(0)
 
-    getTextfromID(args.filepath)
+    # Case 2: Filepath is necessary
+    if not args.filepath:
+        print("[-] Error: --filepath is not usable in this mode.")
+        sys.exit(1)
+
+    # Case 3: --detailed only with --tff option set
+    if args.detailed and not args.tff:
+        print("[-] Error: --detailed only used in --tff mode.")
+        sys.exit(1)
+
+    if args.tff:
+        getTextfromFile(args.filepath, args.detailed)
+
+    elif args.tfi:
+        getTextfromID(args.filepath)
+
+    elif args.cff:
+        getChecklistsfromFile(args.filepath)
+
+    else:
+        print("[-] No option selected.")
