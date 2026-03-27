@@ -364,7 +364,7 @@ Azure AI Search (formerly Azure Cognitive Search) is working with vectors:
 
 [Python Script Example](./Resources/Scripts/AI102_SearchAPI.py)
 
-### Azure AI Document Intelligence
+## Extract Data from Documents
 
 Azure AI Document Intelligence (formerly Form Recognizer) automates the extraction of information from documents using machine learning. It supports prebuilt models (i.e. invoices, receipts, ID cards, credit cards, contracts, business cards) for common document types and custom models for specific layouts. Specialization on forms. It is accessible via SDK, REST API and the [Document Intelligence Studio](https://contentunderstanding.ai.azure.com/documentintelligence/studio). It supports PDFs, images and scanned forms.
 
@@ -375,11 +375,19 @@ Supported File-Formats:
 
 [Python Script Example](./Resources/Scripts/AI102_DocumentIntelligenceAPI.py)
 
-## Extract Data from Documents
-TBD
-
 ## Leverage Azure OpenAI Services
-TBD
+
+GPT models enable generative tasks like summarizing, rewriting and explaining content. Azure OpenAI exposes models via chat/completions API. Prompts are structured as role-based messages: system, user, assistant.
+
+* **OpenAI** is an AI research lab who created the Generative Pretrained Transformer (GPT) and other of its variants like DALL.E (Images), Whisper, Sora, Operator, etc.
+* **ChatGPT** is OpenAI's consumer SaaS app powered by GPT models. It's hosted at chat.openai.com and includes tools like code interpreter and web browsing.
+* **Microsoft Copilot** embeds GPT models into M365, GitHub and more.
+* **Azure OpenAI Service** offers private access to OpenAI's models via REST APIs and SDKs in the Azure ecosystem
+* **Azure AI Foundry** offers GPT-4, GPT-4 Turbo (Text & Code), Embeddings and DALL.E 3 models with security, governance and quota controls.
+
+Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/deployments) (either OpenAI Service or Foundry Service) or CLI.
+
+[Python Script Example](./Resources/Scripts/AI102_OpenAI.py)
 
 ## Optimize Generative AI Models
 TBD

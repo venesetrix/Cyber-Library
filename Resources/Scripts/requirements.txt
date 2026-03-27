@@ -12,3 +12,4 @@ azure-ai-translation-document
 azure-search-documents 
 azure-ai-documentintelligence
 numpy
+openai
