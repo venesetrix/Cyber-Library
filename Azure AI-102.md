@@ -92,7 +92,6 @@
 * Load Testing Tools like Azure Load Testing and Application Insights
 
 ## Manage and Secure AI Solutions
-TBD
 
 ### Implement Monitoring and Logging
 
@@ -160,7 +159,7 @@ Categories in Image moderation might be:
 
 Azure AI Vision = pre-trained models, no ML expertise needed
 
-* ideal for object detection, scene understanding and image tagging
+* Ideal for object detection, scene understanding and image tagging
 * Part of Azure Cognitive Services
 
 [Python Script Example](./Resources/Scripts/AI102-VisionAPI.py)
@@ -387,10 +386,37 @@ GPT models enable generative tasks like summarizing, rewriting and explaining co
 
 Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/deployments) (either OpenAI Service or Foundry Service) or CLI.
 
+**Assistant (Azure OpenAI)**
+* = "Workflow"
+* Defined behavior + tools
+* Built-in Azure AI Studio
+* Chat based & goal-driven
+* Powered by deployed GPT
+
+**Agent (Azure AI Agent Service)**
+* = "Chat"
+* Executes tasks autonomously
+* Orchestrated by Agent Service
+* May act without user prompting (autonomy)
+* Support tools, memory, triggers
+* The agent in "agentic AI"
+
 [Python Script Example](./Resources/Scripts/AI102_OpenAI.py)
 
 ## Optimize Generative AI Models
-TBD
+
+### Prompt engineering
+
+* No training, just smart input crafting
+* Giving the model system messages, few-shot examples and delimiters
+* Use when cost/time must stay low
+
+### Fine tuning
+
+* Upload labeled data to teach a model custom patterns
+* Great for structured outputs
+* Hosted model costs persist
+
 
 ## Implement Responsible AI Practices
 TBD
