@@ -15,7 +15,7 @@
 
 | Name | Description |
 | :----- | :----- |
-| Azure AI language | Text analysis, sentiment, NER |
+| Azure AI Language | Text analysis, sentiment, NER |
 | Azure AI Translator | 100+ languages translation |
 | Azure OpenAI Service | Advanced language models |
 | Speech-to-Text/Text-to-Speech | Extract text from documents |
@@ -41,6 +41,7 @@
 
 ### Key Principles
 
+Six principles AI framework
 * Fairness
 * Reliability and Safety
 * Privacy and Security
@@ -240,6 +241,7 @@ Definitions:
 * **Bots** are nothing more or less than conversational user interfaces.
 * **Channels** (the "Client side") include Microsoft Teams, Web Chat, Slack, WhatsApp and custom web clients.
 * **AI Agents** are autonomous workflows powered by tools like AutoGen, Semantic Kernel, Lang Chain etc. They let us build AI that reasons, plans and acts.
+* **RAG** Retrieval augmented generation. Let the model "read up" before answering.
 
 Can optionally use integrations like:
 * Azure AI Language (intent/QA)
@@ -415,11 +417,42 @@ Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/dep
 
 * Upload labeled data to teach a model custom patterns
 * Great for structured outputs
-* Hosted model costs persist
+* Costs a lot to train the model
+* Integrates data directly into the model instead of "RAG" or read it up in front of each request
 
+### Retrieval-augmented Generation (RAG)
+
+* Create a vector store + data retrieval pipeline
+* Embed custom content into the store
+* Model retrieves chunks as context for queries
+* No training required; easier to update content
 
 ## Implement Responsible AI Practices
-TBD
+
+The six responsible AI practices framework:
+
+| Principle | Description |
+|:----|:----|
+| Fairness | Ensure models treat all people and groups equitably by detecting, measuring, and mitigating bias and data in predictions. This often involve personally identifiable information and other secrets. |
+| Reliability & Safety | Validate performance under real world conditions, run continuous tests, and build safeguards to prevent harmful failures. |
+| Privacy & Security | Protect personal data by design, enforce strong encryption, manage access controls, and comply with regulatory requirements. |
+| Inclusiveness | Design for diverse user needs, support accessibility features, and avoid excluding any community or ability level. |
+| Transparency | Document model designs, share decision making logic, and communicate limitations so stakeholders can understand how our AI works. |
+| Accountability | We assign clear ownership, establish governance processes, and maintain audit trails to monitor, review, and remediate through the AI lifecycle. |
+
+### Build transparent AI systems
+
+* Identify and mitigate model bias (training data, prompts, access patterns)
+* Document model behavior with transparency notes
+* Add explanation layers to model outputs
+* Log and trance prompts and completions using Azure AI telemetry
+
+### Tool to detect and explain model bias
+
+* Azure Ai Content Safety: Detect harmful outputs
+* Prompt Flow evaluation nodes: Assess prompt relevance and fairness
+* Responsible AI dashboards (SDK v2): Visualize disparity across groups
+* Fairlearn library: Generate fairness metrics and parity charts.
 
 ## Monitor and Optimize Azure AI Solutions
 TBD
