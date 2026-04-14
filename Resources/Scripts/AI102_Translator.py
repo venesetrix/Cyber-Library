@@ -68,8 +68,8 @@ def getSupportedLanguages(printit=False):
 
 if __name__ == "__main__":
 
-    #text = input("[!] Input a text to translate: ")
-    #lang = input("[!] Enter the target language (i.e. 'de'): ")
-    #print(translateText(text,lang))
+    text = input("[!] Input a text to translate: ")
+    lang = input("[!] Enter the target language (i.e. 'de'): ")
+    print(translateText(text,lang))
 
-    print(getSupportedLanguages())
+    #print(getSupportedLanguages())

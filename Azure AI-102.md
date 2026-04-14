@@ -454,9 +454,113 @@ The six responsible AI practices framework:
 * Responsible AI dashboards (SDK v2): Visualize disparity across groups
 * Fairlearn library: Generate fairness metrics and parity charts.
 
-## Monitor and Optimize Azure AI Solutions
-TBD
+### Bake in privacy, safety and compliance
 
+* PII detection and content filters
+* Secure endpoints with Entra ID, RBAC and managed identities
+* Store secrets in Azure Key Vault
+* Enable audit trails with Azure Monitor and Log Analytics
+* Follow region-specific compliance rules (GDPR, HIPAA, ...)
+* Prompt shielding to prevent risky completions in Azure OpenAI
+
+### Groundedness detection
+
+Groundedness describes, how much of the LLM's answer is "grounded" or based on what it learned before. Depending on the Model and its Generation it saves communications like a log file. But with the time the limit exceeds older data is removed. Groundedness detection figures out if the LLM's responses are still based on the "Source of Truth". Or to say it simple: It tries to prevent or at least detect hallucination.
+
+## Monitor and Optimize Azure AI Solutions
+
+### Instrument services with diagnostics
+
+#### Diagnostic services
+
+* Azure Monitor is for platform telemetry
+* Application Insights for performance and usage
+* By enabling diagnostic settings on the resources we can set up alert rules for error spikes, latency, etc.
+
+#### Logging
+
+* Stream diagnostic logs to Log Analytics
+* Query with Kusto (KQL) for insights
+* Use log-based alerts for precision
+* Integrate logs with Azure Dashboard or Sentinel
+
+#### Using KQL
+
+* Use Kusto Query Language (KQL) in Log Analytics
+* Filter logs from Azure AI resources by time, result or caller
+* Project relevant fields: time, response, user agent, error code
+* Built charts in Azure Monitor workbooks or set alert rules
+
+KQL-Example:
+```SQL
+Azure Diagnostics
+| where ResourceProvider == "MICROSOFT.COGNITIVESERVICES"
+| where OperationName == "PromtCompletion"
+| extent prompt = tostring(parse_json(RequestPayload).prompt)
+| extent completion = tostring(parse_json(ResponsePayload).completion)
+| project TimeGenerated, prompt, completion, userSentiment
+| order by TimeGenerated desc
+| take 5
+```
+
+### Govern cost with workbooks and alerts
+
+* Use built-in or custom Azure Monitor workbooks
+* Visualize usage by model, resource group, SKU
+* Correlate token usage with billing
+
+```console
+az consumption budget create \
+--resource-group ai-102
+--amount 100 \
+--name aiUsageCap \
+--time-grain monthly \
+--notifications \
+    emailHook={
+        "enabled": true,
+        "operator": "GreaterThan",
+        "threshold": 80,
+        "contactEmails" : ["ai102Operations@example.com]
+    }
+```
+
+### Auto-scale & update container deployments
+
+* Use Azure Container Apps or AKA
+* Define CPU/memory/queue-based rules
+* Support rolling upgrades or blue/green
+* Monitor health probes and logs
+
+### Modernize Model deployments
+
+* Version with labels or tags
+* Roll forward with canary (small amount of users on new version and then enlarge) or blue/green (live vs update environment and switch traffic dynamically)
+* Route traffic incrementally
+* Rollback on failure detection
+
+### Trace, collect feedback and reflect models
+
+* Enable tracing in Azure AI Foundry.
+* Use feedback signals (thumbs up/donw, starred completions)
+* Log feedback in Cosmos DB or App Insights.
+* Evaluate using Prompt Flow or manual review.
+
+## Useful links
+
+### Preparation Roadmaps
+[AI-102 Exam Preparation](https://github.com/Arturo-Quiroga-MSFT/AI-102-Exam-Prep)
+
+### Practice tests
+
+[Free Full-Length Practice Exam](https://certificationpractice.com/practice-exams/microsoft-azure-ai-engineer-associate)
+
+[AI-102 Free Practice Tests](https://www.testpreplab.com/AI-102-free-practice-test/)
+
+[Examsland](https://examsland.com/free-practice-test/ai-102)
+
+[OpenExamPrep](https://open-exam-prep.com/practice/azure-ai-102)
+
+[Free AI-102 Mock Exam](https://www.freemockexams.com/AI-102-practice-test.html)
 
 ## Exam Tips
 
