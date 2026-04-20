@@ -230,7 +230,9 @@ Use in feedback analysis, support prioritization and brand monitoring:
 * PII detection on the other hand redacts sensitive data like Social Security Numbers, emails, phone numbers 
 
 [Python Script Example](./Resources/Scripts/AI102-LanguageAPI.py)
+
 [Python Script Example with asyncronous Requests](./Resources/Scripts/AI102-LanguageAPIpro.py)
+
 [Python Script Example with long running Objects](./Resources/Scripts/AI102-LanguageAPI-LRO.py)
 
 ## Build Conversational AI with Bots
