@@ -400,7 +400,7 @@ Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/dep
 * Executes tasks autonomously
 * Orchestrated by Agent Service
 * May act without user prompting (autonomy)
-* Support tools, memory, triggers
+* Support tools, reflections, memory, triggers
 * The agent in "agentic AI"
 
 [Python Script Example](./Resources/Scripts/AI102_OpenAI.py)
@@ -422,6 +422,19 @@ Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/dep
 
 ### Retrieval-augmented Generation (RAG)
 
+* Create a vector store + data retrieval pipeline
+* Embed custom content into the store
+* Model retrieves chunks as context for queries
+* No training required; easier to update content
+
+### Use Semantic Kernel and Autogen in agent workflows
+
+Both are free solutions from Microsoft for agentic AI.
+
+Langchain is a tool for connecting different LLM's together. [Semantic Kernel](https://github.com/microsoft/semantic-kernel) is the Microsoft tool for that.
+[Autogen](https://github.com/microsoft/autogen) on the other side is the competitor to Anthropics MCP.
+
+[Python Script Example](./Resources/Scripts/AI102_Autogen.py)
 * Create a vector store + data retrieval pipeline
 * Embed custom content into the store
 * Model retrieves chunks as context for queries

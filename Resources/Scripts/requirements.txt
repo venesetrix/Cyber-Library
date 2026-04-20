@@ -1,3 +1,4 @@
+autogen
 azure-core
 azure-identity
 azure-ai-contentsafety
