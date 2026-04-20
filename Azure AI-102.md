@@ -66,7 +66,7 @@ Six principles AI framework
 * Hybrid Architectures - Combine both
 * Edge AI
 
-![Azure AI Reference Architecture](./Resources/Images/AI-102-Reference-Arch.png)
+![Azure AI Reference Architecture](./Resources/Images/AI102-Reference-Arch.png)
 
 ### Configure services AI for Performance
 
