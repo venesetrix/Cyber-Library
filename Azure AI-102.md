@@ -217,7 +217,7 @@ Is a prebuilt pipepline combining Vision, Speech and Language AI accessible via 
 
 ## Process Text with Azure AI Language
 
-Use Azure AI Language to extract structured insight from raw text. Supports over 90 languaged and is accessible via [Azure AI Language Studio](https://language.cognitive.azure.com/), REST API and SDK.
+Use Azure AI Language to extract structured insight from raw text. Supports over 90 languaged and is accessible via [Azure AI Language Studio](https://language.cognitive.azure.com/), REST API and SDK. Is a consolidated Azure AI service that replaced and absorbed Azure Text Analytics and Azure Language Understanding (LUIS).
 
 It extracts:
 * Positive, neutral and negative tones
@@ -225,9 +225,14 @@ It extracts:
 * Confidence scores
 * Auto-language detection
 
+Other important knowledge about AI Language:
+* Utterances are example user inputs used to train an intent recognition model. Entities refer to specific pieces of information extracted from utterances, such as dates, locations or product names.
+* Setting **include_opinion_mining=True** enables sentence-level sentiment analysis, allowing the API to return sentiment scores for each sentence instead of just the overall document.
+* Knowledge bases of Azure AI language are exported as JSON files where question-answer pairs are stored in the qnaPairs array.
+
 Use in feedback analysis, support prioritization and brand monitoring:
 * Named Entity Recognition (NER) identifies/labels/classifies pleople, places, orgs
-* PII detection on the other hand redacts sensitive data like Social Security Numbers, emails, phone numbers 
+* PII detection on the other hand redacts sensitive data like Social Security Numbers, emails, phone numbers (using the parameter categories_filter=["CreditCard, "Email"])
 
 [Python Script Example](./Resources/Scripts/AI102-LanguageAPI.py)
 
@@ -257,11 +262,25 @@ Microsofts perferred modern bot pattern is:
 * Cognitive Search for Grounding
 * Azure Communication Services (ACS) + Direct Line for Multichannel reach
 
+To create dynamic question answering bots that supports follow-up questions related to previous queries each question-answer pair needs a contextId assigned, referencing a parent question. To provide users with variations of answers the developer should define alternate phrasing for a single question like:
+
+```python
+kb.add_qna(
+    question="What is your refund policy?",
+    answer="Refunds are processed within 7 days.",
+    alternateQuestions=[
+        "How do refunds work?",
+        "Can I return an item?"
+    ]
+)
+
+```
+
 [Python Script Example](./Resources/Scripts/AI102_QuestionAnswering.py)
 
 ## Implement Speech-to-Text Solutions
 
-Can be accessed via SDK for live transcription in apps, by REST PI for batch jobs on stored files or [Microsoft Foundry > Playgrounds > Speech-Playground](https://ai.azure.com/). The incoming formats are WAV, MP3, OGG or mic/network audio.
+Can be accessed via SDK for live transcription in apps, by REST PI for batch jobs on stored files or [Microsoft Foundry > Playgrounds > Speech-Playground](https://ai.azure.com/). The incoming formats are WAV, MP3, OGG or mic/network audio. Is designed for streaming audio and live transcription in real time and you only need text and no video insights.
 
 The flow is:
 1. Input: An audio stream or file is sent to Azure endpoint
@@ -352,6 +371,41 @@ The main components are Indexes, Indexers, Skills and Data Sources. To built an 
 3. Customize target index - Create an index with key extracted fields from the source data. It's the actual search database for your data. It's like a book index and tells you where to find data.
 4. Create an indexer - Extract load agent. It pulls data from the source, extracts data and pulls it into the index.
 
+### Built-in cognitive skills
+
+Skillsets run during indexing, not querying. Skills enrich data before it reaches the index. SplitSkill + Embeddings ≈ modern RAG pattern.
+
+| Skill | Description |
+| :----- | :----- |
+| ContentReaderSkill | Reads text content from files or blobs |
+| OcrSkill | Extracts text from images or scanned PDFs |
+| MergeSkill | Combines multiple text inputs into one output |
+| SplitSkill | Splits long text into pages or chunks |
+| LanguageDetectionSkill | Detects the language of text |
+| KeyPhraseExtractionSkill | Extracts important phrases from text |
+| EntityRecognitionSkill | Identifies entities such as people, organizations, locations and dates |
+| PII Detection Skill | Detects personal data like names, emails, phone numbers |
+| SentimentAnalysisSkill | Determines sentiment (positive, neutral, negative) |
+| TextTranslationSkill | Translates text into a target language |
+| Custom Web API Skill | Calls your own REST API |
+| ShaperSkill | Reshapes or restructures data in the enrichment tree |
+| Azure OpenAI Embedding Skill | Generates vector embeddings |
+| Custom Document Skill | Can use Azure AI Document Intelligence endpoint |
+
+To add a skill the code would look like:
+```json
+{
+    "name":"ExtractText",
+    "skill":"contentReaderSkill",
+    "inputs": [
+        {
+            "name" : "document",
+            "source" : "/document/content"
+        }
+    ]
+}
+```
+
 ### Vector based search
 
 Azure AI Search (formerly Azure Cognitive Search) is working with vectors:
@@ -364,6 +418,27 @@ Azure AI Search (formerly Azure Cognitive Search) is working with vectors:
 
 * An index defines the structure of searchable content, including fields and data types.
 * Use the Azure portal or REST API to create and manage indexes.
+
+parsingMode options are:
+* default
+    * For unstructured documents like PDF, DOCX, PPTX, HTML, TXT.
+    * Produces one search document per file
+    * Required for OCR
+* json
+    * For JSON objects.
+    * Produces one search document per object.
+    * When you need structured field mappings.
+* jsonArray
+    * For JSON Arrays.
+    * Each object in the array produces a separate document.
+* delimitedText
+    * Supports CSV and other delimited formats.
+    * Each row becomes a search document.
+* markdown
+    * For markdown-documents.
+    * Submodes:
+        * oneToMany: Each content section becomes a search document
+        * oneToOne: One search document for the whole markdown file
 
 [Python Script Example](./Resources/Scripts/AI102_SearchAPI.py)
 
@@ -409,6 +484,32 @@ Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/dep
 
 ## Optimize Generative AI Models
 
+### Model adjustments
+
+* Temperature (Limits probability distribution): 
+    * Temperature scales the probabilities of all tokens before one is selected.
+        * Low temperature → Differences are amplified
+        * High temperature → Differences are smoothed out 
+    * Setting temperature to a low value like 0.3 reduces randomness, making output more structured and consistent.
+    * Low Value (0.2) means, that the result is the most probable.
+    * High Value (1.0) means, that the probability is used like trained.
+    * Very High Value (1.5) means, that every possible choice is used frequently.
+* Top_p (Nucleus Sampling - Limits probability mass)): 
+    * Allows as many tokens as necessary until a cumulative probability is reached.
+    * Affects probability of the next choice. 
+    * Low Value (0.1-0.3) is very conservative and predictive. 
+    * Medium Value (0.8-0.95) is the middle between creativity and quality.
+    * Highest value (1.0) means every possible output token.
+* Top_k (Limits Number of tokens):
+    * Limits the choice on the k-number of most probable tokens without taking their individual probability into account.
+
+| Scenario | Temperature | Top_p | Top_k |
+| :----: | :----: | :----: | :----: |
+| Q&A/Chatbot | 0.3-0.5 | 0.8-0.9 | N/A |
+| Creative Content | 0.8-1.0 | 0.95 | 40 |
+| Compliance/Deterministic | 0.0 | 1.0  OR top_k | 1 OR top_p |
+
+
 ### Prompt engineering
 
 * No training, just smart input crafting
@@ -418,6 +519,8 @@ Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/dep
 ### Fine tuning
 
 * Upload labeled data to teach a model custom patterns
+    * Preparing the dataset requires training data in JSONL (JSON lines) format
+    * Each entry has to consist of a prompt and a completion field.
 * Great for structured outputs
 * Costs a lot to train the model
 * Integrates data directly into the model instead of "RAG" or read it up in front of each request
@@ -458,6 +561,8 @@ The six responsible AI practices framework:
 ### Build transparent AI systems
 
 * Identify and mitigate model bias (training data, prompts, access patterns)
+    * Interpretability tools help organizations understand how AI models make decisions, ensuring transparency and fairness.
+    * Adversarial debiasing can help reduce bias, but have to be used in conjunction with other measures.
 * Document model behavior with transparency notes
 * Add explanation layers to model outputs
 * Log and trance prompts and completions using Azure AI telemetry
