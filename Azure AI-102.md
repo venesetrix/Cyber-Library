@@ -579,7 +579,7 @@ az consumption budget create \
 
 ## Exam Tips
 
-* Focus on matching between specific Azure AI services to business requirements (compare (Azure AI Architecture Framework)[https://learn.microsoft.com/en-us/azure/architecture/browse/?terms=Azure%20ai])
+* Focus on matching between specific Azure AI services to business requirements (compare [Azure AI Architecture Framework](https://learn.microsoft.com/en-us/azure/architecture/browse/?terms=Azure%20ai))
 * Expect scenario-based questions where choosing the correct service involves considering Scalability, Security, Compliance, Cost and Performance trade-offs.
 * In Sandbox Environments read through all the tabs. Each question will usually have the answer in one of the bullet lists in the tabs. Watch out for Buzzwords.
 * Whenever you can decide between API key and RBAC, use RBAC as it is the best practice approach.
