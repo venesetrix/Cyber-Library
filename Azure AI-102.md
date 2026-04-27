@@ -293,9 +293,9 @@ Transkription models can be optimized for accuracy with:
 * Custom Speech - Train on labeled audio + text
 * Phrase hints - Accuracy for key terms
 * Features - Language ID, multi-channel, diarization
-* Metrics - track WER and view logs in Azure Monitor
+* Metrics - Track WER and view logs in Azure Monitor
 * Compliance - PII masking
-* Containers - support offline or air-gapped use
+* Containers - Support offline or air-gapped use
 
 Deployment patterns:
 | Deployment | Usage |
@@ -502,6 +502,10 @@ Models are deployed via [Azure Foundy Portal](https://oai.azure.com/resource/dep
     * Highest value (1.0) means every possible output token.
 * Top_k (Limits Number of tokens):
     * Limits the choice on the k-number of most probable tokens without taking their individual probability into account.
+* Frequency_penalty (Reduces the likelihood of repeated words or phrases)
+    * A negative frequency-Penalty encourages repetition
+* Presence_penalty (Promoting response variety)
+    * Increasing presence_penalty encourages the model to introduce new tokens instead of reusing common ones.
 
 | Scenario | Temperature | Top_p | Top_k |
 | :----: | :----: | :----: | :----: |
