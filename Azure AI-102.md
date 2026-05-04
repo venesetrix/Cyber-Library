@@ -113,6 +113,18 @@ Authentication in general follows the following flow: Private Link + Entra ID > 
 
 ## Moderate Text Content
 
+### Features
+
+| Feature | Purpose |
+| :-- | :-- |
+| Prompt Shields | Scans text for the risk of a User input attack on a LLM. |
+| Groundedness detection | Detects whether the text responses of LLM's are grounded in the source materials provided by the user. |
+| Protected material text detection | Scans AI-generated text for known text content |
+| Task adherence API | Detects when tool use by AI agents is misaligned or unintented |
+| Analyze text API | Scans text for sexual content, violence, hate and self harm |
+| Analyze image API | Scans images for sexual content, violence hate and self harm |
+| Custom detection | Create and train own custom content categories |
+
 ### Content safety categories
 
 | Category | Description | Severity Levels | Numeric Values |
@@ -446,10 +458,12 @@ parsingMode options are:
 
 Azure AI Document Intelligence (formerly Form Recognizer) automates the extraction of information from documents using machine learning. It supports prebuilt models (i.e. invoices, receipts, ID cards, credit cards, contracts, business cards) for common document types and custom models for specific layouts. Specialization on forms. It is accessible via SDK, REST API and the [Document Intelligence Studio](https://contentunderstanding.ai.azure.com/documentintelligence/studio). It supports PDFs, images and scanned forms.
 
-Supported File-Formats:
-* PDF
-* Images: JPEG/JPG, PNG, BMP, TIFF, HEIF
-* Office: Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML
+Requirements:
+* Supported File-Formats: PDF, JPEG/JPG, PNG, BMP, TIFF
+* Less that 500 MB (S0 tier) and 4 MB (F0 tier)
+* Image dimensions: Between 50x50 and 10.000x10.000 pixels.
+* <500 pages training data
+
 
 [Python Script Example](./Resources/Scripts/AI102_DocumentIntelligenceAPI.py)
 
@@ -687,6 +701,8 @@ az consumption budget create \
 [Examtopics](https://www.examtopics.com/exams/microsoft/ai-102/view/)
 
 [Free AI-102 Mock Exam](https://www.freemockexams.com/AI-102-practice-test.html)
+
+[Code with Bibek Youtube Playlist](https://youtu.be/Xt1zt0FLHrY?si=V7ElKniEVLHV8Bbp)
 
 ## Exam Tips
 
