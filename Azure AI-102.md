@@ -684,6 +684,8 @@ az consumption budget create \
 
 [OpenExamPrep](https://open-exam-prep.com/practice/azure-ai-102)
 
+[Examtopics](https://www.examtopics.com/exams/microsoft/ai-102/view/)
+
 [Free AI-102 Mock Exam](https://www.freemockexams.com/AI-102-practice-test.html)
 
 ## Exam Tips
