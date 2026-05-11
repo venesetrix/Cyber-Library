@@ -256,6 +256,8 @@ Use in feedback analysis, support prioritization and brand monitoring:
 
 The Azure Bot Service is a managed Azure service to register, deploy and manage bots. It supports the Bot Framework SDK or Copilot Studio.
 
+[Bot Service Documentation](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-overview?view=azure-bot-service-4.0)
+
 Definitions:
 * **Bots** are nothing more or less than conversational user interfaces.
 * **Channels** (the "Client side") include Microsoft Teams, Web Chat, Slack, WhatsApp and custom web clients.
@@ -711,3 +713,184 @@ az consumption budget create \
 * In Sandbox Environments read through all the tabs. Each question will usually have the answer in one of the bullet lists in the tabs. Watch out for Buzzwords.
 * Whenever you can decide between API key and RBAC, use RBAC as it is the best practice approach.
 * What can you do, when you not have enough performance? Adjust the scale of the service.
+
+## Services at a glance
+
+### AI Bot Service
+
+* The Bot Framework includes a modular and extensible SDK for building bots and connecting to AI services. 
+* The SDK supports Memory and storage, Natural language understanding and adding media and cards.
+* You can connect the bots to [channels](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0), such as Facebook, Messenger, Slack, Microsoft Teams, Telegram, and SMS via Twilio.
+
+### Azure Content Safety
+
+[Azure Content Safety Studio](https://contentsafety.cognitive.azure.com/)
+
+#### Features
+* Provides API's for different moderation needs:
+    * AI safety and prompt protection
+        * Prompt Shields (max 10K chars)
+        * Groundedness detection (max 55K chars for grounding source, 7,5K for query length)
+        * Protected material text detection (max 10K chars)
+        * Task adherence API (max 100K chars)
+    * Content analysis
+        * Analyze text (max 10K chars)
+        * Analyze image (max 4MB, between 50x50-7200x7200 pixels, can be JPG, PNG, GIF, BMP, TIFF or WEBP)
+
+#### Szenarios
+* User prompts submitted to a generative AI service.
+* Content produced by generative AI models.
+* Online marketplaces that moderate product catalogs and other user-generated content.
+* Gaming companies that moderate user-generated game artifacts and chat rooms.
+* Social messaging platforms that moderate images and text added by their users.
+* Enterprise media companies that implement centralized moderation for their content.
+* K-12 education solution providers filtering out content that's inappropriate for students and educators.
+
+### Custom Vision
+
+[Custom Vision web portal](https://customvision.ai/)
+
+#### Features
+
+* Azure AI Custom Vision is an image recognition service that lets you build, deploy, and improve your own image identifier models. 
+* Projects (F0=2, S0=100)
+* Training Images Limits (F0=5K, S0=100K)
+* Predictions (F0=10K, S0=Unlimited)
+* Iterations (F0=50, S0=500)
+* Accepted Image Types (JPG, PNG, BMP, GIF)
+* Project types:
+    * Classifier = Is it a Dog or a Cat?
+        * Classification Types
+            * Multilabel = Multiple tags per image
+            * Multiclass = Singeg tag per image
+        * Domains are General, Food, Landmarks, Retail, Compact (can run on mobile devices)
+        * Classifier evaluation:
+            * Precision = For example, if the model identified 100 images as dogs, and 99 of them were actually of dogs, then the precision would be 99%.
+            * Recall = For example, if there were actually 100 images of apples, and the model identified 80 as apples, the recall would be 80%.
+            * Probability threshold = When you interpret prediction calls with a high probability threshold, they tend to return results with high precision at the expense of recall—the detected classifications are correct, but many remain undetected. 
+    * Object Detection = Is there a Dog?
+        * Domains are Genral, Logo, Products on shelves and Compact domains
+        * In order to train your model effectively, use images with visual variety.
+        * Detection evaluation:
+            * Has Precision and Recall, too.
+            * Mean average precision = Is the average value of the average precision (AP). The AP is the area under the precision/recall curve (precision plotted against recall for each prediction made).
+            * Overlap Threshold = How correct an object prediction must be to be considered correct in training.
+
+### Azure Face
+
+[Documentation](https://learn.microsoft.com/en-us/azure/ai-services/face/overview-identity)
+
+[Vision Studio for Face](https://portal.vision.cognitive.azure.com/gallery/face)
+
+The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images.
+
+#### Features
+
+* Identification (find a face of a known person in an image)
+* Verification ("Do these two faces belong to the same person?")
+* Find similar faces ("face matching between a target face and a set of candidate faces") with matchPerson and matchFace modes.
+* Group Faces (divides a set of unknown faces into several smaller groups based on similarity)
+* Formats are JPEG, PNG, GIF and BMP with a size between 36 x 36 to 4096 x 4,096
+
+#### Szenarios
+
+* Verify user identity
+* Liveness detection (anti-spoofing like printed photo, recorded video or a 3D mask)
+* Touchless access control
+* Face redaction (blur detected faces)
+
+### Azure AI Search
+
+Azure AI Search is a fully managed, cloud-hosted service that connects data to AI. The service unifies access to enterprise and web content so agents and LLMs can use context, chat history, and multi-source signals to produce reliable, grounded answers.
+
+#### Features
+
+* Two engines: classic search for single requests and agentic retrievel for parallel LLM-assisted search (RAG).
+* Full-text, vector, hybrid, and multimodal queries over local (indexed) and remote content.
+* Enrich and structure content at indexing or query time with skills that perform chunking, embedding, and LLM-assisted transformations.
+* Indexing:
+    * Azure AI Search can only index JSON documents.
+    * During indexing, you can use AI enrichment to chunk text, generate vectors, and apply other transformations that create structure and content.
+* Agentic retrieval:
+    * Each query targets a knowledge base that represents a complete domain of knowledge.
+    * A knowledge base consists of one or more knowledge sources, an optional LLM for query planning and answer synthesis, and parameters that govern retrieval behavior.
+* If your content is in a supported data source, use the pull method to retrieve and serialize data into JSON. If you don't have a supported data source, or if your content and index must be synchronized in real time, the push method is your only option.
+
+#### Classic Search
+
+* Full-text search
+    * Import JSON-formatted data
+    * Configure field-definitions
+        * Retrievable
+            * = Field can be returned in a search result. 
+            * If false it can be used for filtering, sorting or scoring. 
+            * Must be true for key fields and null for complex fields.
+            * Doesn't cause any increase in index storage requirements.
+        * Searchable
+            * = Is full-text searchable and can be referenced in search queries.
+        * Filterable
+            * = Enable the field in filter-queries. 
+            * Don't undergo lexical analysis so only exact matches will work.
+        * Sortable
+            * = Enable the field in orderby expressions.
+            * Only sortable if it's single-valued
+        * Facetable
+            * = Referenced in facet queries (hit count by category).
+* Vector search
+    * Vectors are high-dimensional embeddings that represent text, images, and other content mathematically.
+    * At query time, the vector fields in your index enable similarity search, where the system retrieves documents whose vectors are most similar to the vector query.
+    * More storage is required for filterable fields.
+* AI enrichment
+    * Refers to integration with Foundry Tools to process content that isn't searchable in its raw form.
+    * BuiltIn-Skills:
+        * Multimodal Image and text vectorization
+        * Entity "Custom Lookup", "Recognition", "Linking"
+        * Image analysis
+        * Key Phrase Extraction
+        * Language Detection
+        * OCR
+        * PII Detection
+        * Sentiment
+        * Text translation
+
+#### Agentic retrieval (RAG)
+
+* A knowledge SOURCE specifies the content used for agentic retrieval.
+* A knowledge BASE is a top-level object that orchestrates agentic retrieval.
+
+[Documentation](https://learn.microsoft.com/en-us/azure/search/)
+
+
+### Azure AI Video Indexer
+
+[Documentation](https://learn.microsoft.com/en-us/azure/azure-video-indexer/)
+
+
+### Azure AI Language
+
+[Documentation](https://learn.microsoft.com/en-us/azure/ai-services/language-service/)
+
+
+### Azure AI Document Intelligence
+
+[Documentation](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/?view=doc-intel-4.0.0)
+
+
+### Azure Vision in Foundry Tools
+
+[Documentation](https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/)
+
+
+### Azure Translator in Foundry Tools
+
+[Documentation](https://learn.microsoft.com/en-us/azure/ai-services/translator/)
+
+
+### Azure Speech
+
+[Documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/)
+
+
+### Azure Foundry
+
+[Documentation](https://learn.microsoft.com/en-us/azure/foundry/)
